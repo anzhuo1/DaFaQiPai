@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPaddingTopBottom" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <!--该属性表示里面的TAB是否均分整个PagerSlidingTabStrip控件的宽,true是,false不均分,从左到右排列,默认false-->
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+        <attr name="pstsTextSelectedColor" format="color" />
+        <!--缩放的最大值,0.3表示放大后最大是原来的0.3倍,默认未0.3-->
+        <attr name="pstsScaleZoomMax" format="float" />
+        <attr name="pstsSmoothScrollWhenClickTab" format="boolean" />
+    </declare-styleable>
+
+
+    <declare-styleable name="NumberProgressBar">
+        <attr name="progress_current" format="integer" />
+        <attr name="progress_max" format="integer" />
+        <attr name="progress_unreached_color" format="color" />
+        <attr name="progress_reached_color" format="color" />
+        <attr name="progress_reached_bar_height" format="dimension" />
+        <attr name="progress_unreached_bar_height" format="dimension" />
+        <attr name="progress_text_size" format="dimension" />
+        <attr name="progress_text_color" format="color" />
+        <attr name="progress_text_offset" format="dimension" />
+        <attr name="progress_text_visibility" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="crLayout">
+        <!-- 自定义加载更多 res layout id-->
+        <attr name="load_layout" format="reference" />
+        <!--加载更多显示的文字-->
+        <attr name="load_text" format="string" />
+        <!--加载更多的进度菊花-->
+        <attr name="load_indeterminate_drawable" format="reference" />
+        <!--加载更多完成显示的文字-->
+        <attr name="load_completed_text" format="string" />
+        <!--加载更多layout有动画显示效果-->
+        <attr name="load_animator" format="boolean" />
+        <attr name="empty_text" format="string" />
+    </declare-styleable>
+
+
+    <declare-styleable name="StateLayout">
+        <attr name="errorDrawable" format="reference" />
+        <attr name="emptyDrawable" format="reference" />
+        <attr name="progressView" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="PasswordEditText">
+        <attr name="pet_iconShow" format="integer" />
+        <attr name="pet_iconHide" format="integer" />
+    </declare-styleable>
+
+
+    <declare-styleable name="DropDownMenu">
+        <attr name="ddunderlineColor" format="color" />
+        <attr name="dddividerColor" format="color" />
+        <attr name="ddtextSelectedColor" format="color" />
+        <attr name="ddtextUnselectedColor" format="color" />
+        <attr name="ddmenuBackgroundColor" format="color" />
+        <attr name="ddmaskColor" format="color" />
+        <attr name="ddmenuTextSize" format="dimension" />
+        <attr name="ddmenuSelectedIcon" format="reference" />
+        <attr name="ddmenuUnselectedIcon" format="reference" />
+    </declare-styleable>
+
+
+    <!--RatingBarView-->
+    <declare-styleable name="RatingBarView">
+        <attr name="starImageSize" format="dimension" />
+        <attr name="starCount" format="integer" />
+        <attr name="starEmpty" format="reference" />
+        <attr name="starFill" format="reference" />
+
+    </declare-styleable>
+
+    <declare-styleable name="SmoothCheckBox">
+        <attr name="duration" format="integer" />
+        <attr name="stroke_width" format="dimension" />
+        <attr name="color_tick" format="color" />
+        <attr name="color_checked" format="color" />
+        <attr name="color_unchecked" format="color" />
+        <attr name="color_unchecked_stroke" format="color" />
+    </declare-styleable>
+
+
+    <declare-styleable name="OffOicialBetView">
+        <attr name="title" format="string" />
+        <attr name="gv_content" format="string" />
+        <attr name="gv_columns" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="VSTView">
+        <attr name="switchDuaration" format="integer" />
+        <attr name="idleDuaration" format="integer" />
+        <attr name="switchOrientation">
+            <enum name="up" value="0" />
+            <enum name="down" value="1" />
+        </attr>
+        <attr name="alignment">
+            <enum name="center" value="0" />
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+
+        <attr name="mode">
+            <enum name="number" value="0" />
+            <enum name="daxiao" value="1" />
+            <enum name="danshaung" value="2" />
+            <enum name="longhu" value="3" />
+            <enum name="weida" value="4" />
+        </attr>
+    </declare-styleable>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+
+
+
+    <declare-styleable name="gifCommon">
+        <attr name="gif_src" format="reference"/>
+        <attr name="decode_stream" format="boolean"/>
+        <attr name="default_animation_time" format="integer"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="SProgress">
+        <attr name="progressColor" format="color"/>
+        <attr name="backColor" format="color"/>
+        <attr name="progressendcolor" format="color"/>
+        <attr name="textColor" format="color"/>
+        <attr name="textsize" format="dimension"/>
+        <attr name="minProgress" format="float"/>
+        <attr name="startprogress" format="float"/>
+    </declare-styleable>
+
+</resources>

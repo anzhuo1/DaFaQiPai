@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#01000000"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="1460px"
+        android:layout_height="890px"
+        android:layout_marginLeft="250px"
+        android:layout_marginTop="90px"
+        android:background="@mipmap/bg_gerenxxk"
+        android:gravity="center"
+        android:text="Loading..."
+        android:textColor="@color/colorWhite"
+        android:textSize="30px">
+
+    </RelativeLayout>
+
+
+    <RadioGroup
+        android:layout_width="380px"
+        android:layout_height="550px"
+        android:layout_marginLeft="320px"
+        android:layout_marginTop="227px"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/r1"
+            android:layout_width="350px"
+            android:layout_height="100px"
+            android:background="@drawable/icon_geren"
+            android:button="@null"
+            android:checked="true"
+            android:textSize="28px" />
+
+        <RadioButton
+            android:id="@+id/r2"
+            android:layout_width="350px"
+            android:layout_height="100px"
+            android:layout_marginTop="40px"
+            android:background="@drawable/icon_youxijl"
+            android:button="@null"
+            android:textSize="28px" />
+
+        <RadioButton
+            android:id="@+id/r3"
+            android:layout_width="350px"
+            android:layout_height="100px"
+            android:layout_marginTop="40px"
+            android:background="@drawable/icon_chongti"
+            android:button="@null"
+            android:textSize="28px" />
+
+        <RadioButton
+            android:id="@+id/r4"
+            android:layout_width="350px"
+            android:layout_height="100px"
+            android:layout_marginTop="40px"
+            android:background="@drawable/icon_denglurz"
+            android:button="@null"
+            android:textSize="28px" />
+
+    </RadioGroup>
+
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="910px"
+        android:layout_height="640px"
+        android:layout_marginLeft="700px"
+        android:layout_marginTop="227px"
+        android:background="@mipmap/bg_hei">
+
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/close"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_marginLeft="1610px"
+        android:layout_marginTop="110px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:maxLength="14" />
+
+</RelativeLayout>

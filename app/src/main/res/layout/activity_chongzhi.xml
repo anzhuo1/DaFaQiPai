@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#01000000"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="1460px"
+        android:layout_height="890px"
+        android:layout_marginLeft="250px"
+        android:layout_marginTop="90px"
+        android:background="@mipmap/bg_chongzhi"
+        android:gravity="center"
+        android:text="Loading..."
+        android:textColor="@color/colorWhite"
+        android:textSize="30px">
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/left_select"
+        android:layout_width="380px"
+        android:layout_height="600px"
+        android:layout_marginLeft="340px"
+        android:layout_marginTop="300px"
+        android:paddingTop="40px"
+        android:paddingBottom="40px">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="860px"
+        android:layout_height="600px"
+        android:layout_marginLeft="760px"
+        android:layout_marginTop="300px"
+        android:orientation="vertical">
+
+    </FrameLayout>
+
+
+    <ImageView
+        android:layout_width="100px"
+        android:layout_height="101px"
+        android:layout_marginLeft="324px"
+        android:layout_marginTop="180px"
+        android:background="@mipmap/touxiang" />
+
+    <TextView
+        android:id="@+id/idnum"
+        android:layout_width="180px"
+        android:layout_height="50px"
+        android:layout_marginLeft="440px"
+        android:layout_marginTop="205px"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textColor="@color/colorText"
+        android:textSize="28px" />
+
+    <TextView
+        android:id="@+id/fuzhi"
+        android:layout_width="180px"
+        android:layout_height="80px"
+        android:layout_marginLeft="660px"
+        android:layout_marginTop="200px" />
+
+
+    <TextView
+        android:id="@+id/chongti"
+        android:layout_width="200px"
+        android:layout_height="80px"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="190px"
+        android:layout_marginRight="300px" />
+
+    <TextView
+        android:id="@+id/finish"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="90px"
+        android:layout_marginRight="210px" />
+
+
+</RelativeLayout>

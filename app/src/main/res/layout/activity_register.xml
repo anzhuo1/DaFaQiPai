@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#01000000"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="1300px"
+        android:layout_height="800px"
+        android:layout_marginLeft="300px"
+        android:layout_marginTop="110px"
+        android:background="@mipmap/bg_register"
+        android:gravity="center">
+
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/close"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_marginLeft="1490px"
+        android:layout_marginTop="110px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:maxLength="14" />
+
+
+    <EditText
+        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+        android:id="@+id/name"
+        android:layout_width="480px"
+        android:layout_height="80px"
+        android:layout_marginLeft="830px"
+        android:layout_marginTop="250px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="请输入6-14位字母加数字"
+        android:maxLength="14"
+        android:paddingLeft="20px"
+        android:text=""
+        android:textColor="#bdc1cc"
+        android:textColorHint="#494f5a"
+        android:textSize="30px" />
+
+
+    <EditText
+        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+        android:id="@+id/pass"
+        android:layout_width="480px"
+        android:layout_height="80px"
+        android:layout_marginLeft="830px"
+        android:layout_marginTop="335px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="请输入6-14位字母加数字密码"
+        android:maxLength="14"
+        android:paddingLeft="20px"
+        android:text=""
+        android:textColor="#bdc1cc"
+        android:textColorHint="#494f5a"
+        android:textSize="30px" />
+
+
+    <EditText
+        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+        android:id="@+id/again_pass"
+        android:layout_width="480px"
+        android:layout_height="80px"
+        android:layout_marginLeft="830px"
+        android:layout_marginTop="425px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="请输入您的密码"
+        android:maxLength="14"
+        android:paddingLeft="20px"
+        android:text=""
+        android:textColor="#bdc1cc"
+        android:textColorHint="#494f5a"
+        android:textSize="30px" />
+
+    <EditText
+        android:id="@+id/tuijian"
+        android:layout_width="480px"
+        android:layout_height="80px"
+        android:layout_marginLeft="830px"
+        android:layout_marginTop="505px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="请输入推荐人账号（若有）"
+        android:maxLength="14"
+        android:paddingLeft="20px"
+        android:text=""
+        android:textColor="#bdc1cc"
+        android:textColorHint="#494f5a"
+        android:textSize="30px" />
+
+    <EditText
+        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+        android:id="@+id/yanzhengma"
+        android:layout_width="250px"
+        android:layout_height="80px"
+        android:layout_marginLeft="830px"
+        android:layout_marginTop="590px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="请输入验证码"
+        android:maxLength="14"
+        android:paddingLeft="20px"
+        android:text=""
+        android:textColor="#bdc1cc"
+        android:textColorHint="#494f5a"
+        android:textSize="30px" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="210px"
+        android:layout_height="80px"
+        android:layout_marginLeft="1100px"
+        android:layout_marginTop="590px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="请输入您的账号"
+        android:maxLength="14"
+        android:paddingLeft="20px"
+        android:text=""
+        android:textColor="#bdc1cc"
+        android:textColorHint="#494f5a"
+        android:textSize="30px" />
+
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="290px"
+        android:layout_height="90px"
+        android:layout_marginLeft="820px"
+        android:layout_marginTop="690px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:maxLength="14" />
+
+
+</RelativeLayout>

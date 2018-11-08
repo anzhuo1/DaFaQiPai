@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="860px"
+    android:layout_height="600px"
+    android:background="@color/appbg"
+    android:orientation="vertical">
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:background="@mipmap/dailiwz" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="20px"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>
+

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="860px"
+    android:layout_height="640px"
+    android:background="#333540"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical"
+            android:paddingLeft="42px"
+            android:paddingRight="42px">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="20px"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="160px"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="开户姓名"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="32px" />
+
+                <com.dafa.qipai.dafaqipai.wihget.LimitEditeText
+                    android:textColorHint="@color/text_hint_color"
+                    android:hint="请输入开户姓名"
+                    android:id="@+id/kaihuren"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/czjebg"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15px"
+                    android:text=""
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="40px" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="20px"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="160px"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="选择银行"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="32px" />
+
+                <TextView
+                    android:textColorHint="@color/text_hint_color"
+                    android:hint="请选择开户银行"
+                    android:id="@+id/xzyh"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@mipmap/czjebg"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15px"
+                    android:text=""
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/xuanze"
+                    android:layout_width="200px"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20px"
+                    android:background="@mipmap/qcbg"
+                    android:gravity="center"
+                    android:text="选择银行"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="28px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="20px"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="160px"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="支行名称"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="32px" />
+
+                <com.dafa.qipai.dafaqipai.wihget.LimitEditeText
+                    android:textColorHint="@color/text_hint_color"
+                    android:hint="请输入支行名称"
+                    android:id="@+id/zhmc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/czjebg"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15px"
+                    android:text=""
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="40px" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="20px"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="160px"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="银行卡号"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="32px" />
+
+                <EditText
+                    android:inputType="number"
+                    android:textColorHint="@color/text_hint_color"
+                    android:hint="请输入银行卡号"
+                    android:id="@+id/kahao"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/czjebg"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15px"
+                    android:text=""
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="40px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="20px"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="160px"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="开户地"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="32px" />
+
+                <com.dafa.qipai.dafaqipai.wihget.LimitEditeText
+                    android:textColorHint="@color/text_hint_color"
+                    android:hint="请输入开户地"
+                    android:id="@+id/kaihudi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/czjebg"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15px"
+                    android:text=""
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="40px" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30px"
+                android:paddingLeft="10px"
+                android:text="提示：请正确选择开户行，并绑定真实姓名，结算时将直接转入此账号，为了您的资金安全，绑定后不可随意更改，如需更改，请联系客服人员。"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="28px" />
+
+
+            <TextView
+                android:layout_marginBottom="40px"
+                android:layout_gravity="center_horizontal"
+                android:background="@mipmap/bangdbg"
+                android:id="@+id/ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100px" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
+

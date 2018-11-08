@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="910px"
+    android:layout_height="640px"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#333540"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:layout_margin="10px"
+            android:background="@mipmap/ctx">
+
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="200px"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="时间"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="28px" />
+
+            <TextView
+                android:id="@+id/money"
+                android:layout_width="250px"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="金额"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="28px" />
+
+
+            <TextView
+                android:id="@+id/leixing"
+                android:layout_width="180px"
+                android:layout_height="match_parent"
+                android:layout_margin="10px"
+                android:background="@mipmap/ctx"
+                android:drawableRight="@mipmap/downarrow"
+                android:gravity="center_vertical"
+                android:paddingLeft="10px"
+                android:paddingRight="10px"
+                android:text="订单类型"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="28px" />
+
+            <TextView
+                android:id="@+id/zhuangtai"
+                android:layout_width="180px"
+                android:layout_height="match_parent"
+                android:layout_margin="10px"
+                android:background="@mipmap/ctx"
+                android:drawableRight="@mipmap/downarrow"
+                android:gravity="center_vertical"
+                android:paddingLeft="10px"
+                android:paddingRight="10px"
+                android:text="订单状态"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="28px" />
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+</LinearLayout>
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_margin="30px"
+        android:layout_width="320px"
+        android:layout_height="300px"
+        android:background="@mipmap/dezhou" />
+
+</android.support.v7.widget.LinearLayoutCompat>

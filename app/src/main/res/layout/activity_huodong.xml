@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#01000000"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="1400px"
+        android:layout_height="830px"
+        android:layout_marginLeft="300px"
+        android:layout_marginTop="120px"
+        android:background="@mipmap/bg_huodongk"
+        android:gravity="center"
+        android:text="Loading..."
+        android:textColor="@color/colorWhite"
+        android:textSize="30px">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/response"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="70px"
+            android:layout_marginTop="120px"
+            android:layout_marginRight="75px"
+            android:layout_marginBottom="70px">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/close"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_marginLeft="1595px"
+        android:layout_marginTop="120px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:maxLength="14" />
+
+
+</RelativeLayout>

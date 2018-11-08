@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="860px"
+    android:layout_height="600px"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_tongdao"
+        android:layout_width="match_parent"
+        android:layout_height="100px">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:drawableLeft="@mipmap/lingxing"
+        android:text="您要充值的金额"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="24px" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="210px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="充值金额"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="40px" />
+
+        <EditText
+            android:id="@+id/money"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@mipmap/czjebg"
+            android:hint="请输入充值金额"
+            android:inputType="number"
+            android:paddingLeft="20px"
+            android:text=""
+            android:textColor="@color/colorTextWhite"
+            android:textColorHint="@color/text_hint_color"
+            android:textSize="40px" />
+
+        <TextView
+            android:id="@+id/qingchu"
+            android:layout_width="200px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10px"
+            android:background="@mipmap/qcbg"
+            android:gravity="center"
+            android:text="清除"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="40px" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginTop="40px"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/r1"
+            android:layout_width="200px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12px"
+            android:background="@drawable/icon_tongdao"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="4px"
+            android:text="6元"
+            android:textColor="@color/primarybar_txt"
+            android:textSize="30px" />
+
+        <RadioButton
+            android:id="@+id/r2"
+
+            android:layout_width="200px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12px"
+            android:background="@drawable/icon_tongdao"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="4px"
+            android:text="100元"
+            android:textColor="@color/primarybar_txt"
+            android:textSize="30px" />
+
+        <RadioButton
+            android:id="@+id/r3"
+
+            android:layout_width="200px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12px"
+            android:background="@drawable/icon_tongdao"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="4px"
+            android:text="500元"
+            android:textColor="@color/primarybar_txt"
+            android:textSize="30px" />
+
+        <RadioButton
+            android:id="@+id/r4"
+
+            android:layout_width="210px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12px"
+            android:background="@drawable/icon_tongdao"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="4px"
+            android:text="1000元"
+            android:textColor="@color/primarybar_txt"
+            android:textSize="30px" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tijiao"
+        android:layout_marginTop="40px"
+        android:layout_gravity="center_horizontal"
+        android:background="@mipmap/tjczbg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
+

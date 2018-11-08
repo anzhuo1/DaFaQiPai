@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="256px"
+    android:layout_height="110px"
+    android:id="@+id/bg"
+    android:background="@mipmap/zfbtd"
+    android:layout_margin="10px"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/t1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="微信"
+        android:textColor="@color/white"
+        android:textSize="28px" />
+
+    <TextView
+        android:layout_marginTop="6px"
+        android:textSize="22px"
+        android:text="微信"
+        android:textColor="@color/white"
+        android:id="@+id/t2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

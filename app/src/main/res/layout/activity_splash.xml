@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_splash"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="850px"
+        android:gravity="center"
+        android:text="Loading..."
+        android:textColor="@color/colorWhite"
+        android:textSize="30px" />
+
+
+    <com.dafa.qipai.dafaqipai.wihget.SProgress
+        android:id="@+id/progress"
+        android:layout_width="1480px"
+        android:layout_height="14px"
+        android:layout_marginTop="60px"
+        app:backColor="#000"
+        app:minProgress="0"
+        app:progressColor="#A04B23"
+        app:progressendcolor="#FBE599"
+        app:textColor="#00000000"
+        app:textsize="0px" />
+
+
+</LinearLayout>

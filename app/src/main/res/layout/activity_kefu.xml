@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#01000000"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+
+    <LinearLayout
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="40px"
+        android:layout_marginRight="120px"
+        android:layout_marginLeft="120px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/bg_kefu"
+        android:orientation="horizontal"
+        android:text="Loading..."
+        android:textColor="@color/colorWhite"
+        android:textSize="30px">
+
+
+        <RadioGroup
+            android:layout_width="400px"
+            android:layout_height="720px"
+            android:layout_marginLeft="60px"
+            android:layout_marginTop="140px"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/qipai"
+                android:layout_width="350px"
+                android:layout_height="100px"
+                android:background="@drawable/icon_zaixiankefu"
+                android:button="@null"
+                android:checked="true"
+                android:textSize="28px" />
+
+            <RadioButton
+                android:id="@+id/zhenren"
+                android:layout_width="350px"
+                android:layout_height="100px"
+                android:layout_marginTop="40px"
+                android:background="@drawable/icon_changjianwnti"
+                android:button="@null"
+                android:textSize="28px" />
+
+
+        </RadioGroup>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="140px"
+            android:layout_marginRight="100px"
+            android:layout_marginBottom="95px"
+            android:layout_weight="1">
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </WebView>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/close"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_marginLeft="1685px"
+        android:layout_marginTop="60px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:maxLength="14" />
+
+
+</RelativeLayout>

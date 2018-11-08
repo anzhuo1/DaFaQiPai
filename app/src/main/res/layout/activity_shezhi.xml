@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#01000000"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="1200px"
+        android:layout_height="730px"
+        android:layout_marginLeft="365px"
+        android:layout_marginTop="120px"
+        android:background="@mipmap/shezhikk"
+        android:gravity="center"
+        android:text="Loading..."
+        android:textColor="@color/colorWhite"
+        android:textSize="30px">
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/close"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_marginLeft="1455px"
+        android:layout_marginTop="120px"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:maxLength="14" />
+
+
+    <ImageView
+        android:layout_width="140px"
+        android:layout_height="140px"
+        android:layout_marginLeft="747px"
+        android:layout_marginTop="400px"
+        android:background="@mipmap/tou1xiang" />
+
+    <TextView
+        android:id="@+id/nicheng"
+        android:layout_width="180px"
+        android:layout_height="50px"
+        android:layout_marginLeft="960px"
+        android:layout_marginRight="700px"
+        android:layout_marginTop="394px"
+        android:background="@null"
+        android:gravity="center"
+        android:paddingLeft="5px"
+        android:paddingRight="5px"
+        android:textColor="@color/colorAccent"
+        android:textSize="26px" />
+
+
+    <TextView
+        android:id="@+id/id_nun"
+        android:layout_width="180px"
+        android:layout_height="50px"
+        android:layout_marginLeft="960px"
+        android:layout_marginRight="700px"
+        android:layout_marginTop="480px"
+        android:gravity="center"
+        android:paddingLeft="5px"
+        android:paddingRight="5px"
+        android:textColor="@color/colorAccent"
+        android:textSize="26px" />
+
+    <TextView
+        android:id="@+id/qiehuan"
+        android:layout_width="360px"
+        android:layout_height="140px"
+        android:layout_marginLeft="760px"
+        android:layout_marginTop="560px"
+        android:background="@mipmap/exit" />
+
+
+</RelativeLayout>

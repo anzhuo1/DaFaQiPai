@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#EFD69F</color>
+    <color name="colorPrimaryDark">#EFD69F</color>
+    <color name="colorAccent">#EFD69F</color>
+
+    <color name="float_transparent">#00000000</color>
+
+    <color name="colorText">#EFD69F</color>
+    <color name="colorTextWhite">#bdc1cc</color>
+
+    <color name="colorWhite">#fff</color>
+
+
+    <color name="bg_line">#3E454F</color>
+
+
+    <color name="appbg">#3E454F</color>
+    <color name="text_hint_color">#494f5a</color>
+</resources>

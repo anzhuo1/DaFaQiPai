@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="860px"
+    android:layout_height="640px"
+    android:background="#333540"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical"
+            android:paddingLeft="42px"
+            android:paddingRight="42px">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="20px"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="提款金额"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="32px" />
+
+                <EditText
+                    android:id="@+id/money"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/czjebg"
+                    android:gravity="center_vertical"
+                    android:hint="请输入提款金额"
+                    android:inputType="number"
+                    android:paddingLeft="15px"
+                    android:text=""
+                    android:textColor="@color/colorTextWhite"
+                    android:textColorHint="@color/text_hint_color"
+                    android:textSize="40px" />
+
+
+                <TextView
+                    android:layout_width="80px"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="元"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="32px" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160px"
+                android:layout_marginTop="20px"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="80px"
+                    android:gravity="center"
+                    android:text="选择银行卡"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="32px" />
+
+                <LinearLayout
+                    android:id="@+id/xzyh"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@mipmap/czjebg"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="15px"
+                    android:text=""
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="40px">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/yhk_img"
+                            android:layout_width="90px"
+                            android:layout_height="90px"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10px"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/yhk_img"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/yhk"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:hint="请选择银行卡"
+                                android:textColor="@color/colorTextWhite"
+                                android:textColorHint="@color/text_hint_color"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/yhk_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text=""
+                                android:textColor="@color/colorTextWhite"
+                                android:textSize="14sp"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/ok"
+                android:layout_width="380px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="100px"
+                android:background="@mipmap/tijiao" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
+

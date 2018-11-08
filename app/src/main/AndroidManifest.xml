@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.dafa.qipai.dafaqipai">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--android:roundIcon="@mipmap/ic_launcher_round"-->
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="ExtraText,GoogleAppIndexingWarning">
+        <activity
+            android:name=".view.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppCompatFullscreen">
+
+        </activity>
+
+
+        <activity
+            android:name=".view.WelcomActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppCompatFullscreen">
+
+        </activity>
+
+        <activity
+            android:name=".view.LoginActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+        <activity
+            android:name=".chong.YinHangKaZhuanZhangActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+
+        <activity
+            android:name=".view.RegisterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+        <activity
+            android:name=".chong.ChongzhiActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+        <activity
+            android:name=".chong.WeiXin4BackActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+        <activity
+            android:name=".view.HuoDongActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+        <activity
+            android:name=".view.BaoxianxActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+
+        <activity
+            android:name=".view.KefuActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+        <activity
+            android:name=".view.SheZhiActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+        <activity
+            android:name=".geren.GerenActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+        <activity
+            android:name=".tixian.TiXianActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+
+        <activity
+            android:name=".view.XiaoXiActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+        <activity
+            android:name=".view.XiaoXiDetailActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+        <activity
+            android:name=".youxi.QiPaiWebAppActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppCompatFullscreen">
+
+        </activity>
+
+        <activity
+            android:name=".youxi.BBINWebViewActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensor"
+            android:theme="@style/AppCompatFullscreen" />
+
+        <activity
+            android:name=".youxi.AGWebAppActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppCompatFullscreen"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+
+
+        <activity
+            android:name=".youxi.TiyuWebViewActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppCompatFullscreen" />
+
+        <activity
+            android:name=".view.SplashActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppCompatFullscreen">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+
+    </application>
+
+</manifest>
