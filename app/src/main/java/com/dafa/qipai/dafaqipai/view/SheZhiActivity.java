@@ -74,7 +74,7 @@ public class SheZhiActivity extends BaseActivity {
 
             ActivityContainer.getInstance().finishAllActivity();
 
-            Intent intent = new Intent(SheZhiActivity.this, WelcomActivity.class);
+            Intent intent = new Intent(SheZhiActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
 

@@ -95,9 +95,23 @@ public class MoveView extends View {
                 }
                 touchX = 0;
                 touchY = 0;
+
+//                if (Math.abs(mStartX - x) < 10
+//                        && Math.abs(y - mStartY) < 10) {//捕捉点击事件
+//                    if (mClickListener != null) {
+//                        mClickListener.onClick(this);
+//                    }
+//                }
+
                 return true;
             default:
                 return super.onTouchEvent(event);
         }
     }
+
+    @Override
+    public void setOnClickListener(OnClickListener l) {
+        this.mClickListener = l;
+    }
+    private OnClickListener mClickListener;
 }

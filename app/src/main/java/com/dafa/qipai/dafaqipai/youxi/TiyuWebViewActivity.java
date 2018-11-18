@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -21,12 +22,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.dafa.qipai.dafaqipai.R;
+import com.dafa.qipai.dafaqipai.bean.DoTuiChu;
 import com.dafa.qipai.dafaqipai.bean.Qipai;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.dafa.qipai.dafaqipai.wihget.StateLayout;
+import com.kongzue.dialog.v2.SelectDialog;
 import com.lzy.okgo.OkGo;
 
 import butterknife.BindView;
@@ -65,64 +68,11 @@ public class TiyuWebViewActivity extends BaseYouxiActivity {
         setContentView(R.layout.activity_webview);
         ButterKnife.bind(this);
 
-        mWebView.setBackgroundColor(ContextCompat.getColor(this,android.R.color.transparent));
+        mWebView.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
         mWebView.setBackgroundResource(R.color.appbg);
 
         stateLayout.showProgressView();
 
-//        mUrl = getIntent().getExtras().getString("url");
-//        String tit = getIntent().getExtras().getString("title");
-
-//        if (tit.equals("应用更新")) {
-//            titleRlayout.setVisibility(View.GONE);
-//            StatusBarCompat.setStatusBarColor(this, Color.parseColor("#0983fe"));
-//        }
-//        if (tit.equals("体育赛事")) {
-//
-//            OkGo.post(ApiConstant.API_DOMAIN + "/sport/getSportAmount.json")
-//                    .tag(this)
-//                    .params("token", UserUtil.getToken(this))
-//                    .params("uid", UserUtil.getUserID(this))
-//                    .execute(new OkGoCallBack(this, false) {
-//                        @Override
-//                        protected void _onNext(String json) {
-//                            System.out.println(json);
-//
-//                            TiyuYUe tiyuYUe = GsonUtil.GsonToBean(json, TiyuYUe.class);
-//                            BigDecimal sportAmount = tiyuYUe.getSportAmount();
-//                            if (isFinishing()) {
-//                                return;
-//                            }
-//
-//                            if (sportAmount.compareTo(new BigDecimal("0")) == 0) {
-//
-//                                new ZhuceDialog(WebViewActivity.this, "温馨提示", "立即转换", "继续进入", "您的体育游戏额度不足\n\n请转换额度再进行游戏\n") {
-//                                    @Override
-//                                    public void mustDoThing(Dialog mDialog) {
-//                                        mDialog.dismiss();
-//
-//                                        gotoActivity(ZhuanHuanActivity.class);
-//                                    }
-//
-//                                    @Override
-//                                    public void mustDoThingOnCancle(Dialog mDialog) {
-//
-//                                        mDialog.dismiss();
-//
-//
-//                                    }
-//                                }.show();
-//
-//                            }
-//
-//
-//                        }
-//                    });
-
-
-//        }
-
-        // centertitle.setText(tit);
 
         WebSettings settings = mWebView.getSettings();
         settings.setUseWideViewPort(true);
@@ -253,10 +203,52 @@ public class TiyuWebViewActivity extends BaseYouxiActivity {
     private void webViewGoBack() {
         if (mWebView.canGoBack()) { //从界面创建后到现在，有历史记录可以返回
             mWebView.goBack();
-            finish();
+            tuiChu();
         } else {
-            finish();   //没有历史记录直接退出
+            tuiChu();   //没有历史记录直接退出
         }
+    }
+
+
+    private void tuiChu() {
+
+
+        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
+                .params("clientType", "Android")
+                .params("type", 4)
+                .params("token", UserUtil.getToken(context))
+                .params("uid", UserUtil.getUserID(context))
+                .execute(new OkGoCallBack(this, true) {
+                    @Override
+                    protected void _onNext(String json) {
+
+                        DoTuiChu doTuiChu = GsonUtil.GsonToBean(json, DoTuiChu.class);
+                        int result = doTuiChu.getResult();
+
+                        if (result == 1) {
+
+                            finish();
+
+                        } else {
+
+                            SelectDialog.show(TiyuWebViewActivity.this, "提示", "退出失败", "重试", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    tuiChu();
+                                }
+                            }, "取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            });
+
+                        }
+
+                    }
+                });
+
+
     }
 
 

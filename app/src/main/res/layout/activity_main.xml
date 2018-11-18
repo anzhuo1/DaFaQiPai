@@ -138,7 +138,7 @@
             android:id="@+id/qipai"
             android:layout_width="350px"
             android:layout_height="100px"
-            android:layout_marginTop="140px"
+            android:layout_marginTop="160px"
             android:background="@drawable/icon_qipai"
             android:button="@null"
             android:checked="true"

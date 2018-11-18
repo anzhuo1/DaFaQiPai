@@ -37,37 +37,37 @@
 
 
     <EditText
-        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:id="@+id/name"
         android:layout_width="500px"
         android:layout_height="80px"
         android:layout_marginLeft="730px"
         android:layout_marginTop="315px"
         android:background="@null"
+        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:gravity="center_vertical"
         android:hint="请输入您的账号"
         android:maxLength="14"
         android:paddingLeft="20px"
-        android:text="ziyeyouhu"
+        android:text="zz111111"
         android:textColor="#bdc1cc"
         android:textColorHint="#494f5a"
         android:textSize="30px" />
 
 
     <EditText
-        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:id="@+id/pass"
         android:layout_width="500px"
         android:layout_height="80px"
         android:layout_marginLeft="730px"
         android:layout_marginTop="445px"
         android:background="@null"
+        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:gravity="center_vertical"
         android:hint="请输入6-14位密码"
         android:inputType="textPassword"
         android:maxLength="14"
         android:paddingLeft="20px"
-        android:text="ziyeyouhu"
+        android:text="zz111111"
         android:textColor="#bdc1cc"
         android:textColorHint="@color/text_hint_color"
         android:textSize="30px" />

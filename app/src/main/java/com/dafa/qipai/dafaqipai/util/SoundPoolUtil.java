@@ -23,14 +23,13 @@ public class SoundPoolUtil {
         soundPool = new SoundPool(4, AudioManager.STREAM_SYSTEM, 0);
         soundPool.load(context, R.raw.music1, 1);
         soundPool.load(context, R.raw.music2, 1);
-        soundPool.load(context, R.raw.music3, 1);
-        soundPool.load(context, R.raw.music001, 1);
-
+        soundPool.load(context, R.raw.l1, 1);
+        soundPool.load(context, R.raw.l2, 1);
 
     }
 
     public void play(int number) {
         Log.d("tag", "number " + number);
-        soundPool.play(number, 1, 1, 0, 0, 1);
+        soundPool.play(number, 0.2f, 0.2f, 0, 0, 1);
     }
 }

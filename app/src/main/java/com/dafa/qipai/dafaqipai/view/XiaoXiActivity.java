@@ -73,6 +73,9 @@ public class XiaoXiActivity extends BaseActivity {
         loadDate();
 
 
+        recyclerview.setVisibility(View.GONE);
+        llbb.setVisibility(View.GONE);
+
     }
 
     private void loadDate() {
@@ -95,7 +98,7 @@ public class XiaoXiActivity extends BaseActivity {
                                 recyclerview.setLayoutManager(new LinearLayoutManager(context));
 
                                 if (inboxList != null && inboxList.size() > 0) {
-                                    llbb.setVisibility(View.VISIBLE);
+//                                    llbb.setVisibility(View.VISIBLE);
                                 }
 
                                 zhanNeiXinAdapter = new ZhanNeiXinAdapter(context, inboxList, R.layout.item_zhanneixin);
@@ -165,9 +168,13 @@ public class XiaoXiActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.qipai:
                 gonggao.setVisibility(View.VISIBLE);
+                recyclerview.setVisibility(View.GONE);
+                llbb.setVisibility(View.GONE);
                 break;
             case R.id.zhenren:
                 gonggao.setVisibility(View.GONE);
+                recyclerview.setVisibility(View.VISIBLE);
+                llbb.setVisibility(View.VISIBLE);
                 break;
             case R.id.finish:
                 finish();

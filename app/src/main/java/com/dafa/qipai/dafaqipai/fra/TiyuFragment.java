@@ -17,6 +17,7 @@ import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.adapter.HomeAdapter;
 import com.dafa.qipai.dafaqipai.dto.HomeItemDto;
+import com.dafa.qipai.dafaqipai.util.AppUtils;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
 import com.dafa.qipai.dafaqipai.youxi.TiyuWebViewActivity;
 
@@ -54,7 +55,6 @@ public class TiyuFragment extends LazyLoadFragment {
         dtos.add(new HomeItemDto(1, R.mipmap.tizuqiu));   // bbin
 
 
-
         HomeAdapter adapter = new HomeAdapter(getActivity(), dtos, R.layout.item_tiyu);
         listView.setAdapter(adapter);
 
@@ -62,7 +62,7 @@ public class TiyuFragment extends LazyLoadFragment {
             @Override
             public void onItemClick(View view) {
 
-                MyApp.type = 4;
+                AppUtils.showToast(context, "暂未开放");
 
                 int position = listView.getChildAdapterPosition(view);
 

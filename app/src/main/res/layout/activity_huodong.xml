@@ -10,13 +10,13 @@
     tools:context=".view.MainActivity">
 
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="1400px"
         android:layout_height="830px"
         android:layout_marginLeft="300px"
         android:layout_marginTop="120px"
         android:background="@mipmap/bg_huodongk"
-        android:gravity="center"
         android:text="Loading..."
         android:textColor="@color/colorWhite"
         android:textSize="30px">
@@ -24,17 +24,28 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/response"
-            android:layout_width="match_parent"
+            android:layout_width="300px"
             android:layout_height="match_parent"
+            android:layout_marginBottom="70px"
             android:layout_marginLeft="70px"
-            android:layout_marginTop="120px"
             android:layout_marginRight="75px"
-            android:layout_marginBottom="70px">
+            android:layout_marginTop="120px">
 
         </android.support.v7.widget.RecyclerView>
 
 
-    </RelativeLayout>
+        <WebView
+            android:id="@+id/webView"
+            android:layout_marginRight="100px"
+            android:layout_marginTop="120px"
+            android:layout_marginBottom="70px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </WebView>
+
+
+    </LinearLayout>
 
 
     <TextView

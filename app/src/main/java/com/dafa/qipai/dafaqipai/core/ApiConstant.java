@@ -4,15 +4,16 @@ public class ApiConstant {
     /**
      * 统一接口地址
      */
-  public static String API_DOMAIN = "http://43.230.171.202:8080/api/";
+    //public static String API_DOMAIN = "http://43.230.171.202:8080/api/";
     public static String CLIENT_TYPE = "Android";
 
-  //  public static String API_DOMAIN = "http://api.11086.bb.nf/";
-    public static String VERSION = "1";                   // 客户端类型
-    public static String COMPANY_SHORT_NAME = "a2";
+    public static String VERSION = "1";
+
+    public static String COMPANY_SHORT_NAME = "ky";
+
+    public static String API_DOMAIN = "http://api.ky.bb.nf/";
+
     public static String API_WEIHU = "http://weihu.bb.nf/11086.json";
-
-
     public static String API_REGISTER = API_DOMAIN + "member/register.json";    // 用户注册接口
     public static String API_LOGIN = API_DOMAIN + "member/login.json";          // 用户登录接口
     public static String API_GET_USER_SESSION = API_DOMAIN + "member/getUserSession.json";   // 获取用户SESSION信息

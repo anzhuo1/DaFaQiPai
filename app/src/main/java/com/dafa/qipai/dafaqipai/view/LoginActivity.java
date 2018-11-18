@@ -86,7 +86,6 @@ public class LoginActivity extends BaseActivity {
                         DoLogin doLogin = GsonUtil.GsonToBean(json, DoLogin.class);
                         if (doLogin.getResult() == 1) {
 
-                            MyApp.isSHIWAN=false;
                             ACache.get(context).put("token", doLogin.getToken());
                             ACache.get(context).put("account", name.getText().toString());
                             ACache.get(context).put("passwd", MD5Utils.small32md5(pass.getText().toString()));
@@ -94,7 +93,7 @@ public class LoginActivity extends BaseActivity {
 
                             showInfo(context, "登录成功");
                             finish();
-                            gotoActivity(MainActivity.class);
+                            //gotoActivity(MainActivity.class);
                         } else {
                             showError(context, doLogin.getDescription());
                         }

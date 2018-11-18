@@ -15,9 +15,15 @@ import android.widget.Toast;
 import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.adapter.HomeAdapter;
+import com.dafa.qipai.dafaqipai.bean.Qipai;
+import com.dafa.qipai.dafaqipai.core.ApiConstant;
 import com.dafa.qipai.dafaqipai.dto.HomeItemDto;
+import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
+import com.dafa.qipai.dafaqipai.util.GsonUtil;
+import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.dafa.qipai.dafaqipai.youxi.BBINWebViewActivity;
+import com.lzy.okgo.OkGo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,12 +73,28 @@ public class DianZiFragment extends LazyLoadFragment {
 
                 if (position == 1) {
 
-                    MyApp.type = 2;
 
-                    Intent intent2 = new Intent(context, BBINWebViewActivity.class);
-                    intent2.putExtra("url", "3");
-                    intent2.putExtra("title", "BBIN电子");
-                    startActivity(intent2);
+                    OkGo.post(ApiConstant.API_DOMAIN + "/chess/getBbinLoginUrl2.json")
+                            .tag(this)
+                            .params("clientType", 3)
+                            .params("KindID", 3)
+                            .params("token", UserUtil.getToken(getActivity()))
+                            .params("uid", UserUtil.getUserID(getActivity()))
+                            .execute(new OkGoCallBack(getActivity(), true) {
+                                @Override
+                                protected void _onNext(String json) {
+                                    Qipai qipai = GsonUtil.GsonToBean(json, Qipai.class);
+                                    String loginUrl = qipai.getLoginUrl();
+
+
+                                    Intent intent2 = new Intent(context, BBINWebViewActivity.class);
+                                    intent2.putExtra("url", loginUrl);
+                                    intent2.putExtra("title", "电子");
+                                    startActivity(intent2);
+
+                                }
+
+                            });
                     return;
 
                 }
@@ -116,6 +138,10 @@ public class DianZiFragment extends LazyLoadFragment {
     }
 
     private void runLayoutAnimation(final RecyclerView recyclerView) {
+
+        if (recyclerView == null) {
+            return;
+        }
         final Context context = recyclerView.getContext();
         final LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
 

@@ -150,7 +150,7 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
 
     private void load() {
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/member/getSystemBankCard.json")
+            OkGo.post(ApiConstant.API_DOMAIN + "/member/getSystemBankCard.json")
                 .tag(this)
                 .params("token", UserUtil.getToken(this))
                 .params("uid", UserUtil.getUserID(this))

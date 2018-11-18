@@ -6,7 +6,9 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Process;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.dafa.qipai.dafaqipai.bean.BaseDo;
 import com.dafa.qipai.dafaqipai.bean.DOgetAppCzInfoResult;
@@ -14,14 +16,16 @@ import com.dafa.qipai.dafaqipai.enummm.YouXiType;
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
 import com.dafa.qipai.dafaqipai.util.ActivityContainer;
 import com.dafa.qipai.dafaqipai.util.AppUtils;
+import com.dafa.qipai.dafaqipai.util.BackgroundMusic;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
+import com.dafa.qipai.dafaqipai.view.MainActivity;
 import com.dafa.qipai.dafaqipai.view.SheZhiActivity;
-import com.dafa.qipai.dafaqipai.view.WelcomActivity;
 import com.kongzue.dialog.v2.DialogSettings;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.HttpParams;
+import com.tencent.smtt.sdk.QbSdk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +45,6 @@ public class MyApp extends Application {
     public static String NICHENG;
 
     private static MyApp sApp;
-
-    public static boolean isSHIWAN;
 
     public static int type;
 
@@ -69,11 +71,15 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        initOkGo();
+
 
 
         DialogSettings.type = DialogSettings.TYPE_KONGZUE;
         DialogSettings.dialog_theme = THEME_DARK;
+
+
+        initOkGo();
+
 
     }
 
@@ -107,10 +113,19 @@ public class MyApp extends Application {
             @Override
             public void run() {
 
+                if(AppUtils.isAppOnForeground(getApplicationContext())){
+
+                }else {
+
+
+                    Process.killProcess(Process.myPid()); //获取PID
+                    System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
+                }
 
                 if (!UserUtil.isLoginApp(MyApp.this)) {
                     return;
                 }
+
                 OkGo.post(ApiConstant.API_DOMAIN + "member/checkOnline.json")
                         .tag(MyApp.this)
                         .params("token", UserUtil.getToken(MyApp.this))
@@ -135,6 +150,9 @@ public class MyApp extends Application {
                         });
 
 
+
+
+
             }
         }, 1000, 3000);
 
@@ -144,7 +162,7 @@ public class MyApp extends Application {
 
         ActivityContainer.getInstance().finishAllActivity();
 
-        Intent intent = new Intent(MyApp.this, WelcomActivity.class);
+        Intent intent = new Intent(MyApp.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 

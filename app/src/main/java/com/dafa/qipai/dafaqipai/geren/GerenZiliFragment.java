@@ -77,6 +77,33 @@ public class GerenZiliFragment extends LazyLoadFragment {
     @Override
     public void loadData() {
 
+
+
+
+
+        OkGo.post(ApiConstant.API_DOMAIN + "/chess/chessCpzd.json")
+                .params("uid", UserUtil.getUserID(getActivity()))
+                .params("token", UserUtil.getToken(getActivity()))
+                .params("pageIndex",1)
+                .params("pageSize", 10)
+                .params("startTime", "2018-11-13 00:00:00")
+                .params("endTime", "2018-11-14 00:00:00")
+                .execute(new OkGoCallBack(getActivity(), false) {
+                    @Override
+                    protected void _onNext(String json) {
+
+
+                    }
+
+                    @Override
+                    protected void _onError(String error) {
+                        super._onError(error);
+
+                    }
+                });
+
+
+
         OkGo.post(ApiConstant.API_DOMAIN + "member/getUserBaseInfo.json")
                 .params("uid", UserUtil.getUserID(getActivity()))
                 .params("token", UserUtil.getToken(getActivity()))

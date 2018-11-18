@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="940px"
+    android:layout_height="640px"
+
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/qianbao"
+        android:layout_width="340px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80px"
+        android:layout_marginTop="60px"
+        android:background="@mipmap/heik"
+        android:inputType="number" />
+
+
+    <EditText
+        android:id="@+id/baoxianx"
+        android:layout_width="340px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="520px"
+        android:layout_marginTop="60px"
+        android:background="@mipmap/heik"
+        android:inputType="number" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="82px"
+        android:layout_marginLeft="80px"
+        android:layout_marginTop="160px"
+        android:gravity="center"
+        android:text="存入金额"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="32px" />
+
+    <com.dafa.qipai.dafaqipai.wihget.NoIndex0EditeText
+        android:id="@+id/money"
+        android:layout_width="450px"
+        android:layout_height="82px"
+        android:layout_marginLeft="230px"
+        android:layout_marginTop="160px"
+        android:background="@mipmap/shurumm"
+        android:hint="请输入您的存入金额"
+        android:inputType="numberDecimal"
+        android:maxLength="10"
+        android:paddingLeft="15px"
+        android:text=""
+        android:textColor="@color/colorTextWhite"
+        android:textColorHint="@color/text_hint_color"
+        android:textSize="32px" />
+
+
+    <TextView
+        android:id="@+id/qingchu"
+        android:layout_width="180px"
+        android:layout_height="86px"
+        android:layout_marginLeft="690px"
+        android:layout_marginTop="160px"
+        android:background="@mipmap/zuiad"
+        android:gravity="center"
+        android:text="清除"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="32px" />
+
+
+    <SeekBar
+        android:max="1000"
+        android:id="@+id/seek"
+        android:layout_width="620px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60px"
+        android:layout_marginTop="300px"
+        android:maxHeight="20px"
+        android:minHeight="20px"
+        android:progressDrawable="@drawable/po_seekbar"
+        android:thumb="@mipmap/yellow" />
+
+    <TextView
+        android:id="@+id/zuida"
+        android:layout_width="180px"
+        android:layout_height="86px"
+        android:layout_marginLeft="690px"
+        android:layout_marginTop="290px"
+        android:background="@mipmap/zuiad"
+        android:gravity="center"
+        android:text="最大"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="32px" />
+
+    <View
+        android:layout_width="2px"
+        android:layout_height="20px"
+        android:layout_marginLeft="110px"
+        android:layout_marginTop="360px"
+        android:background="#636974" />
+
+    <View
+        android:layout_width="2px"
+        android:layout_height="20px"
+        android:layout_marginLeft="240px"
+        android:layout_marginTop="360px"
+        android:background="#636974" />
+
+
+    <View
+        android:layout_width="2px"
+        android:layout_height="20px"
+        android:layout_marginLeft="370px"
+        android:layout_marginTop="360px"
+        android:background="#636974" />
+
+    <View
+        android:layout_width="2px"
+        android:layout_height="20px"
+        android:layout_marginLeft="500px"
+        android:layout_marginTop="360px"
+        android:background="#636974" />
+
+    <View
+        android:layout_width="2px"
+        android:layout_height="20px"
+        android:layout_marginLeft="630px"
+        android:layout_marginTop="360px"
+        android:background="#636974" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="380px"
+        android:text="0%"
+        android:textColor="#636974"
+        android:textSize="24px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220px"
+        android:layout_marginTop="380px"
+        android:text="30%"
+        android:textColor="#636974"
+        android:textSize="24px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="350px"
+        android:layout_marginTop="380px"
+        android:text="50%"
+        android:textColor="#636974"
+        android:textSize="24px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="480px"
+        android:layout_marginTop="380px"
+        android:text="80%"
+        android:textColor="#636974"
+        android:textSize="24px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="600px"
+        android:layout_marginTop="380px"
+        android:text="100%"
+        android:textColor="#636974"
+        android:textSize="24px" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="460px"
+        android:gravity="center"
+        android:text="提示：请注意您的账号密码安全，以防泄漏，导致个人损失！"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="32px" />
+
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="285px"
+        android:layout_height="100px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="540px"
+        android:background="@mipmap/yes"
+        android:gravity="center"
+        android:text="确认存入" />
+
+</RelativeLayout>
+

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"  xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+    android:layout_height="match_parent">
 
 
     <com.dafa.qipai.dafaqipai.wihget.StateLayout
@@ -11,21 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/LinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-        </LinearLayout>
+        <com.dafa.qipai.dafaqipai.util.X5WebView
+            android:id="@+id/forum_context"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </com.dafa.qipai.dafaqipai.wihget.StateLayout>
 
 
     <com.dafa.qipai.dafaqipai.wihget.MoveView
-        android:background="@mipmap/exit"
-        android:layout_width="30dp"
-        android:layout_height="30dp"/>
+        android:id="@+id/fanhui"
+        android:layout_margin="10px"
+        android:layout_width="142px"
+        android:layout_height="164px"
+        android:background="@mipmap/fanhui" />
+
+
 
 
 </RelativeLayout>

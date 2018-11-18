@@ -1,6 +1,7 @@
 package com.dafa.qipai.dafaqipai.fra;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -14,10 +15,15 @@ import android.widget.Toast;
 import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.adapter.HomeAdapter;
+import com.dafa.qipai.dafaqipai.bean.Qipai;
+import com.dafa.qipai.dafaqipai.core.ApiConstant;
 import com.dafa.qipai.dafaqipai.dto.HomeItemDto;
+import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
+import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.dafa.qipai.dafaqipai.youxi.QiPaiWebAppActivity;
+import com.lzy.okgo.OkGo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +31,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class QipaiFragment extends LazyLoadFragment {
     @BindView(R.id.listView)
@@ -79,15 +87,48 @@ public class QipaiFragment extends LazyLoadFragment {
             @Override
             public void onItemClick(View view) {
 
-
-                MyApp.type = 1;
-
                 int position = listView.getChildAdapterPosition(view);
 
-                String str = dtos.get(position).getId() + "";
-                Bundle bundle = new Bundle();
-                bundle.putString("url", str);
-                gotoActivity(QiPaiWebAppActivity.class, false, bundle);
+                OkGo.post(ApiConstant.API_DOMAIN + "/chess/getChessUrl2.json")
+                        .tag(this)
+                        .params("clientType", "Android")
+                        .params("KindID", dtos.get(position).getId())
+                        .params("token", UserUtil.getToken(context))
+                        .params("uid", UserUtil.getUserID(context))
+                        .execute(new OkGoCallBack(getActivity(), true) {
+                            @Override
+                            protected void _onNext(String json) {
+                                Qipai qipai = GsonUtil.GsonToBean(json, Qipai.class);
+                                if (qipai.getResult() == 1) {
+
+                                    String url = qipai.getLoginUrl();
+
+
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("url", url);
+                                    gotoActivity(QiPaiWebAppActivity.class, false, bundle);
+
+
+                                } else {
+                                    //todo
+
+                                    // {"result":0,"description":"开元棋牌维护中!"}
+                                }
+
+                            }
+
+
+                        });
+
+
+//                MyApp.type = 1;
+//
+//                int position = listView.getChildAdapterPosition(view);
+//
+//                String str = dtos.get(position).getId() + "";
+//                Bundle bundle = new Bundle();
+//                bundle.putString("url", str);
+//                gotoActivity(QiPaiWebAppActivity.class, false, bundle);
             }
 
             @Override
@@ -144,13 +185,20 @@ public class QipaiFragment extends LazyLoadFragment {
         runLayoutAnimation(listView);
     }
 
-    private void runLayoutAnimation(final RecyclerView recyclerView) {
-        final Context context = recyclerView.getContext();
-        final LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+    private void runLayoutAnimation(RecyclerView recyclerView) {
+        if (recyclerView == null) {
+            return;
+        }
+        try {
+            // final Context context = recyclerView.getContext();
+            final LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(getActivity(), R.anim.layout_animation_fall_down);
 
-        recyclerView.setLayoutAnimation(controller);
-        recyclerView.getAdapter().notifyDataSetChanged();
-        recyclerView.scheduleLayoutAnimation();
+            recyclerView.setLayoutAnimation(controller);
+            recyclerView.getAdapter().notifyDataSetChanged();
+            recyclerView.scheduleLayoutAnimation();
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

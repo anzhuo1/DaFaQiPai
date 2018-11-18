@@ -38,8 +38,7 @@ public class HuodongAdapter extends RecyclerView.Adapter<HuodongAdapter.MyViewHo
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         MyViewHolder holder = new MyViewHolder(LayoutInflater.from(context).inflate(layout, parent, false));
 
-//        holder.itemView.setOnClickListener(v ->
-//                onItemClickListener.onItemClick(v));
+      holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(v));
 
         return holder;
     }
@@ -51,7 +50,8 @@ public class HuodongAdapter extends RecyclerView.Adapter<HuodongAdapter.MyViewHo
         String url = ApiConstant.API_DOMAIN + "/image/" + dtos.get(position).getBigImageId() + ".png?companyShortName=600w";
         GlideUtil.loadUrlImage(url, iv, context);
 
-        holder.wv.loadData(dtos.get(position).getContent(), "text/html; charset=UTF-8", null);
+        String url1 = dtos.get(position).getUrl();
+        holder.wv.loadUrl(url1);
 
         if (dtos.get(position).isShow()) {
 
@@ -60,19 +60,22 @@ public class HuodongAdapter extends RecyclerView.Adapter<HuodongAdapter.MyViewHo
             holder.wv.setVisibility(View.GONE);
         }
 
+
         iv.setOnClickListener(v -> {
 
-            if (dtos.get(position).isShow()) {
-                dtos.get(position).setShow(false);
-            } else {
-                for (DoGetPromotion.PromotionListBean d : dtos) {
-                    d.setShow(false);
-                }
+//            if (dtos.get(position).isShow()) {
+//                dtos.get(position).setShow(false);
+//            } else {
+//                for (DoGetPromotion.PromotionListBean d : dtos) {
+//                    d.setShow(false);
+//                }
+//
+//                dtos.get(position).setShow(true);
+//            }
+//
+//            HuodongAdapter.this.notifyDataSetChanged();
 
-                dtos.get(position).setShow(true);
-            }
 
-            HuodongAdapter.this.notifyDataSetChanged();
         });
 
     }
@@ -104,6 +107,7 @@ public class HuodongAdapter extends RecyclerView.Adapter<HuodongAdapter.MyViewHo
 
 
     public interface OnItemClickListener {
+
         void onItemClick(View view);
 
         void onItemLongClick(View view);

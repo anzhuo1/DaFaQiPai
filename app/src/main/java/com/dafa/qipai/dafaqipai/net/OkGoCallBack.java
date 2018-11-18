@@ -46,7 +46,7 @@ public abstract class OkGoCallBack extends StringCallback {
 
                     try {
                         DialogSettings.unloadAllDialog();
-                        waitDialog = WaitDialog.show(mContext, "载入中...").setCanCancel(false);
+                        waitDialog = WaitDialog.show(mContext, "正在加载...").setCanCancel(false);
 
                     } catch (Exception e) {
                         e.printStackTrace();

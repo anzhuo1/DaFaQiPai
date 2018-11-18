@@ -15,17 +15,29 @@ import android.widget.Toast;
 import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.adapter.HomeAdapter;
+import com.dafa.qipai.dafaqipai.bean.DoZhenren;
+import com.dafa.qipai.dafaqipai.bean.Qipai;
+import com.dafa.qipai.dafaqipai.core.ApiConstant;
 import com.dafa.qipai.dafaqipai.dto.HomeItemDto;
+import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
+import com.dafa.qipai.dafaqipai.util.EncodingUtils;
+import com.dafa.qipai.dafaqipai.util.GsonUtil;
+import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.dafa.qipai.dafaqipai.youxi.AGWebAppActivity;
 import com.dafa.qipai.dafaqipai.youxi.BBINWebViewActivity;
+import com.lzy.okgo.OkGo;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class ZhenrenFragment extends LazyLoadFragment {
     @BindView(R.id.listView)
@@ -68,22 +80,69 @@ public class ZhenrenFragment extends LazyLoadFragment {
 
                 if (position == 0) {
 
-                    MyApp.type = 2;
+                    OkGo.post(ApiConstant.API_DOMAIN + "/chess/getBbinLoginUrl2.json")
+                            .tag(this)
+                            .params("clientType", 3)
+                            .params("KindID", 1)
+                            .params("token", UserUtil.getToken(getActivity()))
+                            .params("uid", UserUtil.getUserID(getActivity()))
+                            .execute(new OkGoCallBack(getActivity(), true) {
+                                @Override
+                                protected void _onNext(String json) {
+                                    Qipai qipai = GsonUtil.GsonToBean(json, Qipai.class);
+                                    String loginUrl = qipai.getLoginUrl();
 
-                    Intent intent2 = new Intent(context, BBINWebViewActivity.class);
-                    intent2.putExtra("url", "1");
-                    intent2.putExtra("title", "BBIN视讯");
-                    startActivity(intent2);
+
+                                    Intent intent2 = new Intent(context, BBINWebViewActivity.class);
+                                    intent2.putExtra("url", loginUrl);
+                                    intent2.putExtra("title", "BBIN视讯");
+                                    startActivity(intent2);
+
+                                }
+
+                            });
 
 
                 } else {
 
-                    MyApp.type = 3;
+                    OkGo.post(ApiConstant.API_DOMAIN + "/chess/getAGLoginUrl2.json")
+                            .tag(this)
+                            .params("clientType", "Android")
+                            .params("KindID", "")
+                            .params("token", UserUtil.getToken(context))
+                            .params("uid", UserUtil.getUserID(context))
+                            .execute(new OkGoCallBack(getActivity(), true) {
+                                @Override
+                                protected void _onNext(String json) {
+                                    DoZhenren qipai = GsonUtil.GsonToBean(json, DoZhenren.class);
 
-//                String str = qipais.get(i).getStr();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("url", "");
-                    gotoActivity(AGWebAppActivity.class, false, bundle);
+                                    if (qipai.getResult() == 1) {
+
+                                        String key = qipai.getKey();
+                                        String params = qipai.getParams();
+                                        String loginurl = qipai.getLoginUrl();
+
+
+
+
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("key", key);
+                                        bundle.putString("params", params);
+                                        bundle.putString("url", loginurl);
+                                        gotoActivity(AGWebAppActivity.class, false, bundle);
+
+
+                                    } else {
+
+
+                                    }
+
+
+                                }
+
+
+                            });
+
                 }
 
 

@@ -36,12 +36,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
 
         MyViewHolder holder = new MyViewHolder(LayoutInflater.from(context).inflate(layout, parent, false));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClickListener.onItemClick(v);
-            }
-        });
+        holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(v));
 
         return holder;
     }

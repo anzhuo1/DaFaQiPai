@@ -1,11 +1,15 @@
 package com.dafa.qipai.dafaqipai.view;
 
+import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
+import android.widget.Toast;
 
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.adapter.HuodongAdapter;
+import com.dafa.qipai.dafaqipai.bean.DoBxx;
 import com.dafa.qipai.dafaqipai.bean.DoGetPromotion;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
@@ -15,11 +19,16 @@ import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.dafa.qipai.dafaqipai.wihget.SProgress;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.Observer;
+import rx.functions.Action1;
 
 
 public class SplashActivity extends BaseActivity {
@@ -37,7 +46,6 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
         AutoUtils.auto(this);
-
 
 
         OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
@@ -79,18 +87,7 @@ public class SplashActivity extends BaseActivity {
                     }
                 });
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
-                .params("clientType", "Android")
-                .params("type", 4)
-                .params("token", UserUtil.getToken(context))
-                .params("uid", UserUtil.getUserID(context))
-                .execute(new OkGoCallBack(this, false) {
-                    @Override
-                    protected void _onNext(String json) {
 
-
-                    }
-                });
 
 
         progress.setProgress(0)
@@ -102,10 +99,10 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
 
-                gotoActivity(WelcomActivity.class, true);
+                gotoActivity(MainActivity.class, true);
 
             }
-        }, 5000);
+        }, 3000);
 
 
         OkGo.post(ApiConstant.API_DOMAIN + "/promotion/getPromotion.json\n")

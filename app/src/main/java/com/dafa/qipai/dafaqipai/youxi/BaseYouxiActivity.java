@@ -2,6 +2,7 @@ package com.dafa.qipai.dafaqipai.youxi;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.bean.BaseDo;
@@ -19,9 +20,7 @@ public class BaseYouxiActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         AppUtils.stopBgMuisc(this);
-
 
     }
 
@@ -37,7 +36,6 @@ public class BaseYouxiActivity extends BaseActivity {
 //        参数 type  1.开元棋牌 2.BBIN  3.AG  4.体育
 
 
-
         OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
                 .params("clientType", "Android")
                 .params("type", 1)
@@ -48,7 +46,7 @@ public class BaseYouxiActivity extends BaseActivity {
                     protected void _onNext(String json) {
 
 
-                        }
+                    }
                 });
 
         OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
@@ -77,21 +75,8 @@ public class BaseYouxiActivity extends BaseActivity {
                     }
                 });
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
-                .params("clientType", "Android")
-                .params("type", 4)
-                .params("token", UserUtil.getToken(context))
-                .params("uid", UserUtil.getUserID(context))
-                .execute(new OkGoCallBack(this, false) {
-                    @Override
-                    protected void _onNext(String json) {
-
-
-                    }
-                });
 
     }
-
 
     //        参数 type  1.开元棋牌 2.BBIN  3.AG  4.体育
 
@@ -100,6 +85,10 @@ public class BaseYouxiActivity extends BaseActivity {
         super.onResume();
 
 
-
     }
+
+
+
+
+
 }

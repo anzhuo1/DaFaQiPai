@@ -1,5 +1,6 @@
 package com.dafa.qipai.dafaqipai.view;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Process;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
+import com.dafa.qipai.dafaqipai.bean.DoBxx;
 import com.dafa.qipai.dafaqipai.bean.DoLayer;
 import com.dafa.qipai.dafaqipai.bean.PublicMsgDo;
 import com.dafa.qipai.dafaqipai.bean.UserBaseSession;
@@ -37,13 +39,19 @@ import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.dafa.qipai.dafaqipai.wihget.MarqueeTextView;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
+import com.tbruyelle.rxpermissions.RxPermissions;
+import com.tencent.smtt.sdk.QbSdk;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
+import rx.Observable;
+import rx.Observer;
+import rx.functions.Action1;
 
 
 public class MainActivity extends FragmentActivity {
@@ -97,10 +105,14 @@ public class MainActivity extends FragmentActivity {
     DianZiFragment dianZiFragment;
     private boolean canWithdraw;
 
+    private int loginType;
+
 
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable("android:support:fragments", null);
+        AutoUtils.setSize(this, false, 1920, 1080);
+        AutoUtils.auto(this);
     }
 
 
@@ -108,13 +120,16 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        if (!isTaskRoot()) {
+//            startActivity(new Intent(this, SplashActivity.class));
+//            finish();
+//        }
 
         ActivityContainer.getInstance().addActivity(this);
 
         loadData4THIS();
 
         loadGongao();
-
 
         loadQuanXian();
 
@@ -127,10 +142,27 @@ public class MainActivity extends FragmentActivity {
 
         soundPoolUtil = SoundPoolUtil.getInstance(this);
 
-//        gonggao.setText("");
-//        gonggao.setFocusable(true);
-//        gonggao.setFocusableInTouchMode(true);
-//        gonggao.requestFocus();
+
+        QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+
+            @Override
+            public void onViewInitFinished(boolean arg0) {
+                // TODO Auto-generated method stub
+                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
+
+                System.out.println(arg0);
+            }
+
+            @Override
+            public void onCoreInitFinished() {
+
+                System.out.println("aa");
+
+            }
+        };
+
+        //x5内核初始化接口
+        QbSdk.initX5Environment(getApplicationContext(), cb);
 
 
         bg.setBackgroundResource(R.mipmap.bg_qipai);
@@ -338,9 +370,15 @@ public class MainActivity extends FragmentActivity {
 
     }
 
-    @OnClick({R.id.xinxi,R.id.dojine, R.id.head, R.id.huodong, R.id.tuiguang, R.id.kefu, R.id.baoxian, R.id.shezhi, R.id.tixian, R.id.chongzhi})
+    @OnClick({R.id.xinxi, R.id.dojine, R.id.head, R.id.huodong, R.id.tuiguang, R.id.kefu, R.id.baoxian, R.id.shezhi, R.id.tixian, R.id.chongzhi})
     public void onViewClicked2(View view) {
         soundPoolUtil.play(1);
+
+
+        if (!UserUtil.isLoginApp(MainActivity.this)) {
+            startActivity(new Intent(this, LoginActivity.class));
+            return;
+        }
 
 
         switch (view.getId()) {
@@ -359,30 +397,24 @@ public class MainActivity extends FragmentActivity {
                 startActivity(new Intent(this, KefuActivity.class));
                 break;
             case R.id.baoxian:
-                // startActivity(new Intent(this, BaoxianxActivity.class));
-                AppUtils.showToast(this, "暂未开启");
+
+                if(loginType == 1){
+                    startActivity(new Intent(this, BaoxianxActivity.class));
+
+                }else {
+                    startActivity(new Intent(this, BaoxianxActivity2.class));
+                }
+
                 break;
             case R.id.shezhi:
                 startActivity(new Intent(this, SheZhiActivity.class));
                 break;
             case R.id.tixian:
-                if (MyApp.isSHIWAN || !canWithdraw) {
-
-                    AppUtils.showToast(MainActivity.this, "试玩用户无权访问");
-                    return;
-                }
 
                 startActivity(new Intent(this, TiXianActivity.class));
                 break;
             case R.id.chongzhi:
             case R.id.dojine:
-
-
-                if (MyApp.isSHIWAN || !canWithdraw) {
-
-                    AppUtils.showToast(MainActivity.this, "试玩用户无权访问");
-                    return;
-                }
 
                 startActivity(new Intent(this, ChongzhiActivity.class));
                 break;
@@ -424,6 +456,125 @@ public class MainActivity extends FragmentActivity {
         super.onResume();
 
         loadData4THIS();
+
+        requstQuanXian();
+
+        huishou();
+
+        loadBaoXianXiaong();
+
+        soundPoolUtil.play(3);
+
+
     }
+
+    private void huishou() {
+
+        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
+                .params("clientType", "Android")
+                .params("type", 1)
+                .params("token", UserUtil.getToken(this))
+                .params("uid", UserUtil.getUserID(this))
+                .execute(new OkGoCallBack(this, false) {
+                    @Override
+                    protected void _onNext(String json) {
+
+
+                    }
+                });
+
+        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
+                .params("clientType", "Android")
+                .params("type", 2)
+                .params("token", UserUtil.getToken(this))
+                .params("uid", UserUtil.getUserID(this))
+                .execute(new OkGoCallBack(this, false) {
+                    @Override
+                    protected void _onNext(String json) {
+
+
+                    }
+                });
+
+        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
+                .params("clientType", "Android")
+                .params("type", 3)
+                .params("token", UserUtil.getToken(this))
+                .params("uid", UserUtil.getUserID(this))
+                .execute(new OkGoCallBack(this, false) {
+                    @Override
+                    protected void _onNext(String json) {
+
+
+                    }
+                });
+
+    }
+
+
+    private void requstQuanXian() {
+        // Must be done during an initialization phase like onCreate
+        new RxPermissions(MainActivity.this)
+                .request(
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                )
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean granted) {
+
+                        if (granted) { // Always true pre-M
+
+
+                            Observable.timer(3, TimeUnit.SECONDS)
+                                    .subscribe(new Observer<Long>() {
+                                        @Override
+                                        public void onCompleted() {
+
+                                        }
+
+                                        @Override
+                                        public void onError(Throwable e) {
+
+                                        }
+
+                                        @Override
+                                        public void onNext(Long aLong) {
+
+
+                                        }
+                                    });
+
+                        } else {
+
+
+                        }
+                    }
+                });
+
+    }
+
+
+    private void loadBaoXianXiaong() {
+
+        OkGo.post(ApiConstant.API_DOMAIN + "/safeu/getUserType.json")
+                .params("token", UserUtil.getToken(this))
+                .params("uid", UserUtil.getUserID(this))
+                .execute(new OkGoCallBack(this, false) {
+                    @Override
+                    protected void _onNext(String json) {
+                        DoBxx doBxx = GsonUtil.GsonToBean(json, DoBxx.class);
+                        if (doBxx.getResult() == 1) {
+                            loginType = doBxx.getLoginType();
+
+                        }
+
+                    }
+                });
+
+    }
+
 
 }

@@ -126,11 +126,12 @@
 
 
     <TextView
+        android:background="@mipmap/cha"
         android:id="@+id/finish"
-        android:layout_width="100px"
-        android:layout_height="100px"
+        android:layout_width="80px"
+        android:layout_height="80px"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="210px"
+        android:layout_marginRight="220px"
         android:layout_marginTop="90px" />
 
 
