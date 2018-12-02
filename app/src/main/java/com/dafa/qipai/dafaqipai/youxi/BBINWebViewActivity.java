@@ -14,6 +14,7 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -126,7 +127,6 @@ public class BBINWebViewActivity extends BaseYouxiActivity {
 
     private void tuiChu() {
 
-
         OkGo.post(ApiConstant.API_DOMAIN + "/wallet/oneKeyToWallet.json")
                 .params("token", UserUtil.getToken(context))
                 .params("uid", UserUtil.getUserID(context))
@@ -134,34 +134,18 @@ public class BBINWebViewActivity extends BaseYouxiActivity {
                     @Override
                     protected void _onNext(String json) {
 
-                        DoTuiChu doTuiChu = GsonUtil.GsonToBean(json, DoTuiChu.class);
-                        int result = doTuiChu.getResult();
-
-                        if (result == 1) {
-                            forumContext.destroy();
-                            finish();
-
-                        } else {
+//                        DoTuiChu doTuiChu = GsonUtil.GsonToBean(json, DoTuiChu.class);
+//                        int result = doTuiChu.getResult();
 
 
-                            BaseDialog dialog = new BaseDialog(BBINWebViewActivity.this, "退出失败","取消","重试") {
+                    }
 
-                                @Override
-                                public void btn1DoThing(Dialog mDialog) {
-                                    mDialog.dismiss();
-                                    forumContext.destroy();
-                                    finish();
-                                }
+                    @Override
+                    public void onAfter(@Nullable String s, @Nullable Exception e) {
+                        super.onAfter(s, e);
 
-                                @Override
-                                public void btn2DoThing(Dialog mDialog) {
-                                    mDialog.dismiss();
-                                    tuiChu();
-                                }
-                            };
-                            dialog.show();
-
-                        }
+                        forumContext.destroy();
+                        finish();
 
                     }
                 });

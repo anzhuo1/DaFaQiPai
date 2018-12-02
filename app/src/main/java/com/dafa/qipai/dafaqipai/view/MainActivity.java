@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -15,11 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
-import com.dafa.qipai.dafaqipai.adapter.ZhanNeiXinAdapter;
 import com.dafa.qipai.dafaqipai.baoxianxiaong.BaoxianxActivity;
 import com.dafa.qipai.dafaqipai.baoxianxiaong.BaoxianxActivity2;
 import com.dafa.qipai.dafaqipai.bean.DoBxx;
@@ -115,6 +112,8 @@ public class MainActivity extends BaseFragmentActivity {
     TextView xinxi1;
     @BindView(R.id.xinxi2)
     TextView xinxi2;
+    @BindView(R.id.shuaxin)
+    TextView shuaxin;
 
     private SoundPoolUtil soundPoolUtil;
 
@@ -401,6 +400,15 @@ public class MainActivity extends BaseFragmentActivity {
         float y2 = (float) SPUtil.get(this, "y2", 0.5f);
         soundPoolUtil.play(0, this, y2);
 
+        if (view.getId() == R.id.huodong) {
+            startActivity(new Intent(this, HuoDongActivity.class));
+            return;
+        }
+
+        if (view.getId() == R.id.kefu) {
+            startActivity(new Intent(this, KefuActivity.class));
+            return;
+        }
 
         if (!UserUtil.isLoginApp(MainActivity.this)) {
             startActivity(new Intent(this, LoginActivity.class));
@@ -554,7 +562,17 @@ public class MainActivity extends BaseFragmentActivity {
             @Override
             public void run() {
 
-                loadData4THIS();
+                OkGo.post(ApiConstant.API_DOMAIN + "/wallet/oneKeyToWallet.json")
+                        .params("token", UserUtil.getToken(context))
+                        .params("uid", UserUtil.getUserID(context))
+                        .execute(new OkGoCallBack(MainActivity.this, false) {
+                            @Override
+                            protected void _onNext(String json) {
+
+                                loadData4THIS();
+
+                            }
+                        });
 
 
             }
@@ -583,12 +601,12 @@ public class MainActivity extends BaseFragmentActivity {
 
                                 int i = 0;
                                 for (ZhanNeiXinDo.UserInboxBean bean : userInboxList) {
-                                    if(!bean.getHasRead()){
+                                    if (!bean.getHasRead()) {
                                         i++;
                                     }
                                 }
 
-                                xinxi2.setText(i+"");
+                                xinxi2.setText(i + "");
 
                             }
                         } catch (Exception e) {
@@ -696,6 +714,29 @@ public class MainActivity extends BaseFragmentActivity {
                 gotoActivity(LoginActivity.class);
                 break;
         }
+    }
+
+    @OnClick(R.id.shuaxin)
+    public void onViewClicked() {
+
+        if (!UserUtil.isLoginApp(MainActivity.this)) {
+            startActivity(new Intent(this, LoginActivity.class));
+            return;
+        }
+
+        OkGo.post(ApiConstant.API_DOMAIN + "/wallet/oneKeyToWallet.json")
+                .params("token", UserUtil.getToken(context))
+                .params("uid", UserUtil.getUserID(context))
+                .execute(new OkGoCallBack(MainActivity.this, true) {
+                    @Override
+                    protected void _onNext(String json) {
+
+                        loadData4THIS();
+
+                    }
+                });
+
+
     }
 
     /**

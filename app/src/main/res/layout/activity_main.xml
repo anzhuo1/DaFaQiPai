@@ -120,23 +120,26 @@
         android:textColor="@color/colorText"
         android:textSize="28px" />
 
+
     <TextView
         android:id="@+id/dojine"
-        android:layout_width="200px"
-        android:layout_height="50px"
-        android:layout_marginLeft="840px"
-        android:layout_marginTop="36px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="910px"
+        android:layout_marginTop="24px"
+        android:background="@mipmap/jia"
         android:gravity="center"
         android:text=""
         android:textColor="@color/colorText"
         android:textSize="28px" />
 
     <TextView
+        android:id="@+id/shuaxin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="910px"
-        android:layout_marginTop="24px"
-        android:background="@mipmap/jia"
+        android:layout_marginLeft="980px"
+        android:layout_marginTop="20px"
+        android:background="@mipmap/home_rfresh"
         android:gravity="center"
         android:text=""
         android:textColor="@color/colorText"

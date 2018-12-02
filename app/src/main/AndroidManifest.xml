@@ -26,6 +26,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="ExtraText,GoogleAppIndexingWarning">
 
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5c03cfebb465f5332b000d45" />
 
         <activity
 

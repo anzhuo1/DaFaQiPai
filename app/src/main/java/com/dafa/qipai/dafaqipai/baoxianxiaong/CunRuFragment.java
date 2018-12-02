@@ -301,6 +301,7 @@ public class CunRuFragment extends LazyLoadFragment {
     @Override
     public boolean getUserVisibleHint() {
 
+
         loadData();
         return super.getUserVisibleHint();
 

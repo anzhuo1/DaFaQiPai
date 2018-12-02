@@ -15,6 +15,7 @@ import com.dafa.qipai.dafaqipai.util.SPUtil;
 import com.dafa.qipai.dafaqipai.util.SoundPoolUtil;
 import com.kongzue.dialog.v2.DialogSettings;
 import com.kongzue.dialog.v2.Notification;
+import com.umeng.analytics.MobclickAgent;
 
 
 public abstract class BaseFragmentActivity extends FragmentActivity {
@@ -141,20 +142,38 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     }
 
 
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//
+////        //隐藏虚拟按键
+////        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) {
+////            View v = getWindow().getDecorView();
+////            v.setSystemUiVisibility(View.GONE);
+////        } else if (Build.VERSION.SDK_INT >= 19) {
+////            View decorView = getWindow().getDecorView();
+////            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+////                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+////                    | View.SYSTEM_UI_FLAG_FULLSCREEN;
+////            decorView.setSystemUiVisibility(uiOptions);
+////        }
+//    }
+
+
+
+
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
 
-//        //隐藏虚拟按键
-//        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) {
-//            View v = getWindow().getDecorView();
-//            v.setSystemUiVisibility(View.GONE);
-//        } else if (Build.VERSION.SDK_INT >= 19) {
-//            View decorView = getWindow().getDecorView();
-//            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-//                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-//                    | View.SYSTEM_UI_FLAG_FULLSCREEN;
-//            decorView.setSystemUiVisibility(uiOptions);
-//        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+
+
     }
 }

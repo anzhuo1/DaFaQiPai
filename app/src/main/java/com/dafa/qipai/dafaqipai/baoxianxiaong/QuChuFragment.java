@@ -303,6 +303,9 @@ public class QuChuFragment extends LazyLoadFragment {
     @Override
     public boolean getUserVisibleHint() {
 
+        title.setText("取出金额");
+        eTmoney.setHint("请输入您的取出金额");
+        ok.setText("确认取出");
         loadData();
         return super.getUserVisibleHint();
 
@@ -312,6 +315,11 @@ public class QuChuFragment extends LazyLoadFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
+
+
+        title.setText("取出金额");
+        eTmoney.setHint("请输入您的取出金额");
+        ok.setText("确认取出");
         loadData();
         if (!hidden) {
 
