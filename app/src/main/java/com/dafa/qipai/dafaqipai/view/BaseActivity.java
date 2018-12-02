@@ -3,15 +3,18 @@ package com.dafa.qipai.dafaqipai.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.chong.YinHangKaZhuanZhangActivity;
 import com.dafa.qipai.dafaqipai.util.ActivityContainer;
+import com.dafa.qipai.dafaqipai.util.SPUtil;
 import com.dafa.qipai.dafaqipai.util.SoundPoolUtil;
 import com.kongzue.dialog.v2.DialogSettings;
 import com.kongzue.dialog.v2.Notification;
@@ -29,7 +32,8 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public void playMusic(int musicType) {
 
-        soundPoolUtil.play(musicType);
+        float y2 = (float) SPUtil.get(this, "y2", 0.5f);
+        soundPoolUtil.play(musicType, this, y2);
     }
 
     /**
@@ -45,6 +49,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         ActivityContainer.getInstance().addActivity(this);
+
+
+
+
+
     }
 
 
@@ -102,4 +111,55 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * 判断是否是快速点击
+     */
+    private static long lastClickTime;
+
+    /**
+     * 判断触摸时间派发间隔
+     */
+
+
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+//            if (isFastDoubleClick()) {
+//                return true;
+//            }
+//        }
+//        return super.dispatchTouchEvent(ev);
+//    }
+//
+//    public static boolean isFastDoubleClick() {
+//
+//        long time = System.currentTimeMillis();
+//        long timeD = time - lastClickTime;
+//        if (0 < timeD && timeD < 1000) {
+//
+//            return true;
+//        }
+//        lastClickTime = time;
+//        return false;
+//
+//    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+//        //隐藏虚拟按键
+//        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) {
+//            View v = getWindow().getDecorView();
+//            v.setSystemUiVisibility(View.GONE);
+//        } else if (Build.VERSION.SDK_INT >= 19) {
+//            View decorView = getWindow().getDecorView();
+//            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+//                    | View.SYSTEM_UI_FLAG_FULLSCREEN;
+//            decorView.setSystemUiVisibility(uiOptions);
+//        }
+    }
 }

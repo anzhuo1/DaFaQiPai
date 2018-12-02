@@ -2,6 +2,7 @@ package com.dafa.qipai.dafaqipai.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dafa.qipai.dafaqipai.R;
+import com.dafa.qipai.dafaqipai.bean.DoDaili;
 import com.dafa.qipai.dafaqipai.bean.DoWeixin;
 import com.dafa.qipai.dafaqipai.dto.HomeItemDto;
+import com.dafa.qipai.dafaqipai.glide.GlideUtil;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
 
 import java.util.List;
@@ -20,12 +23,12 @@ public class ChongzhiDailiAdapter extends RecyclerView.Adapter<ChongzhiDailiAdap
 
     private Context context;
 
-    private List<DoWeixin.SkInfoListBean> dtos ;
+    private List<DoDaili.ListBean> dtos;
 
     private int layout;
 
 
-    public ChongzhiDailiAdapter(Context context, List<DoWeixin.SkInfoListBean> dtos, int layout) {
+    public ChongzhiDailiAdapter(Context context, List<DoDaili.ListBean> dtos, int layout) {
         this.context = context;
         this.dtos = dtos;
         this.layout = layout;
@@ -47,7 +50,41 @@ public class ChongzhiDailiAdapter extends RecyclerView.Adapter<ChongzhiDailiAdap
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.tv.setText(dtos.get(position).getAccount());
+
+        String weixin = dtos.get(position).getWeixin();
+        String account = dtos.get(position).getAccount();
+        String qq = dtos.get(position).getQq();
+        String telephone = dtos.get(position).getPhone();
+        String payTreasure = dtos.get(position).getPayTreasure();
+
+
+        if (!TextUtils.isEmpty(telephone)) {
+//            holder.img.setBackgroundResource(R.mipmap.tg_phone);
+            holder.num.setText(telephone);
+            holder.copy.setText("复制手机号");
+        }
+
+        if (!TextUtils.isEmpty(qq)) {
+//            holder.img.setBackgroundResource(R.mipmap.tg_qq);
+            holder.num.setText(qq);
+            holder.copy.setText("复制QQ号");
+        }
+
+        if (!TextUtils.isEmpty(weixin)) {
+//            holder.img.setBackgroundResource(R.mipmap.tg_weixin);
+            holder.num.setText(weixin);
+            holder.copy.setText("复制微信号");
+        }
+
+        if (!TextUtils.isEmpty(payTreasure)) {
+//            holder.img.setBackgroundResource(R.mipmap.tg_weixin);
+            holder.num.setText(payTreasure);
+            holder.copy.setText("复制支付宝");
+        }
+
+        holder.name.setText(dtos.get(position).getAccount());
+
+        GlideUtil.loadUrlImage(dtos.get(position).getImgUrl(), holder.img, context);
 
     }
 
@@ -58,11 +95,18 @@ public class ChongzhiDailiAdapter extends RecyclerView.Adapter<ChongzhiDailiAdap
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv;
+
+        ImageView img;
+        TextView name;
+        TextView num;
+        TextView copy;
 
         public MyViewHolder(View view) {
             super(view);
-            tv = (TextView) view.findViewById(R.id.tv);
+            name = (TextView) view.findViewById(R.id.name);
+            img = (ImageView) view.findViewById(R.id.img);
+            num = (TextView) view.findViewById(R.id.num);
+            copy = (TextView) view.findViewById(R.id.copy);
             AutoUtils.auto(view);
         }
     }
@@ -75,7 +119,7 @@ public class ChongzhiDailiAdapter extends RecyclerView.Adapter<ChongzhiDailiAdap
     }
 
 
-    public  interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClick(View view);
 
         void onItemLongClick(View view);

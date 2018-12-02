@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="940px"
+    android:layout_height="640px"
+    android:background="@mipmap/youbg"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100px"
+        android:layout_marginTop="100px">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <TextView
+        android:id="@+id/shang"
+        android:layout_width="240px"
+        android:layout_height="60px"
+        android:layout_marginLeft="120px"
+        android:layout_marginTop="560px"
+        android:text=""
+        android:textColor="@color/colorTextWhite"
+        android:textSize="28px" />
+
+    <TextView
+        android:id="@+id/yema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="580px"
+        android:text=""
+        android:textColor="@color/colorTextWhite"
+        android:textSize="28px" />
+
+
+    <TextView
+        android:id="@+id/xia"
+        android:layout_width="240px"
+        android:layout_height="60px"
+        android:layout_marginLeft="580px"
+        android:layout_marginTop="560px"
+        android:text=""
+        android:textColor="@color/colorTextWhite"
+        android:textSize="28px" />
+</RelativeLayout>
+

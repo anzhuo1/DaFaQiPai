@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
@@ -25,6 +26,7 @@ import com.dafa.qipai.dafaqipai.util.AppUtils;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
+import com.dafa.qipai.dafaqipai.view.BaseFragmentActivity;
 import com.lzy.okgo.OkGo;
 
 import java.util.List;
@@ -34,7 +36,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ChongzhiActivity extends FragmentActivity {
+public class ChongzhiActivity extends BaseFragmentActivity {
 
 
     @BindView(R.id.left_select)
@@ -43,8 +45,10 @@ public class ChongzhiActivity extends FragmentActivity {
     RelativeLayout bg;
 
     ChongZhiDailiFragment dailiFragment;
-
     ChongZhiFragment chongZhiFragment;
+    ChongZhiWangYinFragment wangYinFragment;
+    ChongZhiKuaiSuFragment kuaiSuFragment;
+
     @BindView(R.id.idnum)
     TextView idnum;
     @BindView(R.id.fuzhi)
@@ -55,6 +59,7 @@ public class ChongzhiActivity extends FragmentActivity {
     TextView finish;
     @BindView(R.id.framelayout)
     FrameLayout framelayout;
+
 
     private List<DOgetAppCzInfoResult.CzTypeListBean> czTypeList;
     private ChongZhiLeftAdapter leftAdapter;
@@ -135,6 +140,35 @@ public class ChongzhiActivity extends FragmentActivity {
                                     transaction2.show(dailiFragment);
                                     transaction2.commit();
 
+
+                                } else if (czTypeList.get(position).getName().contains("银行卡")) {
+
+
+                                    FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
+
+                                    if (wangYinFragment == null) {
+                                        wangYinFragment = new ChongZhiWangYinFragment();
+                                        transaction2.add(R.id.framelayout, wangYinFragment);
+                                    }
+                                    hideFragment(transaction2);
+                                    transaction2.show(wangYinFragment);
+                                    transaction2.commit();
+
+
+                                } else if (czTypeList.get(position).getName().contains("快速")) {
+
+
+                                    FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
+
+                                    if (kuaiSuFragment == null) {
+                                        kuaiSuFragment = new ChongZhiKuaiSuFragment();
+                                        transaction2.add(R.id.framelayout, kuaiSuFragment);
+                                    }
+                                    hideFragment(transaction2);
+                                    transaction2.show(kuaiSuFragment);
+                                    transaction2.commit();
+
+
                                 } else {
 
                                     List<DOgetAppCzInfoResult.CzTypeListBean.CzListBean> czList = czTypeList.get(position).getCzList();
@@ -185,19 +219,23 @@ public class ChongzhiActivity extends FragmentActivity {
         czTypeList.get(0).setSelect(true);
         leftAdapter.notifyDataSetChanged();
 
-        MyApp.czList.clear();
-        MyApp.czList.addAll(czList);
+        try {
+            MyApp.czList.clear();
+            MyApp.czList.addAll(czList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
-            if(!isFinishing()){
+            if (!isFinishing()) {
                 FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
 
-                if (chongZhiFragment == null) {
-                    chongZhiFragment = new ChongZhiFragment();
-                    transaction2.add(R.id.framelayout, chongZhiFragment);
+                if (kuaiSuFragment == null) {
+                    kuaiSuFragment = new ChongZhiKuaiSuFragment();
+                    transaction2.add(R.id.framelayout, kuaiSuFragment);
                 }
                 hideFragment(transaction2);
-                transaction2.show(chongZhiFragment);
+                transaction2.show(kuaiSuFragment);
                 transaction2.commit();
             }
         } catch (Exception e) {
@@ -216,14 +254,14 @@ public class ChongzhiActivity extends FragmentActivity {
         if (chongZhiFragment != null) {
             transaction.hide(chongZhiFragment);
         }
-//
-//        if (tiyuFragment != null) {
-//            transaction.hide(tiyuFragment);
-//        }
-//
-//        if (dianZiFragment != null) {
-//            transaction.hide(dianZiFragment);
-//        }
+
+        if (wangYinFragment != null) {
+            transaction.hide(wangYinFragment);
+        }
+
+        if (kuaiSuFragment != null) {
+            transaction.hide(kuaiSuFragment);
+        }
 
 
     }
@@ -235,7 +273,9 @@ public class ChongzhiActivity extends FragmentActivity {
                 AppUtils.copyToClipboard(this, MyApp.ID);
                 break;
             case R.id.chongti:
-                startActivity(new Intent(this, GerenActivity.class));
+                Intent intent = new Intent(this, GerenActivity.class);
+                intent.putExtra("key", "cz");
+                startActivity(intent);
                 break;
             case R.id.finish:
                 finish();

@@ -11,12 +11,10 @@
 
 
     <LinearLayout
-        android:layout_marginBottom="20px"
-        android:layout_marginTop="40px"
-        android:layout_marginRight="120px"
-        android:layout_marginLeft="120px"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="1400px"
+        android:layout_height="900px"
+        android:layout_marginLeft="265px"
+        android:layout_marginTop="100px"
         android:background="@mipmap/bg_kefu"
         android:orientation="horizontal"
         android:text="Loading..."
@@ -25,7 +23,7 @@
 
 
         <RadioGroup
-            android:layout_width="400px"
+            android:layout_width="380px"
             android:layout_height="720px"
             android:layout_marginLeft="60px"
             android:layout_marginTop="140px"
@@ -53,22 +51,33 @@
 
         </RadioGroup>
 
-        <android.support.v7.widget.LinearLayoutCompat
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="140px"
-            android:layout_marginRight="100px"
             android:layout_marginBottom="95px"
+            android:layout_marginRight="100px"
+            android:layout_marginTop="140px"
             android:layout_weight="1">
 
             <WebView
                 android:id="@+id/webView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@mipmap/bg_hei">
 
             </WebView>
 
-        </android.support.v7.widget.LinearLayoutCompat>
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/ll_changjian"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/kefuwt">
+
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+        </RelativeLayout>
 
 
     </LinearLayout>
@@ -78,8 +87,8 @@
         android:id="@+id/close"
         android:layout_width="100px"
         android:layout_height="100px"
-        android:layout_marginLeft="1685px"
-        android:layout_marginTop="60px"
+        android:layout_marginLeft="1560px"
+        android:layout_marginTop="100px"
         android:background="@null"
         android:gravity="center_vertical"
         android:maxLength="14" />

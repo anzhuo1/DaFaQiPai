@@ -3,7 +3,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="860px"
     android:layout_height="640px"
-    android:background="#333540"
     android:orientation="vertical">
 
 
@@ -11,14 +10,150 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:orientation="vertical"
-            android:paddingLeft="42px"
-            android:paddingRight="42px">
+            android:paddingLeft="30px"
+            android:paddingRight="30px">
+
+
+            <TextView
+                android:layout_width="300px"
+                android:layout_height="80px"
+                android:layout_marginLeft="10px"
+                android:background="@mipmap/zfbtd_press"
+                android:gravity="center"
+                android:text="提现到银行卡"
+                android:textSize="28px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/black" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150px"
+                    android:layout_marginTop="20px"
+                    android:background="@mipmap/bg1"
+                    android:orientation="vertical"
+                    android:paddingLeft="30px">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="65px"
+                        android:layout_marginTop="10px"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="收款人："
+                            android:textColor="@color/colorTextWhite"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/soukuanren"
+                            android:layout_width="300px"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textColor="@color/colorTextWhite"
+                            android:textSize="32px"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="收款银行："
+                            android:textColor="@color/colorTextWhite"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/yinhang"
+                            android:layout_width="300px"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textColor="@color/colorTextWhite"
+                            android:textSize="32px"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="65px"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="收款银行卡号："
+                            android:textColor="@color/colorTextWhite"
+                            android:textSize="28px" />
+
+                        <TextView
+                            android:id="@+id/kahao"
+                            android:layout_width="600px"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:textColor="@color/colorTextWhite"
+                            android:textSize="32px"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_nocard"
+                    android:layout_width="match_parent"
+                    android:layout_height="150px"
+                    android:layout_marginTop="20px"
+                    android:background="@mipmap/bg1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="40px"
+                        android:gravity="center"
+                        android:text="您还没有绑定银行卡，请绑定！"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="32px" />
+
+                    <TextView
+                        android:id="@+id/bangding"
+                        android:layout_width="230px"
+                        android:layout_height="90px"
+                        android:layout_marginLeft="40px"
+                        android:background="@mipmap/lijibangding"
+                        android:enabled="true" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,9 +172,9 @@
 
                 <EditText
                     android:id="@+id/money"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:background="@mipmap/czjebg"
                     android:gravity="center_vertical"
                     android:hint="请输入提款金额"
@@ -52,101 +187,37 @@
 
 
                 <TextView
-                    android:layout_width="80px"
+                    android:id="@+id/qingchu"
+                    android:layout_width="200px"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10px"
+                    android:background="@mipmap/qcbg"
                     android:gravity="center"
-                    android:text="元"
+                    android:text="清除"
                     android:textColor="@color/colorTextWhite"
-                    android:textSize="32px" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="160px"
-                android:layout_marginTop="20px"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="180px"
-                    android:layout_height="80px"
-                    android:gravity="center"
-                    android:text="选择银行卡"
-                    android:textColor="@color/colorTextWhite"
-                    android:textSize="32px" />
-
-                <LinearLayout
-                    android:id="@+id/xzyh"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@mipmap/czjebg"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical"
-                    android:paddingLeft="15px"
-                    android:text=""
-                    android:textColor="@color/colorTextWhite"
-                    android:textSize="40px">
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/yhk_img"
-                            android:layout_width="90px"
-                            android:layout_height="90px"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="10px"
-                            android:visibility="gone" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
-                            android:layout_toRightOf="@+id/yhk_img"
-                            android:gravity="center_vertical"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/yhk"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:hint="请选择银行卡"
-                                android:textColor="@color/colorTextWhite"
-                                android:textColorHint="@color/text_hint_color"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/yhk_name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text=""
-                                android:textColor="@color/colorTextWhite"
-                                android:textSize="14sp"
-                                android:visibility="gone" />
-                        </LinearLayout>
-
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
+                    android:textSize="40px" />
 
             </LinearLayout>
 
 
             <TextView
                 android:id="@+id/ok"
-                android:layout_width="380px"
-                android:layout_height="wrap_content"
+                android:layout_width="300px"
+                android:layout_height="120px"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="100px"
+                android:layout_marginTop="40px"
                 android:background="@mipmap/tijiao" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40px"
+                android:gravity="center"
+                android:text="转出3-10分钟内到账，如未到账请及时联系客服！"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="28px" />
 
         </LinearLayout>
 

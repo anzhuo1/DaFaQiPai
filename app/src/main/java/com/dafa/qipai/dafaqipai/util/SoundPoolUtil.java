@@ -20,16 +20,19 @@ public class SoundPoolUtil {
     }
 
     private SoundPoolUtil(Context context) {
-        soundPool = new SoundPool(4, AudioManager.STREAM_SYSTEM, 0);
+
+        soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
         soundPool.load(context, R.raw.music1, 1);
-        soundPool.load(context, R.raw.music2, 1);
+
         soundPool.load(context, R.raw.l1, 1);
         soundPool.load(context, R.raw.l2, 1);
 
     }
 
-    public void play(int number) {
+    public void play(int number, Context context, float f) {
         Log.d("tag", "number " + number);
-        soundPool.play(number, 0.2f, 0.2f, 0, 0, 1);
+
+
+        soundPool.play(number, f, f, 0, 0, 1);
     }
 }

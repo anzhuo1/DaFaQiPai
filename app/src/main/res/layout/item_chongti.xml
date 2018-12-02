@@ -5,41 +5,55 @@
     android:orientation="horizontal">
 
 
-    <android.support.v7.widget.LinearLayoutCompat
-        android:paddingRight="20px"
-        android:paddingLeft="20px"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/bg"
+        android:layout_width="wrap_content"
         android:layout_height="80px"
-        android:layout_margin="10px"
-        android:background="@mipmap/czjebg"
+        android:background="@color/bg_line"
         android:gravity="center_vertical">
 
         <TextView
-            android:textSize="28px"
-            android:textColor="@color/colorTextWhite"
             android:id="@+id/text"
-            android:layout_width="260px"
+            android:layout_width="220px"
             android:layout_height="match_parent"
-            android:gravity="center_vertical" />
+            android:gravity="center"
+            android:textColor="#767887"
+            android:textSize="24px" />
 
         <TextView
-            android:textSize="28px"
-            android:textColor="@color/colorTextWhite"
-            android:id="@+id/money"
-            android:layout_width="300px"
+            android:id="@+id/text2"
+            android:layout_width="200px"
             android:layout_height="match_parent"
-            android:gravity="center_vertical" />
+            android:gravity="center"
+            android:textColor="#767887"
+            android:textSize="28px" />
 
 
         <TextView
-            android:textSize="28px"
-            android:textColor="@color/colorTextWhite"
-            android:id="@+id/status"
-            android:layout_width="160px"
+            android:id="@+id/text3"
+            android:layout_width="250px"
             android:layout_height="match_parent"
-            android:gravity="center_vertical" />
+            android:gravity="center"
+            android:textColor="#767887"
+            android:textSize="28px" />
 
-    </android.support.v7.widget.LinearLayoutCompat>
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="220px"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#767887"
+            android:textSize="28px" />
+
+        <TextView
+            android:id="@+id/text5"
+            android:layout_width="200px"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#767887"
+            android:textSize="28px" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

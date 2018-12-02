@@ -12,17 +12,29 @@ import android.widget.TextView;
 
 import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
+import com.dafa.qipai.dafaqipai.bean.DoGetBankcard;
+import com.dafa.qipai.dafaqipai.core.ApiConstant;
 import com.dafa.qipai.dafaqipai.geren.GerenActivity;
+import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
+import com.dafa.qipai.dafaqipai.rx.rxbus.RxBus;
+import com.dafa.qipai.dafaqipai.rx.rxbus.RxBusConfig;
 import com.dafa.qipai.dafaqipai.util.ActivityContainer;
 import com.dafa.qipai.dafaqipai.util.AppUtils;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
+import com.dafa.qipai.dafaqipai.util.GsonUtil;
+import com.dafa.qipai.dafaqipai.util.UserUtil;
+import com.dafa.qipai.dafaqipai.view.BaseFragmentActivity;
+import com.lzy.okgo.OkGo;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Observer;
 
 
-public class TiXianActivity extends FragmentActivity {
+public class TiXianActivity extends BaseFragmentActivity {
 
 
     @BindView(R.id.bg)
@@ -63,15 +75,116 @@ public class TiXianActivity extends FragmentActivity {
 
         idnum.setText(MyApp.ID);
 
-        FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction3 = getSupportFragmentManager().beginTransaction();
 
-        if (bangKaFragment == null) {
-            bangKaFragment = new BangKaFragment();
-            transaction2.add(R.id.framelayout, bangKaFragment);
+        if (tiXianFragment == null) {
+            tiXianFragment = new TiXianFragment();
+            transaction3.add(R.id.framelayout, tiXianFragment);
         }
-        hideFragment(transaction2);
-        transaction2.show(bangKaFragment);
-        transaction2.commit();
+        hideFragment(transaction3);
+        transaction3.show(tiXianFragment);
+        transaction3.commit();
+
+
+        RxBus.getDefault().toObserverable(String.class).subscribe(
+                new Observer<String>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+
+                        if (s.equals(RxBusConfig.YINHANGKA)) {
+
+                            FragmentTransaction transaction3 = getSupportFragmentManager().beginTransaction();
+
+                            if (tiXianFragment == null) {
+                                tiXianFragment = new TiXianFragment();
+                                transaction3.add(R.id.framelayout, tiXianFragment);
+                            }
+                            hideFragment(transaction3);
+                            transaction3.show(tiXianFragment);
+                            transaction3.commit();
+
+                            qipai.setVisibility(View.GONE);
+
+                            zhenren.setChecked(true);
+                        }
+
+
+                    }
+                }
+
+
+        );
+
+
+        RxBus.getDefault().toObserverable(String.class).subscribe(
+                new Observer<String>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+
+                        if (s.equals(RxBusConfig.YINHANGKA2)) {
+
+                            FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
+                            if (bangKaFragment == null) {
+                                bangKaFragment = new BangKaFragment();
+                                transaction2.add(R.id.framelayout, bangKaFragment);
+                            }
+                            hideFragment(transaction2);
+                            transaction2.show(bangKaFragment);
+                            transaction2.commit();
+
+                            qipai.setChecked(true);
+
+
+                        }
+
+
+                    }
+                }
+
+
+        );
+
+
+        OkGo.post(ApiConstant.API_DOMAIN + "/member/getUserBankCardList.json")
+                .tag(this)
+                .params("token", UserUtil.getToken(this))
+                .params("uid", UserUtil.getUserID(this))
+                .execute(new OkGoCallBack(this, true) {
+                    @Override
+                    protected void _onNext(String json) {
+                        DoGetBankcard doGetBankcard = GsonUtil.GsonToBean(json, DoGetBankcard.class);
+                        List<DoGetBankcard.UserBankCardListBean> cardList = doGetBankcard.getUserBankCardList();
+                        if (cardList == null || cardList.size() == 0) {
+
+                            qipai.setVisibility(View.VISIBLE);
+                        } else {
+
+                            qipai.setVisibility(View.GONE);
+                        }
+
+
+                    }
+                });
 
 
     }
@@ -126,10 +239,13 @@ public class TiXianActivity extends FragmentActivity {
 
                 break;
             case R.id.fuzhi:
-                AppUtils.copyToClipboard(getApplication(), MyApp.ID);
+                AppUtils.copyToClipboard(this, MyApp.ID);
                 break;
             case R.id.chongti:
-                startActivity(new Intent(this, GerenActivity.class));
+
+                Intent intent = new Intent(this, GerenActivity.class);
+                intent.putExtra("key", "tx");
+                startActivity(intent);
                 break;
             case R.id.finish:
                 finish();

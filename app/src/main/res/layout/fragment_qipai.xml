@@ -2,13 +2,16 @@
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:id="@+id/ll_bg"
+    android:clickable="true"
     android:background="@android:color/transparent">
 
     <android.support.v7.widget.RecyclerView
         android:layoutAnimation="@anim/layout_animation_fall_down"
         android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
 

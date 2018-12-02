@@ -12,10 +12,10 @@
 
     <RelativeLayout
         android:layout_width="1200px"
-        android:layout_height="730px"
+        android:layout_height="760px"
         android:layout_marginLeft="365px"
         android:layout_marginTop="120px"
-        android:background="@mipmap/shezhikk"
+        android:background="@mipmap/szkk"
         android:gravity="center"
         android:text="Loading..."
         android:textColor="@color/colorWhite"
@@ -28,55 +28,145 @@
         android:id="@+id/close"
         android:layout_width="100px"
         android:layout_height="100px"
-        android:layout_marginLeft="1455px"
-        android:layout_marginTop="120px"
+        android:layout_marginLeft="1460px"
+        android:layout_marginTop="130px"
         android:background="@null"
         android:gravity="center_vertical"
         android:maxLength="14" />
 
 
+    <TextView
+        android:layout_width="230px"
+        android:layout_height="60px"
+        android:layout_marginLeft="550px"
+        android:layout_marginTop="240px"
+        android:background="@mipmap/sy" />
+
+
+    <TextView
+        android:layout_width="230px"
+        android:layout_height="60px"
+        android:layout_marginLeft="1135px"
+        android:layout_marginTop="240px"
+        android:background="@mipmap/jc" />
+
+
+    <TextView
+
+        android:layout_width="43px"
+        android:layout_height="20px"
+        android:layout_marginLeft="510px"
+        android:layout_marginTop="400px"
+        android:background="@mipmap/yinyue" />
+
+
+    <SeekBar
+        android:id="@+id/seek"
+        android:layout_width="320px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="560px"
+        android:layout_marginTop="380px"
+        android:max="10"
+        android:maxHeight="26px"
+        android:minHeight="26px"
+        android:progressDrawable="@drawable/po_seekbar"
+        android:thumb="@mipmap/yellow" />
+
+
+    <TextView
+
+        android:layout_width="43px"
+        android:layout_height="20px"
+        android:layout_marginLeft="510px"
+        android:layout_marginTop="490px"
+        android:background="@mipmap/yinyue" />
+
+
+    <SeekBar
+        android:id="@+id/seek2"
+        android:layout_width="320px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="560px"
+        android:layout_marginTop="470px"
+        android:max="10"
+        android:maxHeight="26px"
+        android:minHeight="26px"
+        android:progressDrawable="@drawable/po_seekbar"
+        android:thumb="@mipmap/yellow" />
+
+
     <ImageView
         android:layout_width="140px"
-        android:layout_height="140px"
-        android:layout_marginLeft="747px"
-        android:layout_marginTop="400px"
-        android:background="@mipmap/tou1xiang" />
+        android:layout_height="148px"
+        android:layout_marginLeft="1042px"
+        android:layout_marginTop="380px"
+        android:background="@mipmap/touxiang" />
+
 
     <TextView
         android:id="@+id/nicheng"
         android:layout_width="180px"
-        android:layout_height="50px"
-        android:layout_marginLeft="960px"
+        android:layout_height="46px"
+        android:layout_marginLeft="1255px"
         android:layout_marginRight="700px"
         android:layout_marginTop="394px"
-        android:background="@null"
+        android:background="@mipmap/cc11"
         android:gravity="center"
         android:paddingLeft="5px"
         android:paddingRight="5px"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorText"
         android:textSize="26px" />
 
+
+    <TextView
+        android:layout_width="43px"
+        android:layout_height="22px"
+        android:layout_marginLeft="1320px"
+        android:layout_marginTop="366px"
+        android:background="@mipmap/nic" />
+
+    <TextView
+
+        android:layout_width="43px"
+        android:layout_height="20px"
+        android:layout_marginLeft="1320px"
+        android:layout_marginTop="450px"
+        android:background="@mipmap/id" />
 
     <TextView
         android:id="@+id/id_nun"
         android:layout_width="180px"
-        android:layout_height="50px"
-        android:layout_marginLeft="960px"
+        android:layout_height="46px"
+        android:layout_marginLeft="1255px"
         android:layout_marginRight="700px"
         android:layout_marginTop="480px"
+        android:background="@mipmap/cc11"
         android:gravity="center"
         android:paddingLeft="5px"
         android:paddingRight="5px"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorText"
         android:textSize="26px" />
 
     <TextView
         android:id="@+id/qiehuan"
-        android:layout_width="360px"
-        android:layout_height="140px"
-        android:layout_marginLeft="760px"
-        android:layout_marginTop="560px"
-        android:background="@mipmap/exit" />
+        android:layout_width="300px"
+        android:layout_height="120px"
+        android:layout_marginLeft="810px"
+        android:layout_marginTop="580px"
+        android:background="@mipmap/yes"
+        android:gravity="center"
+        android:text="退出登录"
+        android:textSize="46px" />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="740px"
+        android:gravity="center"
+        android:text="(您的账号已处于登录状态)"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="32px" />
 
 </RelativeLayout>

@@ -11,10 +11,10 @@
 
 
     <RelativeLayout
-        android:layout_width="1460px"
-        android:layout_height="890px"
-        android:layout_marginLeft="250px"
-        android:layout_marginTop="90px"
+        android:layout_width="1680px"
+        android:layout_height="1100px"
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="60px"
         android:background="@mipmap/bg_gerenxxk"
         android:gravity="center"
         android:text="Loading..."
@@ -26,9 +26,9 @@
 
     <RadioGroup
         android:layout_width="380px"
-        android:layout_height="550px"
-        android:layout_marginLeft="320px"
-        android:layout_marginTop="227px"
+        android:layout_height="750px"
+        android:layout_marginLeft="200px"
+        android:layout_marginTop="240px"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -68,15 +68,24 @@
             android:button="@null"
             android:textSize="28px" />
 
+        <RadioButton
+            android:id="@+id/r5"
+            android:layout_width="350px"
+            android:layout_height="100px"
+            android:layout_marginTop="40px"
+            android:background="@drawable/icon_zijinjilu"
+            android:button="@null"
+            android:textSize="28px" />
+
     </RadioGroup>
 
 
     <FrameLayout
         android:id="@+id/framelayout"
-        android:layout_width="910px"
-        android:layout_height="640px"
-        android:layout_marginLeft="700px"
-        android:layout_marginTop="227px"
+        android:layout_width="1100px"
+        android:layout_height="740px"
+        android:layout_marginLeft="580px"
+        android:layout_marginTop="240px"
         android:background="@mipmap/bg_hei">
 
 
@@ -86,8 +95,8 @@
         android:id="@+id/close"
         android:layout_width="100px"
         android:layout_height="100px"
-        android:layout_marginLeft="1610px"
-        android:layout_marginTop="110px"
+        android:layout_marginLeft="1680px"
+        android:layout_marginTop="80px"
         android:background="@null"
         android:gravity="center_vertical"
         android:maxLength="14" />

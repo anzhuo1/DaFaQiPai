@@ -14,9 +14,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
-
-    <!--android:roundIcon="@mipmap/ic_launcher_round"-->
+   <!-- //int totalPageNum = (totalRecord  +  pageSize  - 1) / pageSize;
+    &lt;!&ndash;android:roundIcon="@mipmap/ic_launcher_round"&ndash;&gt;-->
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -26,24 +25,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="ExtraText,GoogleAppIndexingWarning">
+
+
         <activity
+
             android:name=".view.MainActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
             android:screenOrientation="landscape"
             android:theme="@style/AppCompatFullscreen">
 
         </activity>
 
-
-        <activity
-            android:name=".view.WelcomActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/AppCompatFullscreen">
-
-        </activity>
 
         <activity
             android:name=".view.LoginActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
@@ -51,6 +47,7 @@
 
         <activity
             android:name=".chong.YinHangKaZhuanZhangActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
@@ -59,13 +56,16 @@
 
         <activity
             android:name=".view.RegisterActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
         </activity>
 
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".chong.ChongzhiActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
@@ -73,6 +73,7 @@
 
         <activity
             android:name=".chong.WeiXin4BackActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
@@ -80,27 +81,30 @@
 
         <activity
             android:name=".view.HuoDongActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
         </activity>
 
         <activity
-            android:name=".view.BaoxianxActivity"
+            android:name=".baoxianxiaong.BaoxianxActivity"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
         </activity>
 
         <activity
-            android:name=".view.BaoxianxActivity2"
+            android:name=".baoxianxiaong.BaoxianxActivity2"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
         </activity>
 
         <activity
-            android:name=".view.BaoxianxActivity3"
+            android:name=".baoxianxiaong.BaoxianxActivity3"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
@@ -108,6 +112,7 @@
 
         <activity
             android:name=".view.KefuActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
@@ -115,13 +120,16 @@
 
         <activity
             android:name=".view.SheZhiActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
         </activity>
 
         <activity
+            android:hardwareAccelerated="false"
             android:name=".geren.GerenActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
@@ -129,6 +137,7 @@
 
         <activity
             android:name=".tixian.TiXianActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
@@ -137,6 +146,7 @@
 
         <activity
             android:name=".view.XiaoXiActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
@@ -144,6 +154,16 @@
 
         <activity
             android:name=".view.XiaoXiDetailActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+
+        <activity
+            android:name=".view.DaiLiActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">
 
@@ -170,12 +190,13 @@
 
 
         <activity
-            android:name=".youxi.TiyuWebViewActivity"
-            android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:name=".youxi.LeYouWebAppActivity"
+            android:screenOrientation="landscape"
             android:theme="@style/AppCompatFullscreen" />
 
         <activity
+
             android:name=".view.SplashActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppCompatFullscreen">

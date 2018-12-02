@@ -7,6 +7,8 @@ import android.app.ProgressDialog;
 import android.support.annotation.Nullable;
 
 
+import com.dafa.qipai.dafaqipai.util.AppUtils;
+import com.dafa.qipai.dafaqipai.util.NetWorkUtil;
 import com.kongzue.dialog.v2.DialogSettings;
 import com.kongzue.dialog.v2.WaitDialog;
 import com.lzy.okgo.callback.StringCallback;
@@ -32,7 +34,6 @@ public abstract class OkGoCallBack extends StringCallback {
         this.isShowDialg = isShowDialg;
 
     }
-
 
     @Override
     public void onBefore(BaseRequest request) {
@@ -69,11 +70,11 @@ public abstract class OkGoCallBack extends StringCallback {
         try {
             if (!mContext.isFinishing() && waitDialog != null) {
 
-                //DialogSettings.unloadAllDialog();           //卸载掉所有对话框
-
                 waitDialog.doDismiss();
-            }
+                DialogSettings.unloadAllDialog();           //卸载掉所有对话框
 
+
+            }
 
         } catch (Exception e1) {
             e1.printStackTrace();
@@ -97,26 +98,25 @@ public abstract class OkGoCallBack extends StringCallback {
         _onError(e.getMessage());
 
 
-//        if (!NetWorkUtil.isNetworkConnected(this.mContext)) {
-//
-//
-////            AppUtils.showToast(mContext, "网络不可用");
-//
-//        } else {
-//
-//            if (e instanceof SocketTimeoutException) {
-//
-////                AppUtils.showToast(mContext, "连接超时");
-//
-//            }
-//
-//        }
+        if (!NetWorkUtil.isNetworkConnected(this.mContext)) {
+
+
+            AppUtils.showToast(mContext, "网络不可用");
+
+        } else {
+
+            if (e instanceof SocketTimeoutException) {
+
+                AppUtils.showToast(mContext, "请求超时");
+
+            }
+
+        }
 
     }
 
 
     protected void _onError(String error) {
-
     }
 
     protected abstract void _onNext(String s);

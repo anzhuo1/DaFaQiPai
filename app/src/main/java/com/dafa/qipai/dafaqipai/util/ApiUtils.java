@@ -241,7 +241,7 @@ public class ApiUtils {
             Integer pageIndex,
             Integer pageSize,
             Integer status,
-            Long type,
+            Integer type,
             OkGoCallBack okGoCallBack
     ) {
         Map<String, Object> paramsMap = new HashMap<>();

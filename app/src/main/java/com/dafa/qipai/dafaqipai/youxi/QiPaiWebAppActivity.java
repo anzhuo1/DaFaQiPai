@@ -29,10 +29,12 @@ public class QiPaiWebAppActivity extends BaseYouxiActivity {
 
     @BindView(R.id.statelayout)
     StateLayout statelayout;
-    @BindView(R.id.forum_context)
-    WebView forumContext;
-    @BindView(R.id.fanhui)
-    MoveView fanhui;
+//    @BindView(R.id.forum_context)
+//    WebView forumContext;
+//    @BindView(R.id.fanhui)
+//    MoveView fanhui;
+//    @BindView(R.id.dragView)
+//    DragView dragView;
 
 
     private String url;
@@ -63,12 +65,15 @@ public class QiPaiWebAppActivity extends BaseYouxiActivity {
 
         //fanhui.setImageResource(R.mipmap.fanhui);
 
-        fanhui.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        dragView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+
+
+       // dragView.setImageResource(R.drawable.fanhui);
 
     }
 
@@ -98,7 +103,20 @@ public class QiPaiWebAppActivity extends BaseYouxiActivity {
     private void webViewGoBack() {
 
 
-        tuiChu();
+        BaseDialog dialog = new BaseDialog(this, "是否返回大厅？") {
+
+            @Override
+            public void btn1DoThing(Dialog mDialog) {
+                mDialog.dismiss();
+            }
+
+            @Override
+            public void btn2DoThing(Dialog mDialog) {
+                mDialog.dismiss();
+                tuiChu();
+            }
+        };
+        dialog.show();
 
 
     }
@@ -106,9 +124,7 @@ public class QiPaiWebAppActivity extends BaseYouxiActivity {
     private void tuiChu() {
 
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
-                .params("clientType", "Android")
-                .params("type", 1)
+        OkGo.post(ApiConstant.API_DOMAIN + "/wallet/oneKeyToWallet.json")
                 .params("token", UserUtil.getToken(context))
                 .params("uid", UserUtil.getUserID(context))
                 .execute(new OkGoCallBack(this, true) {
@@ -121,20 +137,29 @@ public class QiPaiWebAppActivity extends BaseYouxiActivity {
                         if (result == 1) {
 
                             finish();
+                            forumContext.destroy();
+
 
                         } else {
 
-                            SelectDialog.show(QiPaiWebAppActivity.this, "提示", "退出失败", "重试", new DialogInterface.OnClickListener() {
+
+
+                            BaseDialog dialog = new BaseDialog(QiPaiWebAppActivity.this, "退出失败","取消","重试") {
+
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    tuiChu();
-                                }
-                            }, "取消", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                public void btn1DoThing(Dialog mDialog) {
+                                    mDialog.dismiss();
+                                    forumContext.destroy();
                                     finish();
                                 }
-                            });
+
+                                @Override
+                                public void btn2DoThing(Dialog mDialog) {
+                                    mDialog.dismiss();
+                                    tuiChu();
+                                }
+                            };
+                            dialog.show();
 
                         }
 
@@ -145,20 +170,21 @@ public class QiPaiWebAppActivity extends BaseYouxiActivity {
     }
 
 
-    @OnClick(R.id.fanhui)
-    public void onViewClicked() {
-
-        BaseDialog dialog = new BaseDialog(this) {
-            @Override
-            public void mustDoThing(Dialog mDialog) {
-
-            }
-
-            @Override
-            public void mustDoThingOnCancle(Dialog mDialog) {
-
-            }
-        };
-        dialog.show();
-    }
+//    @OnClick(R.id.fanhui)
+//    public void onViewClicked() {
+//
+//        BaseDialog dialog = new BaseDialog(this, "是否返回大厅？") {
+//
+//            @Override
+//            public void btn1DoThing(Dialog mDialog) {
+//
+//            }
+//
+//            @Override
+//            public void btn2DoThing(Dialog mDialog) {
+//
+//            }
+//        };
+//        dialog.show();
+//    }
 }

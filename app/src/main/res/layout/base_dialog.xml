@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
 
 
     <RelativeLayout
-        android:background="@mipmap/tishi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="380dp"
+        android:layout_height="220dp"
+        android:background="@mipmap/tishi">
 
+        <TextView
+            android:gravity="center"
+            android:paddingRight="60dp"
+            android:paddingLeft="60dp"
+            android:id="@+id/text"
+            android:textSize="14sp"
+            android:textColor="@color/colorText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:text="我的娃发放草娥" />
+
+        <Button
+            android:id="@+id/btn1"
+            android:paddingBottom="10dp"
+            android:text="取消"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="140dp"
+            android:background="@mipmap/huangsekk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/btn2"
+            android:paddingBottom="10dp"
+            android:text="确定"
+            android:layout_marginRight="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="140dp"
+            android:background="@mipmap/huangsekk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
 </RelativeLayout>

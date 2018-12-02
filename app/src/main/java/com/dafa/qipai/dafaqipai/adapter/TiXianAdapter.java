@@ -1,10 +1,12 @@
 package com.dafa.qipai.dafaqipai.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dafa.qipai.dafaqipai.R;
@@ -46,24 +48,41 @@ public class TiXianAdapter extends RecyclerView.Adapter<TiXianAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(TiXianAdapter.MyViewHolder holder, int position) {
         long time = dtos.get(position).getTime();
         BigDecimal money = dtos.get(position).getMoney();
         int status = dtos.get(position).getStatus();
         String remarks = dtos.get(position).getRemarks();
-        holder.tv.setText(DateUtil.getString2Y2MD(time) + "\n" + DateUtil.getString2HMS(time));
-        holder.money.setText(money.toPlainString());
+        int type = dtos.get(position).getType();
+
+        String orderNo = dtos.get(position).getOrderNo();
+
+
+        holder.text4.setText(DateUtil.getString2Y2MD(time) + "\n" + DateUtil.getString2HMS(time));
+        holder.text3.setText(money.toPlainString());
+        holder.text.setText(orderNo);
 
         switch (status) {
             case 0:
-                holder.status.setText("正在出款...");
+                holder.text5.setText("正在出款...");
+
                 break;
             case 1:
-                holder.status.setText("出款成功");
+                holder.text5.setText("出款成功");
+
                 break;
             case 2:
-                holder.status.setText("出款拒绝");
+                holder.text5.setText("出款拒绝");
+
                 break;
+        }
+        holder.text2.setText("提现到银行卡");
+
+        if (position % 2 == 0) {
+            holder.bg.setBackgroundColor(Color.parseColor("#282A36"));
+        }else {
+            holder.bg.setBackgroundColor(Color.parseColor("#2B2F3A"));
+
         }
 
     }
@@ -75,23 +94,30 @@ public class TiXianAdapter extends RecyclerView.Adapter<TiXianAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv;
-        TextView money;
-        TextView status;
+        TextView text;
+        TextView text2;
+        TextView text3;
+        TextView text4;
+        TextView text5;
+        LinearLayout bg;
+
 
         public MyViewHolder(View view) {
             super(view);
-            tv = (TextView) view.findViewById(R.id.text);
-            money = (TextView) view.findViewById(R.id.money);
-            status = (TextView) view.findViewById(R.id.status);
+            text = (TextView) view.findViewById(R.id.text);
+            text2 = (TextView) view.findViewById(R.id.text2);
+            text3 = (TextView) view.findViewById(R.id.text3);
+            text4 = (TextView) view.findViewById(R.id.text4);
+            text5 = (TextView) view.findViewById(R.id.text5);
+            bg = (LinearLayout) view.findViewById(R.id.bg);
             AutoUtils.auto(view);
         }
     }
 
 
-    private OnItemClickListener onItemClickListener;
+    private ChongZhiAdapter.OnItemClickListener onItemClickListener;
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(ChongZhiAdapter.OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 

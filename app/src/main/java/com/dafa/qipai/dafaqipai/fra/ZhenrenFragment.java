@@ -1,5 +1,6 @@
 package com.dafa.qipai.dafaqipai.fra;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,12 +19,14 @@ import com.dafa.qipai.dafaqipai.adapter.HomeAdapter;
 import com.dafa.qipai.dafaqipai.bean.DoZhenren;
 import com.dafa.qipai.dafaqipai.bean.Qipai;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
+import com.dafa.qipai.dafaqipai.dialog.BaseDialog;
 import com.dafa.qipai.dafaqipai.dto.HomeItemDto;
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
 import com.dafa.qipai.dafaqipai.util.EncodingUtils;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
+import com.dafa.qipai.dafaqipai.view.LoginActivity;
 import com.dafa.qipai.dafaqipai.youxi.AGWebAppActivity;
 import com.dafa.qipai.dafaqipai.youxi.BBINWebViewActivity;
 import com.lzy.okgo.OkGo;
@@ -76,6 +79,11 @@ public class ZhenrenFragment extends LazyLoadFragment {
             @Override
             public void onItemClick(View view) {
 
+                if(!UserUtil.isLoginApp(context)){
+                    gotoActivity(LoginActivity.class);
+                    return;
+                }
+
                 int position = listView.getChildAdapterPosition(view);
 
                 if (position == 0) {
@@ -90,13 +98,30 @@ public class ZhenrenFragment extends LazyLoadFragment {
                                 @Override
                                 protected void _onNext(String json) {
                                     Qipai qipai = GsonUtil.GsonToBean(json, Qipai.class);
-                                    String loginUrl = qipai.getLoginUrl();
+
+                                    if(qipai.getResult() == 1){
+                                        String loginUrl = qipai.getLoginUrl();
+                                        Intent intent2 = new Intent(context, BBINWebViewActivity.class);
+                                        intent2.putExtra("url", loginUrl);
+                                        intent2.putExtra("title", "BBIN视讯");
+                                        startActivity(intent2);
+                                    }else {
+
+                                        new BaseDialog(getActivity(), qipai.getDescription(), "取消", "确定") {
+                                            @Override
+                                            public void btn1DoThing(Dialog mDialog) {
+
+                                            }
+
+                                            @Override
+                                            public void btn2DoThing(Dialog mDialog) {
+
+                                            }
+                                        }.show();
+
+                                    }
 
 
-                                    Intent intent2 = new Intent(context, BBINWebViewActivity.class);
-                                    intent2.putExtra("url", loginUrl);
-                                    intent2.putExtra("title", "BBIN视讯");
-                                    startActivity(intent2);
 
                                 }
 
@@ -123,8 +148,6 @@ public class ZhenrenFragment extends LazyLoadFragment {
                                         String loginurl = qipai.getLoginUrl();
 
 
-
-
                                         Bundle bundle = new Bundle();
                                         bundle.putString("key", key);
                                         bundle.putString("params", params);
@@ -133,6 +156,19 @@ public class ZhenrenFragment extends LazyLoadFragment {
 
 
                                     } else {
+
+
+                                        new BaseDialog(getActivity(), qipai.getDescription(), "取消", "确定") {
+                                            @Override
+                                            public void btn1DoThing(Dialog mDialog) {
+
+                                            }
+
+                                            @Override
+                                            public void btn2DoThing(Dialog mDialog) {
+
+                                            }
+                                        }.show();
 
 
                                     }

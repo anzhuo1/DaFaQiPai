@@ -75,7 +75,7 @@ public class RegisterActivity extends BaseActivity {
 
     @OnClick({R.id.img, R.id.login, R.id.close})
     public void onViewClicked(View view) {
-        playMusic(2);
+
         switch (view.getId()) {
             case R.id.img:
                 img.setImageBitmap(CodeUtils.getInstance().createBitmap());

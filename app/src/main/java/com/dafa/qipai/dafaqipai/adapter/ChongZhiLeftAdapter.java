@@ -29,8 +29,16 @@ public class ChongZhiLeftAdapter extends RecyclerView.Adapter<ChongZhiLeftAdapte
         this.layout = layout;
 
         DOgetAppCzInfoResult.CzTypeListBean czTypeListBean = new DOgetAppCzInfoResult.CzTypeListBean();
-        czTypeListBean.setName("代理");
-        dtos.add(czTypeListBean);
+
+
+        czTypeListBean.setName("快速");
+        dtos.add(0,czTypeListBean);
+
+        DOgetAppCzInfoResult.CzTypeListBean czTypeListBean1 = new DOgetAppCzInfoResult.CzTypeListBean();
+
+        czTypeListBean1.setName("代理");
+        dtos.add(czTypeListBean1);
+
     }
 
     @Override
@@ -41,7 +49,6 @@ public class ChongZhiLeftAdapter extends RecyclerView.Adapter<ChongZhiLeftAdapte
             @Override
             public void onClick(View v) {
                 onItemClickListener.onItemClick(v);
-
             }
         });
 
@@ -52,21 +59,21 @@ public class ChongZhiLeftAdapter extends RecyclerView.Adapter<ChongZhiLeftAdapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
         boolean select = dtos.get(position).isSelect();
 
-        if (dtos.get(position).getName().equals("银行卡支付")) {
+        if (dtos.get(position).getName().contains("银行卡")) {
             if (dtos.get(position).isSelect()) {
                 holder.iv.setBackgroundResource(R.mipmap.wyzf_press);
             }else {
                 holder.iv.setBackgroundResource(R.mipmap.wycz);
             }
         }
-        if (dtos.get(position).getName().equals("微信")) {
+        if (dtos.get(position).getName().contains("微信")) {
             if (dtos.get(position).isSelect()) {
                 holder.iv.setBackgroundResource(R.mipmap.wxzf_press);
             }else {
                 holder.iv.setBackgroundResource(R.mipmap.weixincz);
             }
         }
-        if (dtos.get(position).getName().equals("支付宝")) {
+        if (dtos.get(position).getName().contains("支付宝")) {
             if (dtos.get(position).isSelect()) {
                 holder.iv.setBackgroundResource(R.mipmap.zfbcz_press);
             }else {
@@ -74,14 +81,21 @@ public class ChongZhiLeftAdapter extends RecyclerView.Adapter<ChongZhiLeftAdapte
             }
         }
 
-        if (dtos.get(position).getName().equals("代理")) {
+        if (dtos.get(position).getName().contains("快速")) {
+            if (dtos.get(position).isSelect()) {
+                holder.iv.setBackgroundResource(R.mipmap.kscz_pressx);
+            }else {
+                holder.iv.setBackgroundResource(R.mipmap.kscz);
+            }
+        }
+
+        if (dtos.get(position).getName().contains("代理")) {
             if (dtos.get(position).isSelect()) {
                 holder.iv.setBackgroundResource(R.mipmap.dlcz_press);
             }else {
                 holder.iv.setBackgroundResource(R.mipmap.dailicz);
             }
         }
-
 
 
     }

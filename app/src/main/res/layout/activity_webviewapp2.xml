@@ -19,13 +19,18 @@
     </com.dafa.qipai.dafaqipai.wihget.StateLayout>
 
 
-    <com.dafa.qipai.dafaqipai.wihget.MoveView
-        android:id="@+id/fanhui"
-        android:layout_margin="10px"
-        android:layout_width="142px"
-        android:layout_height="164px"
-        android:background="@mipmap/fanhui" />
+    <!--<com.dafa.qipai.dafaqipai.wihget.MoveView-->
+        <!--android:id="@+id/fanhui"-->
+        <!--android:layout_margin="10px"-->
+        <!--android:layout_width="142px"-->
+        <!--android:layout_height="164px"-->
+        <!--android:background="@mipmap/fanhui" />-->
 
+
+    <!--<com.dafa.qipai.dafaqipai.wihget.DragView-->
+        <!--android:id="@+id/dragView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
 
 
 

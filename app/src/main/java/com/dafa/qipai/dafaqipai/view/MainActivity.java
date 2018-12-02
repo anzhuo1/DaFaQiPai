@@ -3,28 +3,35 @@ package com.dafa.qipai.dafaqipai.view;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Process;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
+import com.dafa.qipai.dafaqipai.adapter.ZhanNeiXinAdapter;
+import com.dafa.qipai.dafaqipai.baoxianxiaong.BaoxianxActivity;
+import com.dafa.qipai.dafaqipai.baoxianxiaong.BaoxianxActivity2;
 import com.dafa.qipai.dafaqipai.bean.DoBxx;
 import com.dafa.qipai.dafaqipai.bean.DoLayer;
 import com.dafa.qipai.dafaqipai.bean.PublicMsgDo;
 import com.dafa.qipai.dafaqipai.bean.UserBaseSession;
+import com.dafa.qipai.dafaqipai.bean.ZhanNeiXinDo;
 import com.dafa.qipai.dafaqipai.chong.ChongzhiActivity;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
 import com.dafa.qipai.dafaqipai.fra.DianZiFragment;
+import com.dafa.qipai.dafaqipai.fra.LeYouFragment;
 import com.dafa.qipai.dafaqipai.fra.QipaiFragment;
-import com.dafa.qipai.dafaqipai.fra.TiyuFragment;
 import com.dafa.qipai.dafaqipai.fra.ZhenrenFragment;
 import com.dafa.qipai.dafaqipai.geren.GerenActivity;
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
@@ -34,6 +41,7 @@ import com.dafa.qipai.dafaqipai.util.AppUtils;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
 import com.dafa.qipai.dafaqipai.util.BackgroundMusic;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
+import com.dafa.qipai.dafaqipai.util.SPUtil;
 import com.dafa.qipai.dafaqipai.util.SoundPoolUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.dafa.qipai.dafaqipai.wihget.MarqueeTextView;
@@ -54,7 +62,7 @@ import rx.Observer;
 import rx.functions.Action1;
 
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaseFragmentActivity {
 
 
     @BindView(R.id.name)
@@ -95,14 +103,27 @@ public class MainActivity extends FragmentActivity {
     MarqueeTextView gonggao;
     @BindView(R.id.head)
     ImageView head;
+    @BindView(R.id.zhuce)
+    TextView zhuce;
+    @BindView(R.id.denglu)
+    TextView denglu;
+    @BindView(R.id.ll_dz)
+    LinearLayout llDz;
+    @BindView(R.id.dojine)
+    TextView dojine;
+    @BindView(R.id.xinxi1)
+    TextView xinxi1;
+    @BindView(R.id.xinxi2)
+    TextView xinxi2;
 
     private SoundPoolUtil soundPoolUtil;
 
 
     QipaiFragment qipaiFragment;
     ZhenrenFragment zhenrenFragment;
-    TiyuFragment tiyuFragment;
+    // TiyuFragment tiyuFragment;
     DianZiFragment dianZiFragment;
+    LeYouFragment leYouFragment;
     private boolean canWithdraw;
 
     private int loginType;
@@ -111,8 +132,8 @@ public class MainActivity extends FragmentActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable("android:support:fragments", null);
-        AutoUtils.setSize(this, false, 1920, 1080);
-        AutoUtils.auto(this);
+//        AutoUtils.setSize(this, false, 1920, 1080);
+//        AutoUtils.auto(this);
     }
 
 
@@ -133,10 +154,13 @@ public class MainActivity extends FragmentActivity {
 
         loadQuanXian();
 
-        AutoUtils.setSize(this, false, 1920, 1080);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+
+        AutoUtils.setSize(this, false, 1920, 1080);
         AutoUtils.auto(this);
+
 
         AppUtils.playBgMuisc(this);
 
@@ -279,7 +303,9 @@ public class MainActivity extends FragmentActivity {
 
     @OnClick({R.id.qipai, R.id.zhenren, R.id.tiyu, R.id.dianzi})
     public void onViewClicked(View view) {
-        soundPoolUtil.play(2);
+
+        float y2 = (float) SPUtil.get(this, "y2", 0.5f);
+        soundPoolUtil.play(1, this, y2);
 
         switch (view.getId()) {
             case R.id.qipai:
@@ -315,17 +341,17 @@ public class MainActivity extends FragmentActivity {
             case R.id.tiyu:
 
 
-                bg.setBackgroundResource(R.mipmap.bg_tiyu);
+                bg.setBackgroundResource(R.mipmap.bg_qipai);
 
 
                 FragmentTransaction transaction3 = getSupportFragmentManager().beginTransaction();
 
-                if (tiyuFragment == null) {
-                    tiyuFragment = new TiyuFragment();
-                    transaction3.add(R.id.framelayout, tiyuFragment);
+                if (leYouFragment == null) {
+                    leYouFragment = new LeYouFragment();
+                    transaction3.add(R.id.framelayout, leYouFragment);
                 }
                 hideFragment(transaction3);
-                transaction3.show(tiyuFragment);
+                transaction3.show(leYouFragment);
                 transaction3.commit();
                 break;
             case R.id.dianzi:
@@ -359,8 +385,8 @@ public class MainActivity extends FragmentActivity {
             transaction.hide(zhenrenFragment);
         }
 
-        if (tiyuFragment != null) {
-            transaction.hide(tiyuFragment);
+        if (leYouFragment != null) {
+            transaction.hide(leYouFragment);
         }
 
         if (dianZiFragment != null) {
@@ -370,9 +396,10 @@ public class MainActivity extends FragmentActivity {
 
     }
 
-    @OnClick({R.id.xinxi, R.id.dojine, R.id.head, R.id.huodong, R.id.tuiguang, R.id.kefu, R.id.baoxian, R.id.shezhi, R.id.tixian, R.id.chongzhi})
+    @OnClick({R.id.xinxi1, R.id.xinxi2, R.id.dojine, R.id.head, R.id.huodong, R.id.tuiguang, R.id.kefu, R.id.baoxian, R.id.shezhi, R.id.tixian, R.id.chongzhi})
     public void onViewClicked2(View view) {
-        soundPoolUtil.play(1);
+        float y2 = (float) SPUtil.get(this, "y2", 0.5f);
+        soundPoolUtil.play(0, this, y2);
 
 
         if (!UserUtil.isLoginApp(MainActivity.this)) {
@@ -383,7 +410,8 @@ public class MainActivity extends FragmentActivity {
 
         switch (view.getId()) {
 
-            case R.id.xinxi:
+            case R.id.xinxi1:
+            case R.id.xinxi2:
                 startActivity(new Intent(this, XiaoXiActivity.class));
                 break;
 
@@ -391,23 +419,28 @@ public class MainActivity extends FragmentActivity {
                 startActivity(new Intent(this, HuoDongActivity.class));
                 break;
             case R.id.tuiguang:
-                AppUtils.showToast(this, "暂未开启");
+                startActivity(new Intent(this, DaiLiActivity.class));
+
                 break;
             case R.id.kefu:
                 startActivity(new Intent(this, KefuActivity.class));
                 break;
             case R.id.baoxian:
 
-                if(loginType == 1){
+                if (loginType == 1) {
                     startActivity(new Intent(this, BaoxianxActivity.class));
 
-                }else {
+                } else {
                     startActivity(new Intent(this, BaoxianxActivity2.class));
                 }
 
                 break;
             case R.id.shezhi:
-                startActivity(new Intent(this, SheZhiActivity.class));
+                // startActivity(new Intent(this, SheZhiActivity.class));
+
+                Intent intent = new Intent(MainActivity.this, SheZhiActivity.class);
+                // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
             case R.id.tixian:
 
@@ -440,9 +473,11 @@ public class MainActivity extends FragmentActivity {
 
     private void exitBy2Click() {
 
+
+        ActivityContainer.getInstance().finishAllActivity();
         Process.killProcess(Process.myPid()); //获取PID
         System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
-        //ActivityContainer.getInstance().finishAllActivity();
+
         //ActivityContainer.getInstance().finishAllActivity();
         //AppManager.getAppManager().AppExit(this);
 
@@ -455,6 +490,42 @@ public class MainActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
 
+        if (MyApp.type == 0) {
+
+            int[] ints = AppUtils.randomArray(1, 10, 1);
+
+            if (ints[0] % 2 == 0) {
+
+                float y2 = (float) SPUtil.get(this, "y2", 0.5f);
+                soundPoolUtil.play(2, this, y2);
+            } else {
+                float y2 = (float) SPUtil.get(this, "y2", 0.5f);
+                soundPoolUtil.play(3, this, y2);
+            }
+
+            System.out.println(MyApp.type);
+
+
+            MyApp.type = 1;
+
+        }
+
+//        if (MyApp.isBG) {
+//
+////            ActivityContainer.getInstance().finishAllActivity();
+////
+////            Intent intent = new Intent(this, MainActivity.class);
+////            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////            startActivity(intent);
+////
+////            System.out.println("cur");
+////
+////            MyApp.isBG = false;
+//
+//
+//        }
+
+
         loadData4THIS();
 
         requstQuanXian();
@@ -463,16 +534,74 @@ public class MainActivity extends FragmentActivity {
 
         loadBaoXianXiaong();
 
-        soundPoolUtil.play(3);
 
+        loadXinxi();
+
+
+        if (UserUtil.isLoginApp(context)) {
+
+            llDz.setVisibility(View.GONE);
+            id.setVisibility(View.VISIBLE);
+
+        } else {
+
+            id.setVisibility(View.GONE);
+            llDz.setVisibility(View.VISIBLE);
+        }
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadData4THIS();
+
+
+            }
+        }, 2000);
+
+
+    }
+
+    private void loadXinxi() {
+        OkGo.post(ApiConstant.API_DOMAIN + "/member/getUserInboxList.json")
+                .tag(this)
+                .params("token", UserUtil.getToken(this))
+                .params("uid", UserUtil.getUserID(this))
+                .params("pageIndex", 1)
+                .params("pageSize", 200)
+                .execute(new OkGoCallBack(this, false) {
+
+
+                    @Override
+                    protected void _onNext(String json) {
+                        try {
+                            ZhanNeiXinDo baseDo = GsonUtil.GsonToBean(json, ZhanNeiXinDo.class);
+                            if (baseDo.getResult() == 1) {
+
+                                List<ZhanNeiXinDo.UserInboxBean> userInboxList = baseDo.getUserInboxList();
+
+                                int i = 0;
+                                for (ZhanNeiXinDo.UserInboxBean bean : userInboxList) {
+                                    if(!bean.getHasRead()){
+                                        i++;
+                                    }
+                                }
+
+                                xinxi2.setText(i+"");
+
+                            }
+                        } catch (Exception e) {
+
+                        }
+                    }
+                });
 
     }
 
     private void huishou() {
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
-                .params("clientType", "Android")
-                .params("type", 1)
+        OkGo.post(ApiConstant.API_DOMAIN + "/wallet/oneKeyToWallet.json")
                 .params("token", UserUtil.getToken(this))
                 .params("uid", UserUtil.getUserID(this))
                 .execute(new OkGoCallBack(this, false) {
@@ -483,31 +612,6 @@ public class MainActivity extends FragmentActivity {
                     }
                 });
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
-                .params("clientType", "Android")
-                .params("type", 2)
-                .params("token", UserUtil.getToken(this))
-                .params("uid", UserUtil.getUserID(this))
-                .execute(new OkGoCallBack(this, false) {
-                    @Override
-                    protected void _onNext(String json) {
-
-
-                    }
-                });
-
-        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
-                .params("clientType", "Android")
-                .params("type", 3)
-                .params("token", UserUtil.getToken(this))
-                .params("uid", UserUtil.getUserID(this))
-                .execute(new OkGoCallBack(this, false) {
-                    @Override
-                    protected void _onNext(String json) {
-
-
-                    }
-                });
 
     }
 
@@ -575,6 +679,52 @@ public class MainActivity extends FragmentActivity {
                 });
 
     }
+
+
+    /**
+     * 判断是否是快速点击
+     */
+    private static long lastClickTime;
+
+    @OnClick({R.id.zhuce, R.id.denglu})
+    public void onViewClicked3(View view) {
+        switch (view.getId()) {
+            case R.id.zhuce:
+                gotoActivity(RegisterActivity.class);
+                break;
+            case R.id.denglu:
+                gotoActivity(LoginActivity.class);
+                break;
+        }
+    }
+
+    /**
+     * 判断触摸时间派发间隔
+     */
+
+
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+//            if (isFastDoubleClick()) {
+//                return true;
+//            }
+//        }
+//        return super.dispatchTouchEvent(ev);
+//    }
+//
+//    public static boolean isFastDoubleClick() {
+//
+//        long time = System.currentTimeMillis();
+//        long timeD = time - lastClickTime;
+//        if (0 < timeD && timeD < 1000) {
+//
+//            return true;
+//        }
+//        lastClickTime = time;
+//        return false;
+//
+//    }
 
 
 }

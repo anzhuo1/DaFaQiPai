@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.bean.DoGetPromotion;
@@ -35,48 +36,32 @@ public class HuodongAdapter extends RecyclerView.Adapter<HuodongAdapter.MyViewHo
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MyViewHolder holder = new MyViewHolder(LayoutInflater.from(context).inflate(layout, parent, false));
+    public HuodongAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-      holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(v));
+        HuodongAdapter.MyViewHolder holder = new HuodongAdapter.MyViewHolder(LayoutInflater.from(context).inflate(layout, parent, false));
+
+        holder.itemView.setOnClickListener(v ->
+                onItemClickListener.onItemClick(v));
 
         return holder;
     }
 
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        ImageView iv = holder.iv;
 
-        String url = ApiConstant.API_DOMAIN + "/image/" + dtos.get(position).getBigImageId() + ".png?companyShortName=600w";
-        GlideUtil.loadUrlImage(url, iv, context);
 
-        String url1 = dtos.get(position).getUrl();
-        holder.wv.loadUrl(url1);
+        holder.tv.setText(dtos.get(position).getName());
 
-        if (dtos.get(position).isShow()) {
+        if(dtos.get(position).isIschecked()){
+            holder.tv.setBackgroundResource(R.mipmap.ansebg_press);
+            holder.tv.setTextColor(context.getResources().getColor(R.color.bg_line));
 
-            holder.wv.setVisibility(View.VISIBLE);
-        } else {
-            holder.wv.setVisibility(View.GONE);
+        }else {
+            holder.tv.setBackgroundResource(R.mipmap.ansebg);
+            holder.tv.setTextColor(context.getResources().getColor(R.color.colorTextWhite));
         }
 
-
-        iv.setOnClickListener(v -> {
-
-//            if (dtos.get(position).isShow()) {
-//                dtos.get(position).setShow(false);
-//            } else {
-//                for (DoGetPromotion.PromotionListBean d : dtos) {
-//                    d.setShow(false);
-//                }
-//
-//                dtos.get(position).setShow(true);
-//            }
-//
-//            HuodongAdapter.this.notifyDataSetChanged();
-
-
-        });
 
     }
 
@@ -87,27 +72,26 @@ public class HuodongAdapter extends RecyclerView.Adapter<HuodongAdapter.MyViewHo
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView iv;
-        WebView wv;
+        TextView tv;
 
         public MyViewHolder(View view) {
             super(view);
-            iv = (ImageView) view.findViewById(R.id.iv);
-            wv = (WebView) view.findViewById(R.id.content);
+            tv = (TextView) view.findViewById(R.id.tv);
+
+
             AutoUtils.auto(view);
         }
     }
 
 
-    private OnItemClickListener onItemClickListener;
+    private HuodongAdapter.OnItemClickListener onItemClickListener;
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(HuodongAdapter.OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
 
-    public interface OnItemClickListener {
-
+    public  interface OnItemClickListener {
         void onItemClick(View view);
 
         void onItemLongClick(View view);

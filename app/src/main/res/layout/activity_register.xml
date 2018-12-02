@@ -34,6 +34,7 @@
 
 
     <EditText
+        android:imeOptions="actionDone|flagNoExtractUi"
         android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:id="@+id/name"
         android:layout_width="480px"
@@ -52,6 +53,8 @@
 
 
     <EditText
+        android:inputType="textPassword"
+        android:imeOptions="actionDone|flagNoExtractUi"
         android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:id="@+id/pass"
         android:layout_width="480px"
@@ -70,6 +73,8 @@
 
 
     <EditText
+        android:inputType="textPassword"
+        android:imeOptions="actionDone|flagNoExtractUi"
         android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:id="@+id/again_pass"
         android:layout_width="480px"
@@ -86,7 +91,7 @@
         android:textColorHint="#494f5a"
         android:textSize="30px" />
 
-    <EditText
+    <EditText android:imeOptions="actionDone|flagNoExtractUi"
         android:id="@+id/tuijian"
         android:layout_width="480px"
         android:layout_height="80px"
@@ -102,7 +107,7 @@
         android:textColorHint="#494f5a"
         android:textSize="30px" />
 
-    <EditText
+    <EditText android:imeOptions="actionDone|flagNoExtractUi"
         android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:id="@+id/yanzhengma"
         android:layout_width="250px"

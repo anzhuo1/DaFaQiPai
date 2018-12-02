@@ -1,51 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="300px"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:gravity="center"
-        android:orientation="vertical"
         android:id="@+id/iv"
         android:layout_width="match_parent"
-        android:layout_height="185px"
+        android:layout_height="460px"
         android:layout_margin="10px"
-        android:background="@mipmap/jxbg">
-
-
-        <TextView
-            android:textSize="40px"
-            android:layout_marginTop="10px"
-            android:drawableLeft="@mipmap/wxtb"
-            android:text="金牌代理"
-            android:textColor="@color/colorTextWhite"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-        <TextView
-            android:id="@+id/tv"
-            android:textSize="30px"
-            android:layout_marginTop="6px"
-            android:layout_marginRight="10px"
-            android:layout_marginLeft="10px"
-            android:text="dafa89999"
-            android:textColor="@color/colorText"
-            android:gravity="center"
-            android:background="@mipmap/yjjxbg"
-            android:layout_width="match_parent"
-            android:layout_height="42px" />
+        android:background="@mipmap/jxbg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
 
         <ImageView
-            android:layout_marginTop="5px"
+            android:id="@+id/img"
+            android:layout_marginTop="20px"
+            android:layout_width="200px"
+            android:layout_height="200px" />
+
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40px"
+            android:gravity="center"
+            android:text="金牌代理"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="32px" />
+
+
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="match_parent"
+            android:layout_height="42px"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_marginTop="10px"
+            android:background="@mipmap/yjjxbg"
+            android:gravity="center"
             android:text="dafa89999"
             android:textColor="@color/colorText"
-            android:gravity="center"
-            android:background="@mipmap/wxhbg"
+            android:textSize="30px" />
+
+
+        <TextView
+            android:layout_marginTop="20px"
+            android:textSize="28px"
+            android:id="@+id/copy"
             android:layout_width="170px"
-            android:layout_height="55px" />
+            android:layout_height="55px"
+            android:background="@mipmap/yes"
+            android:gravity="center"
+            android:text="复制QQ好" />
 
     </LinearLayout>
 

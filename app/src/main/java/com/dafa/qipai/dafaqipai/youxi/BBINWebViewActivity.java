@@ -3,6 +3,7 @@ package com.dafa.qipai.dafaqipai.youxi;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,6 +29,7 @@ import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.bean.DoTuiChu;
 import com.dafa.qipai.dafaqipai.bean.Qipai;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
+import com.dafa.qipai.dafaqipai.dialog.BaseDialog;
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
@@ -59,8 +61,8 @@ public class BBINWebViewActivity extends BaseYouxiActivity {
 
     @BindView(R.id.statelayout)
     StateLayout statelayout;
-    @BindView(R.id.forum_context)
-    com.tencent.smtt.sdk.WebView forumContext;
+//    @BindView(R.id.forum_context)
+//    com.tencent.smtt.sdk.WebView forumContext;
 
 
     private String url;
@@ -125,9 +127,7 @@ public class BBINWebViewActivity extends BaseYouxiActivity {
     private void tuiChu() {
 
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
-                .params("clientType", "Android")
-                .params("type", 1)
+        OkGo.post(ApiConstant.API_DOMAIN + "/wallet/oneKeyToWallet.json")
                 .params("token", UserUtil.getToken(context))
                 .params("uid", UserUtil.getUserID(context))
                 .execute(new OkGoCallBack(this, true) {
@@ -138,22 +138,28 @@ public class BBINWebViewActivity extends BaseYouxiActivity {
                         int result = doTuiChu.getResult();
 
                         if (result == 1) {
-
+                            forumContext.destroy();
                             finish();
 
                         } else {
 
-                            SelectDialog.show(BBINWebViewActivity.this, "提示", "退出失败", "重试", new DialogInterface.OnClickListener() {
+
+                            BaseDialog dialog = new BaseDialog(BBINWebViewActivity.this, "退出失败","取消","重试") {
+
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    tuiChu();
-                                }
-                            }, "取消", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                public void btn1DoThing(Dialog mDialog) {
+                                    mDialog.dismiss();
+                                    forumContext.destroy();
                                     finish();
                                 }
-                            });
+
+                                @Override
+                                public void btn2DoThing(Dialog mDialog) {
+                                    mDialog.dismiss();
+                                    tuiChu();
+                                }
+                            };
+                            dialog.show();
 
                         }
 

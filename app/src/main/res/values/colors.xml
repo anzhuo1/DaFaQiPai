@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#EFD69F</color>
-    <color name="colorPrimaryDark">#EFD69F</color>
-    <color name="colorAccent">#EFD69F</color>
+    <color name="colorPrimary">#fec277</color>
+    <color name="colorPrimaryDark">#fec277</color>
+    <color name="colorAccent">#fec277</color>
 
     <color name="float_transparent">#00000000</color>
 
-    <color name="colorText">#EFD69F</color>
+    <color name="colorText">#fec277</color>
     <color name="colorTextWhite">#bdc1cc</color>
 
     <color name="colorWhite">#fff</color>
@@ -17,4 +17,9 @@
 
     <color name="appbg">#3E454F</color>
     <color name="text_hint_color">#494f5a</color>
+
+    <color name="text_dark">#8c9390</color>
+    <color name="text_white">#e6e5eb</color>
+
+
 </resources>

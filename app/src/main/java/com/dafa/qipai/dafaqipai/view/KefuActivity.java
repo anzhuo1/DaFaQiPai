@@ -8,9 +8,11 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -46,6 +48,8 @@ public class KefuActivity extends BaseActivity {
     RadioButton zhenren;
     @BindView(R.id.webView)
     WebView webView;
+    @BindView(R.id.ll_changjian)
+    LinearLayoutCompat llChangjian;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +63,31 @@ public class KefuActivity extends BaseActivity {
 
         getKefu();
 
+        webView.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
+        webView.setBackgroundResource(R.color.appbg);
+
     }
 
     public void getKefu() {
 
+        OkGo.post(ApiConstant.API_DOMAIN + "/webSetting/getKefu.json")
+                .tag(this)
+                .params("token", UserUtil.getToken(this))
+                .params("uid", UserUtil.getUserID(this))
+                .execute(new OkGoCallBack(this, true) {
+                    @Override
+                    protected void _onNext(String json) {
+
+                        DoKefu doKefu = GsonUtil.GsonToBean(json, DoKefu.class);
+
+                        String kefuUrl = doKefu.getKefuUrl();
+
+
+                        webView.loadUrl(kefuUrl);
+
+                    }
+
+                });
 
 
         WebSettings webSettings = webView.getSettings();
@@ -108,24 +133,23 @@ public class KefuActivity extends BaseActivity {
 
             webSettings.setDefaultZoom(WebSettings.ZoomDensity.MEDIUM);
 
-        } else if(mDensity == 120) {
+        } else if (mDensity == 120) {
 
             webSettings.setDefaultZoom(WebSettings.ZoomDensity.CLOSE);
 
-        }else if(mDensity == DisplayMetrics.DENSITY_XHIGH){
+        } else if (mDensity == DisplayMetrics.DENSITY_XHIGH) {
 
             webSettings.setDefaultZoom(WebSettings.ZoomDensity.FAR);
 
-        }else if (mDensity == DisplayMetrics.DENSITY_TV){
+        } else if (mDensity == DisplayMetrics.DENSITY_TV) {
 
             webSettings.setDefaultZoom(WebSettings.ZoomDensity.FAR);
 
-        }else{
+        } else {
 
             webSettings.setDefaultZoom(WebSettings.ZoomDensity.MEDIUM);
 
         }
-
 
 
         webView.setWebChromeClient(new WebChromeClient() {
@@ -167,7 +191,7 @@ public class KefuActivity extends BaseActivity {
             // Android 5.0及以上用的这个方法
             @Override
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]>
-                    filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
+                    filePathCallback, FileChooserParams fileChooserParams) {
                 uploadMessageAboveL = filePathCallback;
                 openImageChooserActivity();
                 return true;
@@ -187,35 +211,15 @@ public class KefuActivity extends BaseActivity {
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
 
 
-
-
         webSettings.setDomStorageEnabled(true);                     //开启DOM storage API功能
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/webSetting/getKefu.json")
-                .tag(this)
-                .params("token", UserUtil.getToken(this))
-                .params("uid", UserUtil.getUserID(this))
-                .execute(new OkGoCallBack(this, false) {
-                    @Override
-                    protected void _onNext(String json) {
 
-                        DoKefu doKefu = GsonUtil.GsonToBean(json, DoKefu.class);
-
-                        String kefuUrl = doKefu.getKefuUrl();
-
-
-                        webView.loadUrl(kefuUrl);
-
-                    }
-
-                });
     }
 
     @OnClick(R.id.close)
     public void onViewClicked() {
         finish();
     }
-
 
 
     private ValueCallback<Uri> uploadMessage;
@@ -268,5 +272,20 @@ public class KefuActivity extends BaseActivity {
         }
         uploadMessageAboveL.onReceiveValue(results);
         uploadMessageAboveL = null;
+    }
+
+    @OnClick({R.id.qipai, R.id.zhenren})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.qipai:
+                webView.setVisibility(View.VISIBLE);
+                llChangjian.setVisibility(View.GONE);
+                break;
+            case R.id.zhenren:
+
+                llChangjian.setVisibility(View.VISIBLE);
+                webView.setVisibility(View.GONE);
+                break;
+        }
     }
 }

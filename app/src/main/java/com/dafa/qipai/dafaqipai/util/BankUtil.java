@@ -53,8 +53,8 @@ public class BankUtil {
     }
 
     public enum Bank {
-        GSYH("中国工商银行", R.mipmap.b_gs),
-        NYYH("中国农业银行", R.mipmap.b_ny),
+        GSYH("工商银行", R.mipmap.b_gs),
+        NYYH("农业银行", R.mipmap.b_ny),
         ZGYH("中国银行", R.mipmap.b_zg),
         JTYH("交通银行", R.mipmap.b_jt),
         ZSYH("招商银行", R.mipmap.b_zs),
@@ -62,12 +62,12 @@ public class BankUtil {
         PFYH("浦发银行", R.mipmap.b_pf),
         HXYH("华夏银行", R.mipmap.b_hx),
         ZXYH("中信银行", R.mipmap.b_zx),
-        GDYH("中国光大银行", R.mipmap.b_gd),
+        GDYH("光大银行", R.mipmap.b_gd),
         GFYH("广发银行", R.mipmap.b_gf),
-        YZYH("中国邮政储蓄银行", R.mipmap.b_yz),
+        YZYH("邮政储蓄银行", R.mipmap.b_yz),
         PAYH("平安银行", R.mipmap.b_pa),
         SHYH("上海银行", R.mipmap.b_sh),
-        JSYH("中国建设银行", R.mipmap.b_js);
+        JSYH("建设银行", R.mipmap.b_js);
 
 
         private final String bankName;

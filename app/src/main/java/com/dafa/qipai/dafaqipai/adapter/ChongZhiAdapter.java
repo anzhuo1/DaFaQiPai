@@ -1,10 +1,12 @@
 package com.dafa.qipai.dafaqipai.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dafa.qipai.dafaqipai.R;
@@ -54,23 +56,79 @@ public class ChongZhiAdapter extends RecyclerView.Adapter<ChongZhiAdapter.MyView
         String remarks = dtos.get(position).getRemarks();
         int type = dtos.get(position).getType();
 
-        holder.tv.setText(DateUtil.getString2Y2MD(time) + "\n" + DateUtil.getString2HMS(time));
-        holder.money.setText(money.toPlainString());
+        String orderNo = dtos.get(position).getOrderNo();
+
+
+        holder.text4.setText(DateUtil.getString2Y2MD(time) + "\n" + DateUtil.getString2HMS(time));
+        holder.text3.setText(money.toPlainString());
+        holder.text.setText(orderNo);
+
+
+        switch (type) {
+            case 1:
+                holder.text2.setText("在线银行");
+                break;
+            case 2:
+                holder.text2.setText("手机银行");
+                break;
+            case 3:
+                holder.text2.setText("柜台转账");
+                break;
+            case 4:
+                holder.text2.setText("ATM存款/转账");
+                break;
+            case 5:
+                holder.text2.setText("微信转帐");
+                break;
+            case 6:
+                holder.text2.setText("支付宝转帐");
+                break;
+            case 7:
+                holder.text2.setText("财付通转帐");
+                break;
+            case 8:
+                holder.text2.setText("QQ转帐");
+                break;
+            case 9:
+                holder.text2.setText("京东钱包转帐");
+                break;
+            case 10:
+                holder.text2.setText("百度钱包转帐");
+                break;
+            case 11:
+                holder.text2.setText("微信转银行卡");
+                break;
+            case 12:
+                holder.text2.setText("支付宝转银行卡");
+                break;
+            case 13:
+                holder.text2.setText("财付通转银行卡");
+                break;
+            case 14:
+                holder.text2.setText("QQ转银行卡");
+                break;
+        }
+
+        System.out.println(type);
 
         switch (status) {
             case 0:
-                if (type == 5) {
-                    holder.status.setText("等待支付...");
-                } else {
-                    holder.status.setText("正在入款...");
-                }
+                holder.text5.setText("等待支付...");
                 break;
             case 1:
-                holder.status.setText("充值成功");
+                holder.text5.setText("充值成功");
                 break;
             case 2:
-                holder.status.setText("充值失败");
+                holder.text5.setText("充值失败");
                 break;
+        }
+
+
+        if (position % 2 == 0) {
+            holder.bg.setBackgroundColor(Color.parseColor("#282A36"));
+        } else {
+            holder.bg.setBackgroundColor(Color.parseColor("#2B2F3A"));
+
         }
 
     }
@@ -82,15 +140,22 @@ public class ChongZhiAdapter extends RecyclerView.Adapter<ChongZhiAdapter.MyView
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv;
-        TextView money;
-        TextView status;
+        TextView text;
+        TextView text2;
+        TextView text3;
+        TextView text4;
+        TextView text5;
+        LinearLayout bg;
+
 
         public MyViewHolder(View view) {
             super(view);
-            tv = (TextView) view.findViewById(R.id.text);
-            money = (TextView) view.findViewById(R.id.money);
-            status = (TextView) view.findViewById(R.id.status);
+            text = (TextView) view.findViewById(R.id.text);
+            text2 = (TextView) view.findViewById(R.id.text2);
+            text3 = (TextView) view.findViewById(R.id.text3);
+            text4 = (TextView) view.findViewById(R.id.text4);
+            text5 = (TextView) view.findViewById(R.id.text5);
+            bg = (LinearLayout) view.findViewById(R.id.bg);
             AutoUtils.auto(view);
         }
     }

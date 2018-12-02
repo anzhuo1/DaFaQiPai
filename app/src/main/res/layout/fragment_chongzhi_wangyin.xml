@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="860px"
+    android:layout_height="600px"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_tongdao"
+        android:layout_width="match_parent"
+        android:layout_height="100px">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:drawableLeft="@mipmap/lingxing"
+        android:drawablePadding="10px"
+        android:text="充值收款银行选择"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="28px" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20px">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
+

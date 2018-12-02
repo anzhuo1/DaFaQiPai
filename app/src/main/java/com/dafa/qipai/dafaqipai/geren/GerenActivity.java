@@ -12,11 +12,9 @@ import android.widget.TextView;
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.adapter.ChongZhiLeftAdapter;
 import com.dafa.qipai.dafaqipai.bean.DOgetAppCzInfoResult;
-import com.dafa.qipai.dafaqipai.chong.ChongZhiDailiFragment;
-import com.dafa.qipai.dafaqipai.chong.ChongZhiFragment;
-import com.dafa.qipai.dafaqipai.fra.DianZiFragment;
 import com.dafa.qipai.dafaqipai.util.ActivityContainer;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
+import com.dafa.qipai.dafaqipai.view.BaseFragmentActivity;
 
 import java.util.List;
 
@@ -25,12 +23,18 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class GerenActivity extends FragmentActivity {
+public class GerenActivity extends BaseFragmentActivity {
 
 
     GerenZiliFragment gerenZiliFragment;
 
-    ChongTiFragment chongTiFragment;
+    ChongZhiFragment chongTiFragment;
+
+    TiXianFragment tiXianFragment;
+
+    YouXiJiluFragment youXiJiluFragment;
+
+    ZiJinFragment ziJinFragment;
 
 
     @BindView(R.id.r1)
@@ -73,6 +77,51 @@ public class GerenActivity extends FragmentActivity {
         transaction4.show(gerenZiliFragment);
         transaction4.commit();
 
+
+        try {
+
+            //String key = getIntent().getExtras().getString("key");
+
+            String key = getIntent().getStringExtra("key");
+
+            if (key.equals("cz")) {
+
+                FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
+
+                if (chongTiFragment == null) {
+                    chongTiFragment = new ChongZhiFragment();
+                    transaction1.add(R.id.framelayout, chongTiFragment);
+                }
+                hideFragment(transaction1);
+                transaction1.show(chongTiFragment);
+                transaction1.commit();
+
+                r3.setChecked(true);
+
+            }
+
+
+            if (key.equals("tx")) {
+
+                FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
+
+                if (tiXianFragment == null) {
+                    tiXianFragment = new TiXianFragment();
+                    transaction1.add(R.id.framelayout, tiXianFragment);
+                }
+                hideFragment(transaction1);
+                transaction1.show(tiXianFragment);
+                transaction1.commit();
+
+                r4.setChecked(true);
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
@@ -85,18 +134,22 @@ public class GerenActivity extends FragmentActivity {
             transaction.hide(chongTiFragment);
         }
 
-//        if (tiyuFragment != null) {
-//            transaction.hide(tiyuFragment);
-//        }
-//
-//        if (dianZiFragment != null) {
-//            transaction.hide(dianZiFragment);
-//        }
+        if (tiXianFragment != null) {
+            transaction.hide(tiXianFragment);
+        }
+
+        if (youXiJiluFragment != null) {
+            transaction.hide(youXiJiluFragment);
+        }
+
+        if (ziJinFragment != null) {
+            transaction.hide(ziJinFragment);
+        }
 
 
     }
 
-    @OnClick({R.id.r1, R.id.r2, R.id.r3, R.id.r4, R.id.close})
+    @OnClick({R.id.r1, R.id.r2, R.id.r3, R.id.r4 , R.id.r5, R.id.close})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.r1:
@@ -113,13 +166,24 @@ public class GerenActivity extends FragmentActivity {
 
                 break;
             case R.id.r2:
+
+                FragmentTransaction transaction8 = getSupportFragmentManager().beginTransaction();
+
+                if (youXiJiluFragment == null) {
+                    youXiJiluFragment = new YouXiJiluFragment();
+                    transaction8.add(R.id.framelayout, youXiJiluFragment);
+                }
+                hideFragment(transaction8);
+                transaction8.show(youXiJiluFragment);
+                transaction8.commit();
+
                 break;
             case R.id.r3:
 
                 FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
 
                 if (chongTiFragment == null) {
-                    chongTiFragment = new ChongTiFragment();
+                    chongTiFragment = new ChongZhiFragment();
                     transaction1.add(R.id.framelayout, chongTiFragment);
                 }
                 hideFragment(transaction1);
@@ -127,6 +191,31 @@ public class GerenActivity extends FragmentActivity {
                 transaction1.commit();
                 break;
             case R.id.r4:
+
+                FragmentTransaction transaction6 = getSupportFragmentManager().beginTransaction();
+
+                if (tiXianFragment == null) {
+                    tiXianFragment = new TiXianFragment();
+                    transaction6.add(R.id.framelayout, tiXianFragment);
+                }
+                hideFragment(transaction6);
+                transaction6.show(tiXianFragment);
+                transaction6.commit();
+
+                break;
+
+            case R.id.r5:
+
+                FragmentTransaction transaction5 = getSupportFragmentManager().beginTransaction();
+
+                if (ziJinFragment == null) {
+                    ziJinFragment = new ZiJinFragment();
+                    transaction5.add(R.id.framelayout, ziJinFragment);
+                }
+                hideFragment(transaction5);
+                transaction5.show(ziJinFragment);
+                transaction5.commit();
+
                 break;
             case R.id.close:
                 finish();

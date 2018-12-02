@@ -2,12 +2,13 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="860px"
-    android:layout_height="600px"
+    android:layout_height="680px"
     android:background="@color/appbg"
     android:orientation="vertical">
 
 
     <View
+        android:id="@+id/tousu"
         android:layout_width="match_parent"
         android:layout_height="150px"
         android:background="@mipmap/dailiwz" />

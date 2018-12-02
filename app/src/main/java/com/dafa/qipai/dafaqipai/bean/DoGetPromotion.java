@@ -72,6 +72,15 @@ public class DoGetPromotion {
         private long startTime;
         private long endTime;
         private String enable;
+        private boolean ischecked;
+
+        public boolean isIschecked() {
+            return ischecked;
+        }
+
+        public void setIschecked(boolean ischecked) {
+            this.ischecked = ischecked;
+        }
 
         public String getUrl() {
             return url;

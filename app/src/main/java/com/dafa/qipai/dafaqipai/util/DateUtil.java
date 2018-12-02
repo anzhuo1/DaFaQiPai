@@ -218,11 +218,30 @@ public class DateUtil {
         return formatDate;
     }
 
+
+    public static String format3(Date date) {
+        if (null == date) {
+            return null;
+        }
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String formatDate = format.format(date);
+        return formatDate;
+    }
+
     public static String format2(Date date) {
         if (null == date) {
             return null;
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String formatDate = format.format(date);
+        return formatDate;
+    }
+
+    public static String format5(Date date) {
+        if (null == date) {
+            return null;
+        }
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         String formatDate = format.format(date);
         return formatDate;
     }
@@ -294,6 +313,10 @@ public class DateUtil {
         return getCurrentDate("yyyy-MM-dd HH:mm", +1);
     }
 
+    public static String getNextday2() {
+        return getCurrentDate("yyyy-MM-dd", +1);
+    }
+
     public static void main(String args[]) {
         String yesterday = getThisMonth();
         System.out.print(yesterday);
@@ -324,6 +347,7 @@ public class DateUtil {
 
     /**
      * 北京时间时区
+     *
      * @return
      */
     public static Calendar getBeijingCalendar() {
@@ -334,6 +358,7 @@ public class DateUtil {
 
     /**
      * 今日开始
+     *
      * @return
      */
     public static Date getTodayStart() {
@@ -348,6 +373,7 @@ public class DateUtil {
 
     /**
      * 今日结束（明日开始）
+     *
      * @return
      */
     public static Date getTodayEnd() {
@@ -362,6 +388,7 @@ public class DateUtil {
 
     /**
      * 昨日开始（前日结束）
+     *
      * @return
      */
     public static Date getYesterdayStart() {
@@ -374,6 +401,7 @@ public class DateUtil {
 
     /**
      * 昨日结束（今日开始）
+     *
      * @return
      */
     public static Date getYesterdayEnd() {
@@ -388,6 +416,7 @@ public class DateUtil {
 
     /**
      * 获取传入时间的 下一天
+     *
      * @param date
      * @return
      */
@@ -401,9 +430,7 @@ public class DateUtil {
     }
 
 
-
-    public static Date getQianriStart()
-    {
+    public static Date getQianriStart() {
         Date date = getYesterdayStart();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -412,8 +439,8 @@ public class DateUtil {
 
         return calendar.getTime();
     }
-    public static Date getQianriEnd()
-    {
+
+    public static Date getQianriEnd() {
         Date date = getYesterdayEnd();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -425,6 +452,7 @@ public class DateUtil {
 
     /**
      * 本周开始
+     *
      * @return
      */
     public static Date getWeekStart() {
@@ -444,6 +472,7 @@ public class DateUtil {
 
     /**
      * 本周结束（下周开始）
+     *
      * @return
      */
     public static Date getWeekEnd() {
@@ -464,6 +493,7 @@ public class DateUtil {
 
     /**
      * 上周开始
+     *
      * @return
      */
     public static Date getLastWeekStart() {
@@ -487,6 +517,7 @@ public class DateUtil {
 
     /**
      * 本月开始（上月结束）
+     *
      * @return
      */
     public static Date getMonthStart() {
@@ -502,6 +533,7 @@ public class DateUtil {
 
     /**
      * 本月结束（下月开始）
+     *
      * @return
      */
     public static Date getMonthEnd() {
@@ -519,6 +551,7 @@ public class DateUtil {
 
     /**
      * 上月开始（上上月结束）
+     *
      * @return
      */
     public static Date getLastMonthStart() {
@@ -535,6 +568,7 @@ public class DateUtil {
 
     /**
      * 上月结束（本月开始）
+     *
      * @return
      */
     public static Date getLastMonthEnd() {
@@ -553,21 +587,22 @@ public class DateUtil {
 
     /**
      * 获取前日 时间
+     *
      * @return
      */
-    public static Date getQiantian()
-    {  Calendar calendar= Calendar.getInstance();
-       calendar.add(Calendar.DATE, -3);
-       return calendar.getTime();
+    public static Date getQiantian() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -3);
+        return calendar.getTime();
     }
 
     /**
      * 时间字符串转成Date
+     *
      * @param s
      * @return
      */
-    public static Date string2Date(String s)
-    {
+    public static Date string2Date(String s) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             return sdf.parse(s);
@@ -580,13 +615,14 @@ public class DateUtil {
 
     /**
      * 计算两个时间戳的间隔
+     *
      * @return 返回小时
      */
-    public static int timeCha(long startTime,long endTime ){
-        if(endTime<startTime){
-           return 0;
+    public static int timeCha(long startTime, long endTime) {
+        if (endTime < startTime) {
+            return 0;
         }
-        return (int)(endTime-startTime)/(1000*60*60);
+        return (int) (endTime - startTime) / (1000 * 60 * 60);
 
     }
 

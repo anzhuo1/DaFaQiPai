@@ -1,5 +1,6 @@
 package com.dafa.qipai.dafaqipai.chong;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.adapter.ChongZhiTongDaoAdapter;
 import com.dafa.qipai.dafaqipai.bean.DOgetAppCzInfoResult;
+import com.dafa.qipai.dafaqipai.dialog.BaseDialog;
 import com.dafa.qipai.dafaqipai.fra.LazyLoadFragment;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
@@ -49,6 +51,16 @@ public class ChongZhiFragment extends LazyLoadFragment {
     TextView qingchu;
     @BindView(R.id.tijiao)
     TextView tijiao;
+    @BindView(R.id.r5)
+    RadioButton r5;
+    @BindView(R.id.r6)
+    RadioButton r6;
+    @BindView(R.id.r7)
+    RadioButton r7;
+    @BindView(R.id.r8)
+    RadioButton r8;
+    @BindView(R.id.xiane)
+    TextView xiane;
     private ChongZhiTongDaoAdapter adapter;
 
     private int positon = 0;
@@ -82,7 +94,11 @@ public class ChongZhiFragment extends LazyLoadFragment {
         rvTongdao.setAdapter(adapter);
 
 
-        czList.get(0).setCheck(true);
+        try {
+            czList.get(0).setCheck(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         adapter.setOnItemClickListener(new ChongZhiTongDaoAdapter.OnItemClickListener() {
             @Override
@@ -97,6 +113,18 @@ public class ChongZhiFragment extends LazyLoadFragment {
                 }
                 DOgetAppCzInfoResult.CzTypeListBean.CzListBean bean = czList.get(position);
                 bean.setCheck(true);
+
+                double minMoney = bean.getMinMoney();
+                double maxMoney = bean.getMaxMoney();
+
+
+
+                if (maxMoney != 0) {
+                    xiane.setText("该方式支持最小充值金额" + minMoney + "元,支持最大充值金额" + maxMoney + "元");
+                }else {
+                    xiane.setText("");
+                }
+
                 adapter.notifyDataSetChanged();
             }
 
@@ -282,14 +310,29 @@ public class ChongZhiFragment extends LazyLoadFragment {
 
     private void goZhifu(String url, String payOnlineId, String money) {
 
-        String urlstr = url + "?uid=" + UserUtil.getUserID(context) +
-                "&payOnlineId=" + payOnlineId + "&money=" + money;
 
-        Intent intent = new Intent();
-        intent.setAction("android.intent.action.VIEW");
-        Uri content_url = Uri.parse(urlstr);
-        intent.setData(content_url);
-        startActivity(intent);
+        new BaseDialog(getActivity(), "您的支付信息已经生成，" +
+                "\n请在浏览器完成支付", "取消", "确定") {
+            @Override
+            public void btn1DoThing(Dialog mDialog) {
+
+            }
+
+            @Override
+            public void btn2DoThing(Dialog mDialog) {
+
+
+                String urlstr = url + "?uid=" + UserUtil.getUserID(context) +
+                        "&payOnlineId=" + payOnlineId + "&money=" + money;
+
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(urlstr);
+                intent.setData(content_url);
+                startActivity(intent);
+            }
+        }.show();
+
 
     }
 
@@ -303,7 +346,18 @@ public class ChongZhiFragment extends LazyLoadFragment {
             }
             czList.get(0).setCheck(true);
             adapter.notifyDataSetChanged();
-            positon=0;
+            positon = 0;
+
+            double minMoney = czList.get(0).getMinMoney();
+            double maxMoney = czList.get(0).getMaxMoney();
+
+
+
+            if (maxMoney != 0) {
+                xiane.setText("该方式支持最小充值金额" + minMoney + "元,支持最大充值金额" + maxMoney + "元");
+            }else {
+                xiane.setText("");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -323,7 +377,19 @@ public class ChongZhiFragment extends LazyLoadFragment {
             }
             czList.get(0).setCheck(true);
             adapter.notifyDataSetChanged();
-            positon=0;
+            positon = 0;
+
+
+            double minMoney = czList.get(0).getMinMoney();
+            double maxMoney = czList.get(0).getMaxMoney();
+
+
+
+            if (maxMoney != 0) {
+                xiane.setText("该方式支持最小充值金额" + minMoney + "元,支持最大充值金额" + maxMoney + "元");
+            }else {
+                xiane.setText("");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -347,26 +413,30 @@ public class ChongZhiFragment extends LazyLoadFragment {
 
     @OnClick({R.id.qingchu, R.id.r1, R.id.r2, R.id.r3, R.id.r4})
     public void onViewClicked(View view) {
+        r5.setChecked(false);
+        r6.setChecked(false);
+        r7.setChecked(false);
+        r8.setChecked(false);
         switch (view.getId()) {
             case R.id.qingchu:
                 money.setText("");
                 moneys = "";
                 break;
             case R.id.r1:
-                money.setText("6");
-                moneys = "6";
+                money.setText("50");
+                moneys = "50";
                 break;
             case R.id.r2:
                 money.setText("100");
-                moneys = "";
+                moneys = "100";
                 break;
             case R.id.r3:
-                money.setText("500");
-                moneys = "500";
+                money.setText("300");
+                moneys = "300";
                 break;
             case R.id.r4:
-                money.setText("1000");
-                moneys = "1000";
+                money.setText("500");
+                moneys = "500";
                 break;
         }
     }
@@ -374,5 +444,31 @@ public class ChongZhiFragment extends LazyLoadFragment {
     @OnClick(R.id.tijiao)
     public void onViewClicked() {
         djsj(czList, positon);
+    }
+
+    @OnClick({R.id.r5, R.id.r6, R.id.r7, R.id.r8})
+    public void onViewClicked2(View view) {
+        r1.setChecked(false);
+        r2.setChecked(false);
+        r3.setChecked(false);
+        r4.setChecked(false);
+        switch (view.getId()) {
+            case R.id.r5:
+                money.setText("1000");
+                moneys = "1000";
+                break;
+            case R.id.r6:
+                money.setText("2000");
+                moneys = "2000";
+                break;
+            case R.id.r7:
+                money.setText("3000");
+                moneys = "3000";
+                break;
+            case R.id.r8:
+                money.setText("5000");
+                moneys = "5000";
+                break;
+        }
     }
 }

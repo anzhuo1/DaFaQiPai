@@ -6,17 +6,21 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.os.Handler;
 import android.os.Process;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 
 import com.dafa.qipai.dafaqipai.bean.BaseDo;
 import com.dafa.qipai.dafaqipai.bean.DOgetAppCzInfoResult;
-import com.dafa.qipai.dafaqipai.enummm.YouXiType;
+
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
 import com.dafa.qipai.dafaqipai.util.ActivityContainer;
 import com.dafa.qipai.dafaqipai.util.AppUtils;
 import com.dafa.qipai.dafaqipai.util.BackgroundMusic;
+import com.dafa.qipai.dafaqipai.util.CountTimeUtils;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
@@ -46,9 +50,15 @@ public class MyApp extends Application {
 
     private static MyApp sApp;
 
-    public static int type;
+    public static int type = 1;   //不拨声音
 
     public static String jine;
+
+    public static String baoxianxiang;
+
+
+    //-------
+   // public static boolean isBG = false;
 
 
     public static MyApp getInstance() {
@@ -72,11 +82,10 @@ public class MyApp extends Application {
         super.onCreate();
 
 
-
-
         DialogSettings.type = DialogSettings.TYPE_KONGZUE;
         DialogSettings.dialog_theme = THEME_DARK;
 
+        DialogSettings.dialog_cancelable_default = false;
 
         initOkGo();
 
@@ -90,6 +99,7 @@ public class MyApp extends Application {
         // 初始化 JPush
 
         try {
+
             HttpParams params = new HttpParams();
             params.put("uid", UserUtil.getUserID(this));
             params.put("token", UserUtil.getToken(this));
@@ -99,9 +109,9 @@ public class MyApp extends Application {
             OkGo.getInstance()
                     .setRetryCount(0)
                     .addCommonParams(params)
-                    .setConnectTimeout(18000)  //全局的连接超时时间
-                    .setReadTimeOut(18000)     //全局的读取超时时间
-                    .setWriteTimeOut(18000)    //全局的写入超时时间
+                    .setConnectTimeout(8000)  //全局的连接超时时间
+                    .setReadTimeOut(8000)     //全局的读取超时时间
+                    .setWriteTimeOut(8000)    //全局的写入超时时间
                     .debug("OkGo");
 
         } catch (Exception e) {
@@ -109,18 +119,12 @@ public class MyApp extends Application {
         }
 
 
+
+
+
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-
-                if(AppUtils.isAppOnForeground(getApplicationContext())){
-
-                }else {
-
-
-                    Process.killProcess(Process.myPid()); //获取PID
-                    System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
-                }
 
                 if (!UserUtil.isLoginApp(MyApp.this)) {
                     return;
@@ -150,15 +154,36 @@ public class MyApp extends Application {
                         });
 
 
+            }
+        }, 1000, 20000);
+
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+                if (AppUtils.isAppOnForeground(getApplicationContext())) {
+
+                    BackgroundMusic.getInstance(getApplicationContext()).resumeBackgroundMusic();
+
+                } else {
+
+                    BackgroundMusic.getInstance(getApplicationContext()).pauseBackgroundMusic();
+
+                }
 
 
 
             }
-        }, 1000, 3000);
+        }, 1000, 1000);
+
 
     }
 
     private void showDialog(String description) {
+
+//        Process.killProcess(Process.myPid()); //获取PID
+//        System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
 
         ActivityContainer.getInstance().finishAllActivity();
 

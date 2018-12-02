@@ -1,6 +1,7 @@
 package com.dafa.qipai.dafaqipai.view;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,7 +19,7 @@ import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
-import com.tencent.smtt.sdk.WebSettings;
+
 
 import java.util.List;
 
@@ -56,6 +57,9 @@ public class HuoDongActivity extends BaseActivity {
         settings.setJavaScriptEnabled(true);
 
 
+        webView.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
+        webView.setBackgroundResource(R.color.appbg);
+
         loadData();
 
     }
@@ -75,7 +79,7 @@ public class HuoDongActivity extends BaseActivity {
                 .cacheTime(3600 * 1000 * 12)
                 .params("token", UserUtil.getToken(this))
                 .params("uid", UserUtil.getUserID(this))
-                .execute(new OkGoCallBack(this, false) {
+                .execute(new OkGoCallBack(this, true) {
                     @Override
                     protected void _onNext(String s) {
                         DoGetPromotion doGetPromotion = GsonUtil.GsonToBean(s, DoGetPromotion.class);
@@ -84,14 +88,29 @@ public class HuoDongActivity extends BaseActivity {
                         HuodongAdapter adapter = new HuodongAdapter(context, promotionList, R.layout.item_huodong);
 
 
+                        DoGetPromotion.PromotionListBean bean = doGetPromotion.getPromotionList().get(0);
+
+                        webView.loadUrl(bean.getUrl());
+
+                        doGetPromotion.getPromotionList().get(0).setIschecked(true);
+
+                        recyclerView.setAdapter(adapter);
 
                         adapter.setOnItemClickListener(new HuodongAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view) {
-
                                 int position = recyclerView.getChildAdapterPosition(view);
 
+
+                                for (DoGetPromotion.PromotionListBean bean1 : promotionList) {
+                                    bean1.setIschecked(false);
+                                }
+                                doGetPromotion.getPromotionList().get(position).setIschecked(true);
+
+                                adapter.notifyDataSetChanged();
+
                                 webView.loadUrl(doGetPromotion.getPromotionList().get(position).getUrl());
+
 
                             }
 
@@ -100,11 +119,6 @@ public class HuoDongActivity extends BaseActivity {
 
                             }
                         });
-
-                        recyclerView.setAdapter(adapter);
-
-
-
 
 
                     }
@@ -115,7 +129,42 @@ public class HuoDongActivity extends BaseActivity {
                         DoGetPromotion doGetPromotion = GsonUtil.GsonToBean(s, DoGetPromotion.class);
                         List<DoGetPromotion.PromotionListBean> promotionList = doGetPromotion.getPromotionList();
                         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                        recyclerView.setAdapter(new HuodongAdapter(context, promotionList, R.layout.item_huodong));
+                        HuodongAdapter adapter = new HuodongAdapter(context, promotionList, R.layout.item_huodong);
+
+
+                        DoGetPromotion.PromotionListBean bean = doGetPromotion.getPromotionList().get(0);
+
+                        webView.loadUrl(bean.getUrl());
+
+                        doGetPromotion.getPromotionList().get(0).setIschecked(true);
+
+                        recyclerView.setAdapter(adapter);
+
+                        adapter.setOnItemClickListener(new HuodongAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view) {
+
+                                int position = recyclerView.getChildAdapterPosition(view);
+
+
+                                for (DoGetPromotion.PromotionListBean bean1 : promotionList) {
+                                    bean1.setIschecked(false);
+                                }
+                                doGetPromotion.getPromotionList().get(position).setIschecked(true);
+
+                                adapter.notifyDataSetChanged();
+
+                                webView.loadUrl(doGetPromotion.getPromotionList().get(position).getUrl());
+
+
+                            }
+
+                            @Override
+                            public void onItemLongClick(View view) {
+
+                            }
+                        });
+
                     }
                 });
 

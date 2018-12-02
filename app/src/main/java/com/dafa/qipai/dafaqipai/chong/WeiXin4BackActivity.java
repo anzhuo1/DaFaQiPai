@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -709,6 +710,29 @@ public class WeiXin4BackActivity extends BaseActivity {
     }
 
     /**
+     * QQ
+     */
+    private void openQQ() {
+        boolean avilible = AppUtils.isQQAvilible(context);
+        if (avilible) {
+
+            try {
+                //第二种方式：可以跳转到添加好友，如果qq号是好友了，直接聊天
+                String url = "mqqwpa://im/chat?chat_type=wpa&uin=453453446";//uin是发送过去的qq号码
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+
+
+        } else {
+            Toast.makeText(context, "没有安装QQ", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    /**
      * 打开支付宝
      */
     private void openZfb() {
@@ -739,7 +763,7 @@ public class WeiXin4BackActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fuzhi:
-                AppUtils.copyToClipboard(context, MyApp.ID);
+                AppUtils.copyToClipboard(this, MyApp.ID);
                 break;
             case R.id.chongti:
                 startActivity(new Intent(this, GerenActivity.class));

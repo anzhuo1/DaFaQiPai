@@ -12,7 +12,7 @@
 
     <RelativeLayout
         android:layout_width="1200px"
-        android:layout_height="730px"
+        android:layout_height="800px"
         android:layout_marginLeft="365px"
         android:layout_marginTop="120px"
         android:background="@mipmap/bg_login"
@@ -37,29 +37,31 @@
 
 
     <EditText
+        android:imeOptions="actionDone|flagNoExtractUi"
         android:id="@+id/name"
         android:layout_width="500px"
         android:layout_height="80px"
         android:layout_marginLeft="730px"
-        android:layout_marginTop="315px"
+        android:layout_marginTop="340px"
         android:background="@null"
         android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:gravity="center_vertical"
         android:hint="请输入您的账号"
         android:maxLength="14"
         android:paddingLeft="20px"
-        android:text="zz111111"
+        android:text=""
         android:textColor="#bdc1cc"
         android:textColorHint="#494f5a"
         android:textSize="30px" />
 
 
     <EditText
+        android:imeOptions="actionDone|flagNoExtractUi"
         android:id="@+id/pass"
         android:layout_width="500px"
         android:layout_height="80px"
         android:layout_marginLeft="730px"
-        android:layout_marginTop="445px"
+        android:layout_marginTop="485px"
         android:background="@null"
         android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:gravity="center_vertical"
@@ -67,7 +69,7 @@
         android:inputType="textPassword"
         android:maxLength="14"
         android:paddingLeft="20px"
-        android:text="zz111111"
+        android:text=""
         android:textColor="#bdc1cc"
         android:textColorHint="@color/text_hint_color"
         android:textSize="30px" />
@@ -77,7 +79,7 @@
         android:layout_width="180px"
         android:layout_height="80px"
         android:layout_marginLeft="1260px"
-        android:layout_marginTop="445px"
+        android:layout_marginTop="485px"
         android:background="@null"
         android:gravity="center_vertical"
         android:maxLength="14" />
@@ -85,10 +87,10 @@
 
     <TextView
         android:id="@+id/login"
-        android:layout_width="290px"
+        android:layout_width="300px"
         android:layout_height="80px"
         android:layout_marginLeft="800px"
-        android:layout_marginTop="600px"
+        android:layout_marginTop="640px"
         android:background="@null"
         android:gravity="center_vertical"
         android:maxLength="14" />

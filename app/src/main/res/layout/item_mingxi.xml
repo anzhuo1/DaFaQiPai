@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:paddingRight="20px"
+        android:paddingLeft="20px"
+        android:layout_width="match_parent"
+        android:layout_height="76px"
+        android:layout_margin="6px"
+        android:background="@mipmap/czjebg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:text="qqqqq"
+            android:textSize="28px"
+            android:textColor="@color/colorTextWhite"
+            android:id="@+id/shijian"
+            android:layout_width="260px"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:paddingLeft="28px"
+            android:text="qqqqq"
+            android:textSize="28px"
+            android:textColor="@color/colorTextWhite"
+            android:id="@+id/leixing"
+            android:layout_width="200px"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical" />
+
+
+        <TextView
+            android:paddingLeft="30px"
+            android:text="qqqqq"
+            android:textSize="28px"
+            android:textColor="@color/colorTextWhite"
+            android:id="@+id/jine"
+            android:layout_width="160px"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:paddingLeft="80px"
+            android:text="qqqqq"
+            android:textSize="28px"
+            android:textColor="@color/colorTextWhite"
+            android:id="@+id/yue"
+            android:layout_width="460px"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+
+</LinearLayout>

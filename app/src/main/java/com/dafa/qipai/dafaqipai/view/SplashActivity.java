@@ -48,44 +48,6 @@ public class SplashActivity extends BaseActivity {
         AutoUtils.auto(this);
 
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
-                .params("clientType", "Android")
-                .params("type", 1)
-                .params("token", UserUtil.getToken(context))
-                .params("uid", UserUtil.getUserID(context))
-                .execute(new OkGoCallBack(this, false) {
-                    @Override
-                    protected void _onNext(String json) {
-
-
-                    }
-                });
-
-        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
-                .params("clientType", "Android")
-                .params("type", 2)
-                .params("token", UserUtil.getToken(context))
-                .params("uid", UserUtil.getUserID(context))
-                .execute(new OkGoCallBack(this, false) {
-                    @Override
-                    protected void _onNext(String json) {
-
-
-                    }
-                });
-
-        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
-                .params("clientType", "Android")
-                .params("type", 3)
-                .params("token", UserUtil.getToken(context))
-                .params("uid", UserUtil.getUserID(context))
-                .execute(new OkGoCallBack(this, false) {
-                    @Override
-                    protected void _onNext(String json) {
-
-
-                    }
-                });
 
 
 

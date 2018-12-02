@@ -45,7 +45,6 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         AutoUtils.setSize(this, false, 1920, 1080);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
@@ -57,7 +56,7 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick({R.id.close, R.id.miss, R.id.login})
     public void onViewClicked(View view) {
-        playMusic(2);
+
         switch (view.getId()) {
             case R.id.close:
                 finish();

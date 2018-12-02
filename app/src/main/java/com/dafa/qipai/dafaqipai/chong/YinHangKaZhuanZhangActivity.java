@@ -3,17 +3,15 @@ package com.dafa.qipai.dafaqipai.chong;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.bean.BaseDo;
 import com.dafa.qipai.dafaqipai.bean.DoSSS;
@@ -21,14 +19,14 @@ import com.dafa.qipai.dafaqipai.bean.DoSysCard;
 import com.dafa.qipai.dafaqipai.bean.DoYinshangs;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
 import com.dafa.qipai.dafaqipai.core.CommonConstant;
-import com.dafa.qipai.dafaqipai.geren.GerenActivity;
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
-import com.dafa.qipai.dafaqipai.util.AppUtils;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
+import com.dafa.qipai.dafaqipai.util.BankUtil;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.dafa.qipai.dafaqipai.view.BaseActivity;
 import com.dafa.qipai.dafaqipai.wihget.LimitEditeText;
+import com.dafa.qipai.dafaqipai.wihget.Select;
 import com.kongzue.dialog.listener.OnMenuItemClickListener;
 import com.kongzue.dialog.v2.BottomMenu;
 import com.kongzue.dialog.v2.MessageDialog;
@@ -40,7 +38,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ezy.ui.view.RoundButton;
 
 //import com.dou361.dialogui.DialogUIUtils;
 //import com.dou361.dialogui.listener.DialogUIItemListener;
@@ -54,62 +51,38 @@ import ezy.ui.view.RoundButton;
 public class YinHangKaZhuanZhangActivity extends BaseActivity {
 
 
-    @BindView(R.id.shoukuan_bank)
-    TextView shoukuan_bank;
-    @BindView(R.id.view2)
-    View view2;
-    @BindView(R.id.khy_tv)
-    TextView khyTv;
     @BindView(R.id.khy)
     TextView khy;
     @BindView(R.id.khyh_copy)
     TextView khyhCopy;
-    @BindView(R.id.view3)
-    View view3;
-    @BindView(R.id.khwd_tv)
-    TextView khwdTv;
-    @BindView(R.id.khwd)
-    TextView khwd;
-    @BindView(R.id.yhwd_copy)
-    TextView yhwdCopy;
-    @BindView(R.id.khxm_tv)
-    TextView khxmTv;
     @BindView(R.id.khxm)
     TextView khxm;
     @BindView(R.id.yhxm_copy)
     TextView yhxmCopy;
-    @BindView(R.id.kahao_tv)
-    TextView kahaoTv;
     @BindView(R.id.kahao)
     TextView kahao;
     @BindView(R.id.kahao_copy)
     TextView kahaoCopy;
+    @BindView(R.id.khwd)
+    TextView khwd;
+    @BindView(R.id.yhwd_copy)
+    TextView yhwdCopy;
+    @BindView(R.id.xingming)
+    LimitEditeText xingming;
+    @BindView(R.id.money)
+    TextView money;
+    @BindView(R.id.bank_num)
+    TextView bankNum;
     @BindView(R.id.zhuanchu)
     TextView zhuanchu;
-    @BindView(R.id.zhuanchu_rl)
-    RelativeLayout zhuanchuRl;
-    @BindView(R.id.chuankuan_type)
-    TextView chuankuan_type;
-    @BindView(R.id.cunkuan_type_rl)
-    RelativeLayout cunkuanTypeRl;
-    @BindView(R.id.money)
-    EditText money;
-    @BindView(R.id.bank_num)
-    EditText bank_num;
-    @BindView(R.id.bank_name)
-    LimitEditeText bank_name;
+    @BindView(R.id.xuanze)
+    TextView xuanze;
     @BindView(R.id.commit)
-    RoundButton commit;
-    @BindView(R.id.idnum)
-    TextView idnum;
-    @BindView(R.id.fuzhi)
-    TextView fuzhi;
-    @BindView(R.id.chongti)
-    TextView chongti;
+    Button commit;
     @BindView(R.id.finish)
     TextView finish;
-
-
+    @BindView(R.id.img)
+    ImageView img;
     private List<DoSysCard.BankcardListBean> bankcardList;
 
     private List<DoSSS.DepositChannelListBean> depositChannelList;
@@ -117,6 +90,7 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
     private int depositChannelId;
 
     private int bankCardId;
+    private int position;
 
 
     @Override
@@ -134,7 +108,12 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
         // bank_num.clearFocus();
         //bank_num.setFocusable(false);
 
-        idnum.setText(MyApp.ID);
+        // idnum.setText(MyApp.ID);
+
+
+        position = getIntent().getIntExtra("position", 0);
+
+
 
     }
 
@@ -150,7 +129,7 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
 
     private void load() {
 
-            OkGo.post(ApiConstant.API_DOMAIN + "/member/getSystemBankCard.json")
+        OkGo.post(ApiConstant.API_DOMAIN + "/member/getSystemBankCard.json")
                 .tag(this)
                 .params("token", UserUtil.getToken(this))
                 .params("uid", UserUtil.getUserID(this))
@@ -163,12 +142,17 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
 
                             bankcardList = doSysCard.getBankcardList();
 
-                            shoukuan_bank.setText(bankcardList.get(0).getBankName());
-                            khy.setText("" + bankcardList.get(0).getBankName());
-                            khwd.setText("" + bankcardList.get(0).getSubBankName());
-                            khxm.setText("" + bankcardList.get(0).getUserName());
-                            kahao.setText("" + bankcardList.get(0).getBankAccount());
-                            bankCardId = bankcardList.get(0).getId();
+                            // shoukuan_bank.setText(bankcardList.get(0).getBankName());
+                            String bankName = bankcardList.get(position).getBankName();
+                            khy.setText("" + bankName);
+                            khwd.setText("" + bankcardList.get(position).getSubBankName());
+                            khxm.setText("" + bankcardList.get(position).getUserName());
+                            kahao.setText("" + bankcardList.get(position).getBankAccount());
+                            bankCardId = bankcardList.get(position).getId();
+
+
+                            img.setImageResource(BankUtil.Bank.getResIdByName(bankName));
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -185,21 +169,27 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
                 .execute(new OkGoCallBack(this, false) {
                     @Override
                     protected void _onNext(String json) {
-                        DoSSS doSSS = GsonUtil.GsonToBean(json, DoSSS.class);
-                        depositChannelList = doSSS.getDepositChannelList();
+                        try {
+                            DoSSS doSSS = GsonUtil.GsonToBean(json, DoSSS.class);
+                            depositChannelList = doSSS.getDepositChannelList();
+
+                            depositChannelId = depositChannelList.get(0).getId();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
 
     }
 
-    @OnClick({R.id.shoukuan_bank, R.id.khyh_copy, R.id.yhwd_copy, R.id.yhxm_copy, R.id.kahao_copy, R.id.zhuanchu_rl, R.id.cunkuan_type_rl, R.id.commit, R.id.money, R.id.bank_num})
+    @OnClick({ /**/R.id.khyh_copy, R.id.yhwd_copy, R.id.yhxm_copy, R.id.kahao_copy, R.id.xuanze,/*R.id.zhuanchu_rl, R.id.cunkuan_type_rl,*/ R.id.commit, R.id.money, R.id.bank_num})
     public void onClick(View view) {
         ClipboardManager cm2 = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         switch (view.getId()) {
-
-            case R.id.shoukuan_bank:
-                break;
+//
+//            case R.id.shoukuan_bank:
+//                break;
             case R.id.khyh_copy:
                 // 将文本内容放到系统剪贴板里。
                 cm2.setText(khy.getText());
@@ -218,16 +208,20 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
                 cm2.setText(kahao.getText());
                 Toast.makeText(this, "复制成功", Toast.LENGTH_LONG).show();
                 break;
-            case R.id.zhuanchu_rl:
+            case R.id.xuanze:
 
-                BottomMenu.show(YinHangKaZhuanZhangActivity.this, lists, new OnMenuItemClickListener() {
-                    @Override
-                    public void onClick(String text, int index) {
+//                BottomMenu.show(YinHangKaZhuanZhangActivity.this, lists, new OnMenuItemClickListener() {
+////                    @Override
+////                    public void onClick(String text, int index) {
+////
+////                        zhuanchu.setText(text);
+////                    }
+////                }, true).setTitle("选择银行");
 
-                        zhuanchu.setText(text);
-                    }
-                }, true).setTitle("选择银行");
 
+                Select.selectOption(this, "选择银行", lists, (options1, options2, options3, v) -> {
+                    zhuanchu.setText(lists.get(options1));
+                });
 
                 break;
             case R.id.cunkuan_type_rl://存款方式
@@ -241,7 +235,7 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
                 BottomMenu.show(YinHangKaZhuanZhangActivity.this, strings, new OnMenuItemClickListener() {
                     @Override
                     public void onClick(String text, int index) {
-                        chuankuan_type.setText(text);
+                        //chuankuan_type.setText(text);
                         depositChannelId = depositChannelList.get(index).getId();
 
                     }
@@ -259,9 +253,9 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
                 money.requestFocus();
                 break;
             case R.id.bank_num:
-                bank_num.setFocusable(true);
-                bank_num.setFocusableInTouchMode(true);
-                bank_num.requestFocus();
+                bankNum.setFocusable(true);
+                bankNum.setFocusableInTouchMode(true);
+                bankNum.requestFocus();
                 break;
 
         }
@@ -273,15 +267,15 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
             showError(context, "请输入充值金额");
             return;
         }
-        if (TextUtils.isEmpty(bank_num.getText().toString())) {
+        if (TextUtils.isEmpty(bankNum.getText().toString())) {
             showError(context, "请输入银行卡后四位");
             return;
         }
-        if (bank_num.getText().toString().length() < 4) {
+        if (bankNum.getText().toString().length() < 4) {
             showError(context, "请输入银行卡后四位");
             return;
         }
-        if (TextUtils.isEmpty(bank_name.getText().toString())) {
+        if (TextUtils.isEmpty(xingming.getText().toString())) {
             showError(context, "请输入汇款人姓名");
             return;
         }
@@ -292,9 +286,9 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
                 .params("money", money.getText().toString())
                 .params("depositChannelId", depositChannelId)
                 .params("bankCardId", bankCardId)
-                .params("bankAccount", bank_num.getText().toString())
+                .params("bankAccount", bankNum.getText().toString())
                 .params("userBankName", zhuanchu.getText().toString())
-                .params("name", bank_name.getText().toString())
+                .params("name", xingming.getText().toString())
                 .execute(new OkGoCallBack(this, false) {
                     @Override
                     protected void _onNext(String json) {
@@ -325,7 +319,7 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
     }
 
 
-    List<String> lists;
+    ArrayList<String> lists;
 
     private void loadYinhang() {
 
@@ -417,15 +411,15 @@ public class YinHangKaZhuanZhangActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.fuzhi, R.id.chongti, R.id.finish})
+    @OnClick({/*R.id.fuzhi,*/ /*R.id.chongti, */R.id.finish})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.fuzhi:
-                AppUtils.copyToClipboard(context, MyApp.ID);
-                break;
-            case R.id.chongti:
-                startActivity(new Intent(this, GerenActivity.class));
-                break;
+//            case R.id.fuzhi:
+//                AppUtils.copyToClipboard(context, MyApp.ID);
+//                break;
+//            case R.id.chongti:
+//                startActivity(new Intent(this, GerenActivity.class));
+//                break;
             case R.id.finish:
                 finish();
                 break;

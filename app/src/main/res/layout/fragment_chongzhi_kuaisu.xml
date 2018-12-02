@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="860px"
+    android:layout_height="600px"
+    android:background="@color/appbg"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="600px"
+        android:layout_height="110px"
+        android:background="@mipmap/kcbg" />
+
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="300px"
+        android:layout_height="110px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100px"
+        android:background="@mipmap/yes"
+        android:gravity="center"
+        android:paddingBottom="10px"
+        android:text="立即前往充值"
+        android:textSize="40px" />
+
+
+</LinearLayout>
+

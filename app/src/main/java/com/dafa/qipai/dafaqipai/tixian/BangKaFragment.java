@@ -14,6 +14,8 @@ import com.dafa.qipai.dafaqipai.bean.BaseDo;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
 import com.dafa.qipai.dafaqipai.fra.LazyLoadFragment;
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
+import com.dafa.qipai.dafaqipai.rx.rxbus.RxBus;
+import com.dafa.qipai.dafaqipai.rx.rxbus.RxBusConfig;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
@@ -84,7 +86,6 @@ public class BangKaFragment extends LazyLoadFragment {
     }
 
 
-
     private void submmit() {
 
         if (StringUtils.isEmpty(xzyh.getText().toString())) {
@@ -113,8 +114,6 @@ public class BangKaFragment extends LazyLoadFragment {
         }
 
 
-
-
         OkGo.post(ApiConstant.API_DOMAIN + "/member/addUserBank.json")
                 .tag(this)
                 .params("token", UserUtil.getToken(getActivity()))
@@ -126,14 +125,14 @@ public class BangKaFragment extends LazyLoadFragment {
                 .params("bankAccount", kahao.getText().toString())
                 .params("accountHolder", kaihuren.getText().toString())
                 .execute(new OkGoCallBack(getActivity(), false) {
-
-
                     @Override
                     protected void _onNext(String json) {
                         try {
                             BaseDo baseDo = GsonUtil.GsonToBean(json, BaseDo.class);
                             if (baseDo.getResult() == 1) {
                                 Toast.makeText(context, "添加成功！", Toast.LENGTH_SHORT).show();
+
+                                RxBus.getDefault().post(RxBusConfig.YINHANGKA);
 
                             } else {
                                 Toast.makeText(context, baseDo.getDescription(), Toast.LENGTH_SHORT).show();
@@ -164,7 +163,7 @@ public class BangKaFragment extends LazyLoadFragment {
         statusData.add("平安银行");
         statusData.add("上海银行");
         statusData.add("其他银行");
-        Select.selectOption(getActivity(),"选择银行", statusData, (options1, options2, options3, v) -> {
+        Select.selectOption(getActivity(), "选择银行", statusData, (options1, options2, options3, v) -> {
             xzyh.setText(statusData.get(options1));
         });
     }

@@ -27,28 +27,33 @@
     <RadioGroup
         android:layout_width="340px"
         android:layout_height="620px"
-        android:layout_marginLeft="360px"
+        android:layout_marginLeft="340px"
         android:layout_marginTop="300px"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/qipai"
-            android:layout_width="350px"
-            android:layout_height="100px"
-            android:background="@drawable/icon_bangka"
-            android:button="@null"
-            android:checked="true"
-            android:textSize="28px" />
 
         <RadioButton
             android:id="@+id/zhenren"
             android:layout_width="350px"
             android:layout_height="100px"
-            android:layout_marginTop="40px"
             android:background="@drawable/icon_tixian"
             android:button="@null"
+            android:checked="true"
+            android:layout_marginTop="40px"
             android:textSize="28px" />
+
+
+        <RadioButton
+            android:layout_marginTop="40px"
+            android:visibility="gone"
+            android:id="@+id/qipai"
+            android:layout_width="350px"
+            android:layout_height="100px"
+            android:background="@drawable/icon_bangka"
+            android:button="@null"
+            android:textSize="28px"
+          />
 
 
     </RadioGroup>
@@ -65,47 +70,58 @@
     </FrameLayout>
 
 
-    <ImageView
-        android:layout_width="100px"
-        android:layout_height="101px"
-        android:layout_marginLeft="324px"
-        android:layout_marginTop="180px"
-        android:background="@mipmap/touxiang" />
+
 
     <TextView
+        android:paddingLeft="30px"
+        android:background="@mipmap/yebg1"
         android:id="@+id/idnum"
-        android:layout_width="180px"
+        android:layout_width="200px"
         android:layout_height="50px"
-        android:layout_marginLeft="440px"
+        android:layout_marginLeft="410px"
         android:layout_marginTop="205px"
         android:gravity="center_vertical"
         android:text=""
         android:textColor="@color/colorText"
         android:textSize="28px" />
 
+    <ImageView
+        android:layout_width="80px"
+        android:layout_height="82px"
+        android:layout_marginLeft="344px"
+        android:layout_marginTop="188px"
+        android:background="@mipmap/touxiang" />
+
     <TextView
+        android:textSize="36px"
+        android:gravity="center"
+        android:text="复制"
+        android:background="@mipmap/yes"
         android:id="@+id/fuzhi"
-        android:layout_width="180px"
-        android:layout_height="80px"
+        android:layout_width="120px"
+        android:layout_height="60px"
         android:layout_marginLeft="660px"
         android:layout_marginTop="200px" />
 
 
     <TextView
+        android:textSize="36px"
+        android:textColor="@color/colorText"
+        android:text="提现记录"
         android:id="@+id/chongti"
         android:layout_width="200px"
-        android:layout_height="80px"
+        android:layout_height="50px"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="190px"
-        android:layout_marginRight="300px" />
+        android:layout_marginRight="300px"
+        android:layout_marginTop="200px" />
 
     <TextView
         android:id="@+id/finish"
         android:layout_width="100px"
         android:layout_height="100px"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="90px"
-        android:layout_marginRight="210px" />
+        android:layout_marginRight="210px"
+        android:layout_marginTop="90px" />
 
 
 </RelativeLayout>

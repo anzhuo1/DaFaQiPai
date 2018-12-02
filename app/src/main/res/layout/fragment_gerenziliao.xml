@@ -1,138 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="910px"
-    android:layout_height="640px"
-    android:background="@mipmap/bg_grzl"
+    android:layout_width="1100px"
+    android:layout_height="740px"
+    android:background="@mipmap/bg_hei"
     android:orientation="vertical">
 
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="420px"
+        android:orientation="horizontal">
+
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="280px"
-            android:layout_marginTop="90px"
-            android:background="#333540"
-            android:orientation="horizontal"
-            android:paddingLeft="100px">
+            android:layout_width="300px"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="140px"
+                android:layout_height="142px"
+                android:background="@mipmap/touxiang" />
 
 
-            <android.support.v7.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60px"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="150px"
-                        android:layout_height="match_parent"
-                        android:text="ID号："
-                        android:textColor="@color/colorTextWhite"
-                        android:textSize="40px" />
-
-                    <TextView
-                        android:id="@+id/id_nun"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text=""
-                        android:textColor="@color/colorTextWhite"
-                        android:textSize="40px" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60px"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="150px"
-                        android:layout_height="match_parent"
-                        android:text="昵称："
-                        android:textColor="@color/colorTextWhite"
-                        android:textSize="40px" />
-
-                    <TextView
-                        android:id="@+id/nicheng"
-                        android:layout_width="265px"
-                        android:layout_height="match_parent"
-                        android:background="@mipmap/nick"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="5px"
-                        android:text=""
-                        android:textColor="@color/colorTextWhite"
-                        android:textSize="40px" />
-
-                    <ImageView
-                        android:id="@+id/edit_nicheng"
-                        android:layout_width="60px"
-                        android:layout_height="60px"
-                        android:layout_marginLeft="20px"
-                        android:background="@mipmap/xie" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60px"
-                    android:layout_marginTop="10px"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="150px"
-                        android:layout_height="match_parent"
-                        android:text="性别："
-                        android:textColor="@color/colorTextWhite"
-                        android:textSize="40px" />
-
-                    <CheckBox
-                        android:id="@+id/nan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="60px"
-                        android:button="@drawable/custom_checkbox_selector"
-                        android:checked="true"
-                        android:text="男"
-                        android:textColor="@color/colorTextWhite" />
-
-                    <CheckBox
-                        android:id="@+id/nv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="60px"
-                        android:layout_marginLeft="20px"
-                        android:button="@drawable/custom_checkbox_selector"
-                        android:text="女"
-                        android:textColor="@color/colorTextWhite" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.LinearLayoutCompat>
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/edit_password"
+                android:layout_width="150px"
+                android:layout_height="60px"
+                android:layout_marginTop="20px"
+                android:background="@mipmap/qcbg"
+                android:gravity="center"
+                android:text="修改密码"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="28px" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/b_zfb"
-            android:layout_width="260px"
-            android:layout_height="100px"
-            android:layout_marginLeft="180px"
-            android:layout_marginTop="510px" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/b_yhk"
-            android:layout_width="260px"
-            android:layout_height="100px"
-            android:layout_marginLeft="640px"
-            android:layout_marginTop="510px" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginTop="60px">
 
-    </RelativeLayout>
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:text="ID："
+                    android:textColor="#8f939a"
+                    android:textSize="36px" />
+
+                <TextView
+                    android:id="@+id/id_nun"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/colorText"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/copy_id"
+                    android:layout_width="130px"
+                    android:layout_height="60px"
+                    android:layout_marginRight="40px"
+                    android:background="@mipmap/qcbg"
+                    android:gravity="center"
+                    android:text="复制"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="28px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px">
+
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:text="账号："
+                    android:textColor="#8f939a"
+                    android:textSize="36px" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/text_white"
+                    android:textSize="40px" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px">
+
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:text="手机号："
+                    android:textColor="#8f939a"
+                    android:textSize="36px" />
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="未绑定"
+                    android:textColor="@color/text_white"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/band_phone"
+                    android:layout_width="150px"
+                    android:layout_height="60px"
+                    android:layout_marginRight="40px"
+                    android:background="@mipmap/qcbg"
+                    android:gravity="center"
+                    android:text="立即绑定"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="28px" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80px">
+
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:text="vip等级："
+                    android:textColor="#8f939a"
+                    android:textSize="36px" />
+
+                <TextView
+                    android:id="@+id/vip"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="未绑定"
+                    android:textColor="@color/text_white"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/go_vip"
+                    android:layout_width="150px"
+                    android:layout_height="60px"
+                    android:layout_marginRight="40px"
+                    android:background="@mipmap/qcbg"
+                    android:gravity="center"
+                    android:text="vip中心"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="28px" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="10px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:background="@drawable/shape_xuxian" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="40px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30px"
+                android:gravity="center_vertical"
+                android:text="上次登录时间："
+                android:textColor="#8f939a"
+                android:textSize="36px" />
+
+            <TextView
+                android:layout_marginTop="10px"
+                android:id="@+id/dengl_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textColor="@color/text_white"
+                android:textSize="40px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:gravity="center_vertical"
+                android:text="注册时间："
+                android:textColor="#8f939a"
+                android:textSize="36px" />
+
+            <TextView
+                android:layout_marginTop="10px"
+                android:id="@+id/zhuce_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textColor="@color/text_white"
+                android:textSize="40px" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="2px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="40px"
+            android:layout_marginTop="40px"
+            android:background="#272d38" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="40px">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:gravity="center_vertical"
+                    android:text="提现绑定："
+                    android:textColor="#8f939a"
+                    android:textSize="36px" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80px">
+
+
+                    <TextView
+                        android:layout_marginRight="20px"
+                        android:background="@mipmap/yhkfb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|right"
+                        android:text=""
+                        android:textColor="#8f939a"
+                        android:textSize="36px" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="银行卡"
+                        android:textColor="@color/text_white"
+                        android:textSize="40px" />
+
+                    <TextView
+                        android:id="@+id/yinhangka"
+                        android:layout_width="150px"
+                        android:layout_height="60px"
+                        android:layout_marginRight="40px"
+                        android:background="@mipmap/qcbg"
+                        android:gravity="center"
+                        android:text="修改绑定"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="28px" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>
 

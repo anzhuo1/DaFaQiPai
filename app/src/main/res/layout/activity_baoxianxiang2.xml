@@ -26,9 +26,9 @@
 
     <TextView
         android:id="@+id/close"
-        android:layout_width="100px"
-        android:layout_height="100px"
-        android:layout_marginLeft="1555px"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_marginLeft="1566px"
         android:layout_marginTop="100px"
         android:background="@mipmap/cha"
         android:gravity="center_vertical"
@@ -38,12 +38,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="560px"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="300px"
         android:gravity="center"
-        android:text="亲爱的玩家，您是首次使用保险箱，请设定保险箱密码！"
+        android:text="亲爱的玩家，为了您的账号安全，每次登录需要输入保险箱密码！"
         android:textColor="@color/colorTextWhite"
-        android:textSize="32px" />
+        android:textSize="36px" />
 
 
     <TextView
@@ -65,7 +65,7 @@
         android:layout_marginLeft="560px"
         android:layout_marginTop="510px"
         android:background="@mipmap/shurumm"
-        android:inputType="number"
+        android:inputType="numberPassword"
         android:maxLength="10"
         android:paddingLeft="15px"
         android:text=""

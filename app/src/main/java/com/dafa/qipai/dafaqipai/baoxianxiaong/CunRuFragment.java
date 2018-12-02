@@ -1,6 +1,7 @@
 package com.dafa.qipai.dafaqipai.baoxianxiaong;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.bean.DoShemm;
 import com.dafa.qipai.dafaqipai.bean.DoZHuanhuan;
@@ -23,21 +25,16 @@ import com.dafa.qipai.dafaqipai.util.AppUtils;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
-import com.dafa.qipai.dafaqipai.view.BaoxianxActivity3;
 import com.dafa.qipai.dafaqipai.wihget.NoIndex0EditeText;
-import com.jakewharton.rxbinding.widget.RxTextView;
-import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.request.BaseRequest;
 
 import java.math.BigDecimal;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
 
 import static java.math.BigDecimal.ROUND_HALF_UP;
 
@@ -45,11 +42,11 @@ public class CunRuFragment extends LazyLoadFragment {
 
 
     @BindView(R.id.qianbao)
-    EditText qianbao;
+    TextView qianbao;
     @BindView(R.id.baoxianx)
-    EditText baoxianx;
+    TextView baoxianx;
     @BindView(R.id.money)
-    NoIndex0EditeText money;
+    EditText eTmoney;
     @BindView(R.id.qingchu)
     TextView qingchu;
     @BindView(R.id.seek)
@@ -62,6 +59,8 @@ public class CunRuFragment extends LazyLoadFragment {
 
     private boolean flag = false;//标记edittext不会死循环
     private boolean flag2 = false;//标记edittext不会死循环
+
+    private Boolean isInput = true;
 
 
     @Override
@@ -76,83 +75,15 @@ public class CunRuFragment extends LazyLoadFragment {
         AutoUtils.auto(view);
 
 
-//        RxTextView.textChangeEvents(money)
-//                .debounce(1000, TimeUnit.MILLISECONDS)
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<TextViewTextChangeEvent>() {
-//                    @Override
-//                    public void onCompleted() {
-//
-//                        System.out.println("onCompleted");
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        System.out.println("Throwable");
-//                    }
-//
-//                    @Override
-//                    public void onNext(TextViewTextChangeEvent onTextChangeEvent) {
-//                        String string = onTextChangeEvent.text().toString();
-//
-//                        System.out.println(string);
-//
-//                            if (flag) {
-//                                return;
-//                            }
-//                            flag = true;
-//
-//
-//                            if (TextUtils.isEmpty(string)) {
-//
-//                                seek.setProgress(0);
-//
-//                            } else {
-//
-//
-//                                BigDecimal b1 = new BigDecimal(string.toString());
-//                                BigDecimal b2 = new BigDecimal(qianbao.getText().toString());
-//
-////                        if (b1.compareTo(b2) > 0) {
-//                                //b1 = new BigDecimal(qianbao.getText().toString());
-//                                // money.setText(qianbao.getText().toString());
-//
-//                                System.out.println(b1.compareTo(b2));
-//
-//                                //}
-//
-//                                BigDecimal divide = b1.divide(b2, 3, ROUND_HALF_UP);
-//                                String multiply = AppBigDecimal.multiply(divide.toPlainString(), "1000", 3);
-//
-//                                System.out.println("multiply       " + multiply);
-//                                seek.setProgress(Integer.parseInt(multiply));
-//
-//
-//                            }
-//
-//
-//                            flag = false;
-//
-//
-//                    }
-//                });
-
-
-        money.addTextChangedListener(new TextWatcher() {
+        eTmoney.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+                isInput = false;
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
 
                 if (flag) {
                     return;
@@ -167,23 +98,27 @@ public class CunRuFragment extends LazyLoadFragment {
 
                 } else {
 
-
-                    BigDecimal b1 = new BigDecimal(s1.toString());
-                    BigDecimal b2 = new BigDecimal(qianbao.getText().toString());
+                    try {
+                        BigDecimal b1 = new BigDecimal(s1.toString());
+                        BigDecimal b2 = new BigDecimal(qianbao.getText().toString());
 
 //                        if (b1.compareTo(b2) > 0) {
-                    //b1 = new BigDecimal(qianbao.getText().toString());
-                    // money.setText(qianbao.getText().toString());
+                        //b1 = new BigDecimal(qianbao.getText().toString());
+                        // money.setText(qianbao.getText().toString());
 
 
+                        //}
 
-                    //}
 
-                    BigDecimal divide = b1.divide(b2, 3, ROUND_HALF_UP);
-                    String multiply = AppBigDecimal.multiply(divide.toPlainString(), "1000", 3);
+                        BigDecimal divide = b1.divide(b2, 3, ROUND_HALF_UP);
+                        String multiply = AppBigDecimal.multiply(divide.toPlainString(), "1000", 3);
 
-                    System.out.println("multiply       " + multiply);
-                    seek.setProgress(Integer.parseInt(AppUtils.subZeroAndDot(multiply)));
+                        System.out.println("mm      " + multiply);
+
+                        seek.setProgress(Integer.parseInt(AppUtils.subZeroAndDot(multiply)));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
 
                 }
@@ -191,6 +126,12 @@ public class CunRuFragment extends LazyLoadFragment {
 
                 flag = false;
 
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                isInput = true;
 
 
             }
@@ -201,29 +142,34 @@ public class CunRuFragment extends LazyLoadFragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
+                if (isInput) {
 
 
-                if (flag2) {
-                    return;
-                }
-                flag2 = true;
-
-                    String s = qianbao.getText().toString();
-
-                    BigDecimal b1 = new BigDecimal(progress);
-                    b1.divide(new BigDecimal("1000"));
-
-                    BigDecimal b2 = new BigDecimal(qianbao.getText().toString());
+                    if (flag2) {
+                        return;
+                    }
+                    flag2 = true;
 
 
-                    String multiply = AppBigDecimal.multiply(b1.toPlainString(), b2.toPlainString(), 3);
+                    try {
+                        BigDecimal b1 = new BigDecimal(progress);
+                        b1.divide(new BigDecimal("1000"));
 
+                        BigDecimal b2 = new BigDecimal(qianbao.getText().toString());
 
-                    BigDecimal divide = new BigDecimal(multiply).divide(new BigDecimal(1000), 3, ROUND_HALF_UP);
-                    money.setText(divide.toPlainString());
+                        String multiply = AppBigDecimal.multiply(b1.toPlainString(), b2.toPlainString(), 3);
+
+                        BigDecimal divide = new BigDecimal(multiply).divide(new BigDecimal(1000), 3, ROUND_HALF_UP);
+                        eTmoney.setText(divide.toPlainString());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
 
                     flag2 = false;
+
+
+                }
 
 
             }
@@ -245,12 +191,42 @@ public class CunRuFragment extends LazyLoadFragment {
     public void loadData() {
 
 
-        zhuanru("0");
+        OkGo.post(ApiConstant.API_DOMAIN + "/safeu/login.json")
+                .params("token", UserUtil.getToken(getActivity()))
+                .params("uid", UserUtil.getUserID(getActivity()))
+                .params("password", MyApp.baoxianxiang)
+                .execute(new OkGoCallBack(getActivity(), false) {
+                    @Override
+                    protected void _onNext(String json) {
+
+                        DoShemm doShemm = GsonUtil.GsonToBean(json, DoShemm.class);
+                        if (doShemm.getResult() == 1) {
+                            try {
+                                BigDecimal wallet = doShemm.getWallet();
+                                BigDecimal money = doShemm.getList().get(0).getMoney();
+                                qianbao.setText(wallet + "");
+                                baoxianx.setText(money + "");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                    }
+
+                });
 
 
     }
 
     private void zhuanru(String money) {
+
+        if (TextUtils.isEmpty(money)) {
+
+            AppUtils.showToast(context, "金额不正确");
+
+            return;
+        }
 
         OkGo.post(ApiConstant.API_DOMAIN + "/safeu/getDeposit.json")
                 .params("token", UserUtil.getToken(getActivity()))
@@ -271,6 +247,10 @@ public class CunRuFragment extends LazyLoadFragment {
 
                                 qianbao.setText(wallet + "");
                                 baoxianx.setText(money + "");
+
+                                eTmoney.setText("");
+                                seek.setProgress(0);
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -304,16 +284,35 @@ public class CunRuFragment extends LazyLoadFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.qingchu:
-                money.setText("");
+                eTmoney.setText("");
                 seek.setProgress(0);
                 break;
             case R.id.zuida:
+                seek.setProgress(1000);
                 break;
             case R.id.ok:
 
-                zhuanru(money.getText().toString());
+                zhuanru(eTmoney.getText().toString());
 
                 break;
+        }
+    }
+
+    @Override
+    public boolean getUserVisibleHint() {
+
+        loadData();
+        return super.getUserVisibleHint();
+
+    }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        loadData();
+        if (!hidden) {
+
         }
     }
 }

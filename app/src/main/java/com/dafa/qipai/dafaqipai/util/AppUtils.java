@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 
 import com.dafa.qipai.dafaqipai.MyApp;
+import com.dafa.qipai.dafaqipai.view.SheZhiActivity;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -429,34 +430,29 @@ public class AppUtils {
     }
 
 
-    public static void copyToClipboard(Context c, CharSequence cs) {
+    public static void copyToClipboard(Activity c, CharSequence cs) {
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion >= android.os.Build.VERSION_CODES.HONEYCOMB) {
             // api 11以上
-            try {
-                ClipboardManager clipboard = (ClipboardManager) MyApp.getInstance().getSystemService(Context.CLIPBOARD_SERVICE);
+//            try {
+                ClipboardManager clipboard = (ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("key", cs);
                 clipboard.setPrimaryClip(clip);
 
                 Toast.makeText(c, "已成功复制到剪贴板", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-
-                Toast.makeText(c, "复制失败,请手动填写", Toast.LENGTH_SHORT).show();
-            }
-        } else {            // api 11以下
-            try {
-                android.text.ClipboardManager clipboard = (android.text.ClipboardManager) MyApp.getInstance().getSystemService(MyApp.CLIPBOARD_SERVICE);
-                clipboard.setText(cs);
-                Toast.makeText(c, "已成功复制到剪贴板", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                Toast.makeText(c, "复制失败,请手动填写", Toast.LENGTH_SHORT).show();
-            }
+//            } catch (Exception e) {
+//
+//                Toast.makeText(c, "复制失败,请手动填写", Toast.LENGTH_SHORT).show();
+//            }
         }
     }
 
 
+
     public static void playBgMuisc(Context context) {
         BackgroundMusic.getInstance(context).playBackgroundMusic("aa01.mpeg", true);
+        float y1 = (float) SPUtil.get(context, "y1", 0.5f);
+        BackgroundMusic.getInstance(context).setBackgroundVolume(y1);
     }
 
     public static void stopBgMuisc(Context context) {

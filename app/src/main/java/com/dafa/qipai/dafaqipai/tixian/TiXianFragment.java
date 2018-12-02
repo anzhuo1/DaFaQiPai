@@ -1,36 +1,33 @@
 package com.dafa.qipai.dafaqipai.tixian;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.bean.BaseDo;
 import com.dafa.qipai.dafaqipai.bean.DoGetBankcard;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
+import com.dafa.qipai.dafaqipai.dialog.BaseDialog;
 import com.dafa.qipai.dafaqipai.fra.LazyLoadFragment;
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
+import com.dafa.qipai.dafaqipai.rx.rxbus.RxBus;
+import com.dafa.qipai.dafaqipai.rx.rxbus.RxBusConfig;
 import com.dafa.qipai.dafaqipai.util.AppUtils;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
-import com.dafa.qipai.dafaqipai.util.BankUtil;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.MD5Utils;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
-import com.dafa.qipai.dafaqipai.wihget.Select;
 import com.lzy.okgo.OkGo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,24 +35,26 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-import static com.dafa.qipai.dafaqipai.R2.style.dialog;
-
 public class TiXianFragment extends LazyLoadFragment {
 
 
-    @BindView(R.id.money)
-    EditText money;
-    @BindView(R.id.yhk_img)
-    ImageView yhk_img;
-    @BindView(R.id.yhk)
-    TextView yhk;
-    @BindView(R.id.yhk_name)
-    TextView yhk_name;
-    @BindView(R.id.xzyh)
-    LinearLayout xzyh;
     @BindView(R.id.ok)
     TextView ok;
     Unbinder unbinder;
+    @BindView(R.id.soukuanren)
+    TextView soukuanren;
+    @BindView(R.id.yinhang)
+    TextView yinhang;
+    @BindView(R.id.kahao)
+    TextView kahao;
+    @BindView(R.id.money)
+    EditText money;
+    @BindView(R.id.qingchu)
+    TextView qingchu;
+    @BindView(R.id.bangding)
+    TextView bangding;
+    @BindView(R.id.ll_nocard)
+    LinearLayout llNocard;
     private int id;
     private List<DoGetBankcard.UserBankCardListBean> cardList;
     private boolean isneedWithdrawPasswd;
@@ -95,16 +94,19 @@ public class TiXianFragment extends LazyLoadFragment {
                         DoGetBankcard doGetBankcard = GsonUtil.GsonToBean(json, DoGetBankcard.class);
                         cardList = doGetBankcard.getUserBankCardList();
                         if (cardList == null || cardList.size() == 0) {
-                            yhk.setText("尚未添加银行卡,前往添加");
+
+                            llNocard.setVisibility(View.VISIBLE);
                         } else {
+                            llNocard.setVisibility(View.GONE);
                             for (int i = 0; i < cardList.size(); i++) {
                                 if (cardList.get(i).isDefaultX()) {
-                                    yhk_img.setVisibility(View.VISIBLE);
-                                    yhk_img.setBackgroundResource((BankUtil.Bank.getResIdByName(cardList.get(i).getBankName())));
-                                    yhk_name.setVisibility(View.VISIBLE);
-                                    yhk_name.setText(cardList.get(i).getBankName());
-                                    yhk.setText(cardList.get(i).getBankAccount().substring(0, 4) + " **** **** " + cardList.get(i).getBankAccount().substring(cardList.get(i).getBankAccount().length() - 4, cardList.get(i).getBankAccount().length()));
+//                                    yhk_img.setVisibility(View.VISIBLE);
+//                                    yhk_img.setBackgroundResource((BankUtil.Bank.getResIdByName(cardList.get(i).getBankName())));
+                                    yinhang.setVisibility(View.VISIBLE);
+                                    yinhang.setText(cardList.get(i).getBankName());
+                                    kahao.setText(cardList.get(i).getBankAccount().substring(0, 4) + " **** **** " + cardList.get(i).getBankAccount().substring(cardList.get(i).getBankAccount().length() - 4, cardList.get(i).getBankAccount().length()));
                                     id = cardList.get(i).getId();
+                                    soukuanren.setText(cardList.get(i).getUserName());
 
                                 }
                             }
@@ -124,10 +126,6 @@ public class TiXianFragment extends LazyLoadFragment {
             AppUtils.showToast(getActivity().getApplicationContext(), "金额不能为空");
             return;
         }
-//                if (TextUtils.isEmpty(pwdStr)) {
-//                    AppUtils.showToast(getActivity().getApplicationContext(), "取款密码不能为空");
-//                    return;
-//                }
 
         if (id == 0) {
             AppUtils.showToast(getActivity().getApplicationContext(), "选择银行卡");
@@ -156,6 +154,23 @@ public class TiXianFragment extends LazyLoadFragment {
 //                                startActivity(intent);
 
 //                            });
+
+
+
+                            new BaseDialog(getActivity(), "您的提款申请已提交，" +
+                                    "\n请耐心等候审核", "取消", "确定") {
+                                @Override
+                                public void btn1DoThing(Dialog mDialog) {
+
+                                }
+
+                                @Override
+                                public void btn2DoThing(Dialog mDialog) {
+
+                                }
+                            }.show();
+
+
                         } else {
                             if (baseDo.getDescription() != null && !baseDo.getDescription().equals("")) {
                                 AppUtils.showToast(context, baseDo.getDescription());
@@ -180,47 +195,68 @@ public class TiXianFragment extends LazyLoadFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.yhk, R.id.ok})
+    @OnClick({R.id.ok})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.yhk:
-                yhkM();
-                break;
             case R.id.ok:
                 tijiao();
                 break;
         }
     }
 
-    private void yhkM() {
+//    private void yhkM() {
+//
+//        ArrayList<String> list = new ArrayList<>();
+//        if (cardList == null || cardList.size() == 0) {
+//            AppUtils.showToast(getActivity(), "请先绑卡");
+//            return;
+//        }
+//
+//        for (DoGetBankcard.UserBankCardListBean card : cardList) {
+//            yhk_img.setVisibility(View.VISIBLE);
+//            yhk_img.setBackgroundResource(BankUtil.Bank.getResIdByName(card.getBankName()));
+//            yhk_name.setVisibility(View.VISIBLE);
+//            yhk_name.setText(card.getBankName());
+//            list.add(card.getBankName() + " " + card.getBankAccount().substring(0, 4) + " **** " + card.getBankAccount().substring(card.getBankAccount().length() - 4, card.getBankAccount().length()));
+//        }
+//        if (list.size() != 0) {
+//            Select.selectOption(getActivity(), "选择银行卡", list, (options1, options2, options3, v) -> {
+//                if (cardList != null) {
+//                    yhk_img.setVisibility(View.VISIBLE);
+//                    yhk_img.setBackgroundResource(BankUtil.Bank.getResIdByName(cardList.get(options1).getBankName()));
+//                    yhk.setText(cardList.get(options1).getBankAccount().substring(0, 4) + " **** **** " + cardList.get(options1).getBankAccount().substring(cardList.get(options1).getBankAccount().length() - 4, cardList.get(options1).getBankAccount().length()));
+//                    id = cardList.get(options1).getId();
+//                    yhk_name.setVisibility(View.VISIBLE);
+//                    yhk_name.setText(cardList.get(options1).getBankName());
+//                }
+//            });
+//
+//
+//        }
+//
+//    }
 
-        ArrayList<String> list = new ArrayList<>();
-        if (cardList == null || cardList.size() == 0) {
-            AppUtils.showToast(getActivity(), "请先绑卡");
-            return;
-        }
+    @OnClick(R.id.qingchu)
+    public void onViewClicked() {
+        money.setText("");
+    }
 
-        for (DoGetBankcard.UserBankCardListBean card : cardList) {
-            yhk_img.setVisibility(View.VISIBLE);
-            yhk_img.setBackgroundResource(BankUtil.Bank.getResIdByName(card.getBankName()));
-            yhk_name.setVisibility(View.VISIBLE);
-            yhk_name.setText(card.getBankName());
-            list.add(card.getBankName()+" "+card.getBankAccount().substring(0, 4) + " **** " + card.getBankAccount().substring(card.getBankAccount().length() - 4, card.getBankAccount().length()));
-        }
-        if (list.size() != 0) {
-            Select.selectOption(getActivity(), "选择银行卡", list, (options1, options2, options3, v) -> {
-                if (cardList != null) {
-                    yhk_img.setVisibility(View.VISIBLE);
-                    yhk_img.setBackgroundResource(BankUtil.Bank.getResIdByName(cardList.get(options1).getBankName()));
-                    yhk.setText( cardList.get(options1).getBankAccount().substring(0, 4) + " **** **** " + cardList.get(options1).getBankAccount().substring(cardList.get(options1).getBankAccount().length() - 4, cardList.get(options1).getBankAccount().length()));
-                    id = cardList.get(options1).getId();
-                    yhk_name.setVisibility(View.VISIBLE);
-                    yhk_name.setText(cardList.get(options1).getBankName());
-                }
-            });
+    @OnClick(R.id.bangding)
+    public void onViewClicked2() {
+
+        RxBus.getDefault().post(RxBusConfig.YINHANGKA2);
+    }
 
 
-        }
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        loadData();
+    }
 
+    @Override
+    public boolean getUserVisibleHint() {
+        loadData();
+        return super.getUserVisibleHint();
     }
 }

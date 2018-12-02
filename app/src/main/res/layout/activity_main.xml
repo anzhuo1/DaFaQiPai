@@ -5,58 +5,104 @@
     android:id="@+id/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bg_tiyu"
+    android:background="@mipmap/bg_qipai"
     tools:context=".view.MainActivity">
 
     <ImageView
         android:id="@+id/head"
         android:layout_width="100px"
-        android:layout_height="101px"
+        android:layout_height="106px"
         android:layout_marginLeft="110px"
         android:layout_marginTop="18px"
         android:background="@mipmap/touxiang" />
 
 
     <TextView
+        android:singleLine="true"
         android:id="@+id/name"
-        android:layout_width="160px"
+        android:layout_width="300px"
         android:layout_height="50px"
         android:layout_marginLeft="240px"
         android:layout_marginTop="18px"
-        android:gravity="center"
-        android:text=""
+        android:gravity="center_vertical"
+        android:text="未登录 请登录"
         android:textColor="@color/colorText"
-        android:textSize="28px" />
+        android:textSize="32px" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/dengji"
-        android:layout_width="120px"
-        android:layout_height="50px"
-        android:layout_marginLeft="420px"
-        android:layout_marginTop="18px"
+        android:layout_width="100px"
+        android:layout_height="40px"
+        android:layout_marginLeft="460px"
+        android:layout_marginTop="22px"
+        android:background="@mipmap/vipbg"
         android:gravity="center"
-        android:padding="6px"
+        android:padding="3px"
         android:text=""
-        android:textColor="@color/colorText"
+        android:textColor="@color/text_hint_color"
         android:textSize="24px" />
 
-    <TextView
-        android:id="@+id/id"
-        android:layout_width="200px"
+    <RelativeLayout
+        android:layout_width="300px"
         android:layout_height="50px"
         android:layout_marginLeft="240px"
-        android:layout_marginTop="78px"
-        android:gravity="center"
-        android:text=""
-        android:textColor="@color/colorText"
-        android:textSize="28px" />
+        android:layout_marginTop="78px">
+
+
+        <TextView
+            android:paddingLeft="20px"
+            android:visibility="gone"
+            android:id="@+id/id"
+            android:layout_width="220px"
+            android:layout_height="60px"
+            android:background="@mipmap/idbg"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/colorText"
+            android:textSize="28px" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_dz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/zhuce"
+                android:layout_width="100px"
+                android:layout_height="50px"
+                android:background="@mipmap/yes"
+                android:gravity="center"
+                android:padding="6px"
+                android:text="注册"
+                android:textSize="24px" />
+
+
+            <TextView
+                android:id="@+id/denglu"
+                android:layout_width="100px"
+                android:layout_height="50px"
+                android:layout_marginLeft="20px"
+                android:background="@mipmap/yes"
+                android:gravity="center"
+                android:padding="6px"
+                android:text="登录"
+                android:textSize="24px" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/jine"
         android:layout_width="200px"
-        android:layout_height="50px"
+        android:layout_height="40px"
         android:layout_marginLeft="740px"
         android:layout_marginTop="36px"
+        android:background="@mipmap/yebg1"
         android:gravity="center"
         android:text=""
         android:textColor="@color/colorText"
@@ -64,7 +110,18 @@
 
 
     <TextView
-       android:id="@+id/dojine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="660px"
+        android:layout_marginTop="2px"
+        android:background="@mipmap/huaq"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/colorText"
+        android:textSize="28px" />
+
+    <TextView
+        android:id="@+id/dojine"
         android:layout_width="200px"
         android:layout_height="50px"
         android:layout_marginLeft="840px"
@@ -74,24 +131,37 @@
         android:textColor="@color/colorText"
         android:textSize="28px" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="910px"
+        android:layout_marginTop="24px"
+        android:background="@mipmap/jia"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/colorText"
+        android:textSize="28px" />
 
     <TextView
         android:layout_width="300px"
         android:layout_height="50px"
         android:layout_marginLeft="1330px"
         android:layout_marginTop="36px"
+        android:drawableLeft="@mipmap/xiaowu"
+        android:drawableRight="@mipmap/yx"
         android:gravity="center"
-        android:text="www.dafaqipai6.com"
+        android:text="www.kyky.com"
         android:textColor="@color/colorText"
         android:textSize="28px" />
 
     <TextView
-        android:id="@+id/xinxi"
-        android:layout_width="80px"
-        android:layout_height="80px"
+        android:id="@+id/xinxi1"
+        android:layout_width="57px"
+        android:layout_height="53px"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="18px"
-        android:layout_marginRight="115px"
+        android:layout_marginRight="130px"
+        android:layout_marginTop="28px"
+        android:background="@mipmap/youjian"
         android:gravity="center"
         android:text=""
         android:textColor="@color/colorWhite"
@@ -99,34 +169,36 @@
 
 
     <TextView
+        android:id="@+id/xinxi2"
         android:layout_width="30px"
-        android:layout_height="30px"
+        android:layout_height="33px"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="18px"
         android:layout_marginRight="115px"
+        android:layout_marginTop="18px"
+        android:background="@mipmap/hongse"
         android:gravity="center"
         android:text="0"
         android:textColor="@color/colorWhite"
         android:textSize="28px" />
 
     <com.dafa.qipai.dafaqipai.wihget.MarqueeTextView
-        android:clickable="true"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:singleLine="true"
         android:id="@+id/gonggao"
         android:layout_width="1170px"
         android:layout_height="50px"
         android:layout_marginLeft="680px"
         android:layout_marginTop="135px"
+        android:clickable="true"
+        android:ellipsize="marquee"
         android:gravity="center_vertical"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
         android:text=""
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorText"
         android:textSize="28px" />
 
 
     <RadioGroup
-        android:background="@mipmap/daohangkk"
+
         android:layout_width="550px"
         android:layout_height="760px"
         android:layout_marginLeft="50px"
@@ -158,7 +230,7 @@
             android:layout_width="350px"
             android:layout_height="100px"
             android:layout_marginTop="40px"
-            android:background="@drawable/icon_tiyu"
+            android:background="@drawable/icon_leyou"
             android:button="@null"
             android:textSize="28px" />
 

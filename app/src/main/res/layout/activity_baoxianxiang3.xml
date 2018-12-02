@@ -74,10 +74,10 @@
 
     <TextView
         android:id="@+id/close"
-        android:layout_width="100px"
-        android:layout_height="100px"
-        android:layout_marginLeft="1595px"
-        android:layout_marginTop="100px"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_marginLeft="1610px"
+        android:layout_marginTop="106px"
         android:background="@mipmap/cha"
         android:gravity="center_vertical"
         android:maxLength="14" />
