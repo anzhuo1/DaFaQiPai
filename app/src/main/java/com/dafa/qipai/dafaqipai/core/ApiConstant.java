@@ -11,14 +11,14 @@ public class ApiConstant {
 //    public static String COMPANY_SHORT_NAME = "a2";
 
 
-    public static String VERSION = "1";
-    public static String COMPANY_SHORT_NAME = "ky";
-    public static String API_DOMAIN = "http://api.ky.bb.nf/";
-
-
 //    public static String VERSION = "1";
 //    public static String COMPANY_SHORT_NAME = "ky";
-//    public static String API_DOMAIN = "http://api.cs.bb.nf/";
+//    public static String API_DOMAIN = "http://api.ky.bb.nf/";
+
+
+    public static String VERSION = "1";
+    public static String COMPANY_SHORT_NAME = "ky";
+    public static String API_DOMAIN = "http://api.cs.bb.nf/";
 
 
     public static String CLIENT_TYPE = "Android";

@@ -26,6 +26,7 @@ public class ChongzhiDailiAdapter extends RecyclerView.Adapter<ChongzhiDailiAdap
     private List<DoDaili.ListBean> dtos;
 
     private int layout;
+    private String imgUrl;
 
 
     public ChongzhiDailiAdapter(Context context, List<DoDaili.ListBean> dtos, int layout) {
@@ -38,12 +39,7 @@ public class ChongzhiDailiAdapter extends RecyclerView.Adapter<ChongzhiDailiAdap
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         MyViewHolder holder = new MyViewHolder(LayoutInflater.from(context).inflate(layout, parent, false));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClickListener.onItemClick(v);
-            }
-        });
+        holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(v));
 
         return holder;
     }
@@ -84,7 +80,13 @@ public class ChongzhiDailiAdapter extends RecyclerView.Adapter<ChongzhiDailiAdap
 
         holder.name.setText(dtos.get(position).getAccount());
 
-        GlideUtil.loadUrlImage(dtos.get(position).getImgUrl(), holder.img, context);
+        imgUrl = dtos.get(position).getImgUrl();
+
+        if (!TextUtils.isEmpty(imgUrl)) {
+            GlideUtil.loadUrlImage(imgUrl, holder.img, context);
+
+        }
+
 
     }
 

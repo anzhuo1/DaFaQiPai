@@ -170,6 +170,7 @@
         </activity>
 
         <activity
+
             android:name=".youxi.QiPaiWebAppActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppCompatFullscreen">
@@ -177,12 +178,14 @@
         </activity>
 
         <activity
+
             android:name=".youxi.BBINWebViewActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="sensor"
             android:theme="@style/AppCompatFullscreen" />
 
         <activity
+
             android:name=".youxi.AGWebAppActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppCompatFullscreen"
@@ -190,6 +193,7 @@
 
 
         <activity
+
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:name=".youxi.LeYouWebAppActivity"
             android:screenOrientation="landscape"
