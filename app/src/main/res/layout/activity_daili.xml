@@ -27,16 +27,16 @@
 
     <TextView
         android:id="@+id/cheng"
-        android:layout_width="300px"
-        android:layout_height="100px"
-        android:layout_marginLeft="740px"
+        android:layout_width="330px"
+        android:layout_height="160px"
+        android:layout_marginLeft="710px"
         android:layout_marginTop="130px" />
 
 
     <TextView
         android:id="@+id/jiaocheng"
         android:layout_width="300px"
-        android:layout_height="100px"
+        android:layout_height="160px"
         android:layout_marginLeft="1040px"
         android:layout_marginTop="130px" />
 

@@ -47,6 +47,9 @@ public class QipaiFragment extends LazyLoadFragment {
     Unbinder unbinder;
     private List<HomeItemDto> dtos;
 
+
+    private boolean canGoto = true;
+
     @Override
     public int getLayout() {
         return R.layout.fragment_qipai;

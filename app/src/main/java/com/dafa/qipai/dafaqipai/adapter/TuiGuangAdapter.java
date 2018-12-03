@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.bean.DoTuiGuang;
 import com.dafa.qipai.dafaqipai.dto.HomeItemDto;
+import com.dafa.qipai.dafaqipai.glide.GlideUtil;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
 
 import java.util.List;
@@ -50,6 +51,7 @@ public class TuiGuangAdapter extends RecyclerView.Adapter<TuiGuangAdapter.MyView
         String account = dtos.get(position).getAccount();
         String qq = dtos.get(position).getQq();
         String telephone = dtos.get(position).getTelephone();
+        String payTreasure = dtos.get(position).getPayTreasure();
 
         if (!TextUtils.isEmpty(telephone)) {
             holder.img.setBackgroundResource(R.mipmap.tg_phone);
@@ -69,7 +71,21 @@ public class TuiGuangAdapter extends RecyclerView.Adapter<TuiGuangAdapter.MyView
             holder.copy.setText("复制微信号");
         }
 
+        if (!TextUtils.isEmpty(payTreasure)) {
+            holder.img.setBackgroundResource(R.mipmap.tuiguang_zfb);
+            holder.num.setText(payTreasure);
+            holder.copy.setText("复制支付宝");
+        }
+
         holder.name.setText(dtos.get(position).getAccount());
+
+
+//       String imgUrl = dtos.get(position).getQrCodeUrl();
+//
+//        if (!TextUtils.isEmpty(imgUrl)) {
+//            GlideUtil.loadUrlImage(imgUrl, holder.img, context);
+//
+//        }
 
     }
 

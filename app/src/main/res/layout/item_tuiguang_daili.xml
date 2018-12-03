@@ -9,7 +9,6 @@
 
     <ImageView
         android:id="@+id/img"
-        android:background="@mipmap/ic_launcher"
         android:layout_width="120px"
         android:layout_height="130px" />
 
@@ -18,7 +17,7 @@
         android:gravity="center_vertical"
         android:layout_marginLeft="20px"
         android:id="@+id/qq"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="200px"
         android:orientation="vertical">
 
@@ -39,11 +38,12 @@
             android:textSize="36px" />
 
         <TextView
+            android:paddingBottom="10px"
             android:id="@+id/copy"
-            android:layout_width="180px"
+            android:layout_width="wrap_content"
             android:layout_height="80px"
-            android:layout_marginTop="10px"
-            android:background="@mipmap/yes"
+            android:layout_marginTop="20px"
+            android:background="@mipmap/szbg_press"
             android:gravity="center"
             android:text="复制QQ号"
             android:textSize="32px" />

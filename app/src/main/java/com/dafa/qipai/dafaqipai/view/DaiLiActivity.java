@@ -78,7 +78,7 @@ public class DaiLiActivity extends BaseActivity {
                                     TextView id = view.findViewById(R.id.num);
                                     String s = id.getText().toString();
 
-                                    AppUtils.copyToClipboard(DaiLiActivity.this,s);
+                                    AppUtils.copyToClipboard(DaiLiActivity.this, s);
 
                                 }
 
@@ -103,12 +103,14 @@ public class DaiLiActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.cheng:
                 llBg.setBackgroundResource(R.mipmap.tg1);
-                if (agentContact.isEmpty()) {
+
+                if (agentContact == null || agentContact.isEmpty()) {
                     recyclerview.setVisibility(View.GONE);
                 } else {
 
                     recyclerview.setVisibility(View.VISIBLE);
                 }
+
                 break;
             case R.id.jiaocheng:
                 llBg.setBackgroundResource(R.mipmap.bg_daili2);

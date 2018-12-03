@@ -93,7 +93,7 @@
                 <TextView
                     android:id="@+id/quanxuan"
                     android:layout_width="180px"
-                    android:layout_height="60px"
+                    android:layout_height="80px"
                     android:background="@mipmap/hjx"
                     android:gravity="center"
                     android:text="全选"
@@ -102,7 +102,7 @@
                 <TextView
                     android:id="@+id/chuanchu"
                     android:layout_width="180px"
-                    android:layout_height="60px"
+                    android:layout_height="80px"
                     android:layout_marginLeft="40px"
                     android:background="@mipmap/hjx"
                     android:gravity="center"
@@ -126,13 +126,13 @@
 
 
     <TextView
-        android:background="@mipmap/cha"
         android:id="@+id/finish"
         android:layout_width="80px"
         android:layout_height="80px"
         android:layout_alignParentRight="true"
         android:layout_marginRight="220px"
-        android:layout_marginTop="90px" />
+        android:layout_marginTop="90px"
+        android:background="@mipmap/cha" />
 
 
 </RelativeLayout>

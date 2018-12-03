@@ -21,6 +21,7 @@ import com.dafa.qipai.dafaqipai.bean.PublicMsgDo;
 import com.dafa.qipai.dafaqipai.bean.ZhanNeiXinDo;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
+import com.dafa.qipai.dafaqipai.util.AppUtils;
 import com.dafa.qipai.dafaqipai.util.AutoUtils;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
@@ -225,13 +226,13 @@ public class XiaoXiActivity extends BaseActivity {
                 .params("token", UserUtil.getToken(this))
                 .params("uid", UserUtil.getUserID(this))
                 .params("idList", id)
-                .execute(new OkGoCallBack(this, false) {
+                .execute(new OkGoCallBack(this, true) {
 
                     @Override
                     protected void _onNext(String json) {
                         BaseDo baseDo = GsonUtil.GsonToBean(json, BaseDo.class);
                         if (baseDo.getResult() == 1) {
-
+                            AppUtils.showToast(context,"删除成功");
                         }
                     }
                 });

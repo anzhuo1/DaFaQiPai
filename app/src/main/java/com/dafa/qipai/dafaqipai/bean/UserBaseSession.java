@@ -69,7 +69,7 @@ public class UserBaseSession implements Serializable {
     private double fandian;
     private BigDecimal totalFandianMoney;
     private BigDecimal subUserTotalFandianMoney;
-    private Object agentDomain;
+    private String agentDomain;
     private int lastGameId;
     private int lastPlayId;
     private long lastLoginTime;
@@ -265,11 +265,11 @@ public class UserBaseSession implements Serializable {
         this.subUserTotalFandianMoney = subUserTotalFandianMoney;
     }
 
-    public Object getAgentDomain() {
+    public String getAgentDomain() {
         return agentDomain;
     }
 
-    public void setAgentDomain(Object agentDomain) {
+    public void setAgentDomain(String agentDomain) {
         this.agentDomain = agentDomain;
     }
 

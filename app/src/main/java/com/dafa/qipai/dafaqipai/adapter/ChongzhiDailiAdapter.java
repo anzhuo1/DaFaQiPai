@@ -84,7 +84,6 @@ public class ChongzhiDailiAdapter extends RecyclerView.Adapter<ChongzhiDailiAdap
 
         if (!TextUtils.isEmpty(imgUrl)) {
             GlideUtil.loadUrlImage(imgUrl, holder.img, context);
-
         }
 
 

@@ -4,10 +4,11 @@ import java.util.List;
 
 public class DoTuiGuang {
 
+
     /**
      * result : 1
      * description :
-     * agentContact : [{"id":401226,"account":"客服小小","email":"","qq":"1314520","telephone":"","qrCodeUrl":"","creatTime":1543484642000,"companyShortName":"a2","weixin":"wx11111111"},{"id":401225,"account":"客服天天","email":"818286@qq.com","qq":"12345678","telephone":"13245678908","qrCodeUrl":"","creatTime":1543484610000,"companyShortName":"a2","weixin":""},{"id":401227,"account":"客服久久","email":"818286@qq.com","qq":"","telephone":"13245678908","qrCodeUrl":"","creatTime":1543484677000,"companyShortName":"a2","weixin":""}]
+     * agentContact : [{"id":401228,"account":"支付宝","email":"","qq":"","telephone":"","qrCodeUrl":"","creatTime":1543667687000,"companyShortName":"a2","weixin":"","payTreasure":"123456@qq.com"},{"id":401226,"account":"客服小小","email":"","qq":"1314520","telephone":"","qrCodeUrl":"","creatTime":1543484642000,"companyShortName":"a2","weixin":"wx11111111","payTreasure":null},{"id":401225,"account":"客服天天","email":"818286@qq.com","qq":"12345678","telephone":"13245678908","qrCodeUrl":"","creatTime":1543484610000,"companyShortName":"a2","weixin":"sdfsdfs","payTreasure":""},{"id":401227,"account":"客服久久","email":"818286@qq.com","qq":"","telephone":"13245678908","qrCodeUrl":"","creatTime":1543484677000,"companyShortName":"a2","weixin":"","payTreasure":""}]
      */
 
     private int result;
@@ -40,15 +41,16 @@ public class DoTuiGuang {
 
     public static class AgentContactBean {
         /**
-         * id : 401226
-         * account : 客服小小
+         * id : 401228
+         * account : 支付宝
          * email :
-         * qq : 1314520
+         * qq :
          * telephone :
          * qrCodeUrl :
-         * creatTime : 1543484642000
+         * creatTime : 1543667687000
          * companyShortName : a2
-         * weixin : wx11111111
+         * weixin :
+         * payTreasure : 123456@qq.com
          */
 
         private int id;
@@ -60,6 +62,7 @@ public class DoTuiGuang {
         private long creatTime;
         private String companyShortName;
         private String weixin;
+        private String payTreasure;
 
         public int getId() {
             return id;
@@ -131,6 +134,14 @@ public class DoTuiGuang {
 
         public void setWeixin(String weixin) {
             this.weixin = weixin;
+        }
+
+        public String getPayTreasure() {
+            return payTreasure;
+        }
+
+        public void setPayTreasure(String payTreasure) {
+            this.payTreasure = payTreasure;
         }
     }
 }

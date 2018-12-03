@@ -145,13 +145,13 @@ public class MainActivity extends BaseFragmentActivity {
 //            finish();
 //        }
 
+        requstQuanXian();
+
         ActivityContainer.getInstance().addActivity(this);
 
         loadData4THIS();
 
         loadGongao();
-
-        loadQuanXian();
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -395,7 +395,7 @@ public class MainActivity extends BaseFragmentActivity {
 
     }
 
-    @OnClick({R.id.xinxi1, R.id.xinxi2, R.id.dojine, R.id.head, R.id.huodong, R.id.tuiguang, R.id.kefu, R.id.baoxian, R.id.shezhi, R.id.tixian, R.id.chongzhi})
+    @OnClick({R.id.xinxi1, R.id.xinxi2, R.id.dojine, R.id.head,R.id.id,R.id.name, R.id.huodong, R.id.tuiguang, R.id.kefu, R.id.baoxian, R.id.shezhi, R.id.tixian, R.id.chongzhi})
     public void onViewClicked2(View view) {
         float y2 = (float) SPUtil.get(this, "y2", 0.5f);
         soundPoolUtil.play(0, this, y2);
@@ -460,6 +460,8 @@ public class MainActivity extends BaseFragmentActivity {
                 startActivity(new Intent(this, ChongzhiActivity.class));
                 break;
             case R.id.head:
+            case R.id.id:
+            case R.id.name:
                 startActivity(new Intent(this, GerenActivity.class));
 
                 break;
@@ -536,7 +538,6 @@ public class MainActivity extends BaseFragmentActivity {
 
         loadData4THIS();
 
-        requstQuanXian();
 
         huishou();
 
@@ -640,39 +641,36 @@ public class MainActivity extends BaseFragmentActivity {
                 .request(
                         Manifest.permission.READ_PHONE_STATE,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_PHONE_STATE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE
                 )
-                .subscribe(new Action1<Boolean>() {
-                    @Override
-                    public void call(Boolean granted) {
+                .subscribe(granted -> {
 
-                        if (granted) { // Always true pre-M
+                    if (granted) { // Always true pre-M
 
 
-                            Observable.timer(3, TimeUnit.SECONDS)
-                                    .subscribe(new Observer<Long>() {
-                                        @Override
-                                        public void onCompleted() {
+//                        Observable.timer(3, TimeUnit.SECONDS)
+//                                .subscribe(new Observer<Long>() {
+//                                    @Override
+//                                    public void onCompleted() {
+//
+//                                    }
+//
+//                                    @Override
+//                                    public void onError(Throwable e) {
+//
+//                                    }
+//
+//                                    @Override
+//                                    public void onNext(Long aLong) {
+//
+//
+//                                    }
+//                                });
 
-                                        }
+                    } else {
 
-                                        @Override
-                                        public void onError(Throwable e) {
+                        AppUtils.showToast(context, "拒绝权限可能会引起APP问题，请在设置中打开");
 
-                                        }
-
-                                        @Override
-                                        public void onNext(Long aLong) {
-
-
-                                        }
-                                    });
-
-                        } else {
-
-
-                        }
                     }
                 });
 
