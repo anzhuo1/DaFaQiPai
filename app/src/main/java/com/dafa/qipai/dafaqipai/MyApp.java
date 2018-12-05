@@ -42,6 +42,7 @@ import static com.kongzue.dialog.v2.DialogSettings.THEME_DARK;
 
 public class MyApp extends Application {
 
+
     public static List<DOgetAppCzInfoResult.CzTypeListBean.CzListBean> czList = new ArrayList<>();
 
     public static String ID;

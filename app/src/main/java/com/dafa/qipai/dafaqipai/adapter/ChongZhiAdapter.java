@@ -161,6 +161,7 @@ public class ChongZhiAdapter extends RecyclerView.Adapter<ChongZhiAdapter.MyView
 
 
     public interface OnItemClickListener {
+
         void onItemClick(View view);
 
         void onItemLongClick(View view);
