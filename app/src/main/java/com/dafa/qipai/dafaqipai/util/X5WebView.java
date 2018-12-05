@@ -98,7 +98,6 @@ public class X5WebView extends WebView {
 
 
 
-        WebView.setWebContentsDebuggingEnabled(true);
 
     }
 

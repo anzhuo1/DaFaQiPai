@@ -90,7 +90,6 @@ public class MyApp extends Application {
 
         initOkGo();
 
-        WebView.setWebContentsDebuggingEnabled(true);
 
     }
 
