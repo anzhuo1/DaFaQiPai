@@ -194,7 +194,7 @@ public class MainActivity extends BaseFragmentActivity {
         QbSdk.initX5Environment(getApplicationContext(), cb);
 
 
-        bg.setBackgroundResource(R.mipmap.bg_qipai);
+       // bg.setBackgroundResource(R.mipmap.bg_qipai);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
@@ -315,7 +315,7 @@ public class MainActivity extends BaseFragmentActivity {
         switch (view.getId()) {
             case R.id.qipai:
 
-                bg.setBackgroundResource(R.mipmap.bg_qipai);
+               // bg.setBackgroundResource(R.mipmap.bg_qipai);
 
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
@@ -331,7 +331,7 @@ public class MainActivity extends BaseFragmentActivity {
             case R.id.zhenren:
 
 
-                bg.setBackgroundResource(R.mipmap.bg_qipai);
+               // bg.setBackgroundResource(R.mipmap.bg_qipai);
 
                 FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
 
@@ -346,7 +346,7 @@ public class MainActivity extends BaseFragmentActivity {
             case R.id.tiyu:
 
 
-                bg.setBackgroundResource(R.mipmap.bg_qipai);
+               // bg.setBackgroundResource(R.mipmap.bg_qipai);
 
 
                 FragmentTransaction transaction3 = getSupportFragmentManager().beginTransaction();
@@ -362,7 +362,7 @@ public class MainActivity extends BaseFragmentActivity {
             case R.id.dianzi:
 
 
-                bg.setBackgroundResource(R.mipmap.bg_dianzi);
+               // bg.setBackgroundResource(R.mipmap.bg_dianzi);
 
 
                 FragmentTransaction transaction4 = getSupportFragmentManager().beginTransaction();

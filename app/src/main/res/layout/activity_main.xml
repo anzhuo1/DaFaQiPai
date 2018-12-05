@@ -5,14 +5,14 @@
     android:id="@+id/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bg_qipai"
+    android:background="@mipmap/test_abg"
     tools:context=".view.MainActivity">
 
     <ImageView
         android:id="@+id/head"
         android:layout_width="100px"
         android:layout_height="106px"
-        android:layout_marginLeft="110px"
+        android:layout_marginLeft="30px"
         android:layout_marginTop="18px"
         android:background="@mipmap/touxiang" />
 
@@ -22,7 +22,7 @@
         android:id="@+id/name"
         android:layout_width="300px"
         android:layout_height="50px"
-        android:layout_marginLeft="240px"
+        android:layout_marginLeft="160px"
         android:layout_marginTop="18px"
         android:gravity="center_vertical"
         android:text="未登录 请登录"
@@ -30,11 +30,11 @@
         android:textSize="32px" />
 
     <TextView
-        android:visibility="gone"
+       android:visibility="gone"
         android:id="@+id/dengji"
         android:layout_width="100px"
         android:layout_height="40px"
-        android:layout_marginLeft="460px"
+        android:layout_marginLeft="320px"
         android:layout_marginTop="22px"
         android:background="@mipmap/vipbg"
         android:gravity="center"
@@ -46,8 +46,8 @@
     <RelativeLayout
         android:layout_width="300px"
         android:layout_height="50px"
-        android:layout_marginLeft="240px"
-        android:layout_marginTop="78px">
+        android:layout_marginLeft="160px"
+        android:layout_marginTop="70px">
 
 
         <TextView
@@ -56,7 +56,6 @@
             android:id="@+id/id"
             android:layout_width="220px"
             android:layout_height="60px"
-            android:background="@mipmap/idbg"
             android:gravity="center_vertical"
             android:text=""
             android:textColor="@color/colorText"
@@ -73,10 +72,9 @@
                 android:id="@+id/zhuce"
                 android:layout_width="100px"
                 android:layout_height="50px"
-                android:background="@mipmap/yes"
+                android:background="@mipmap/register"
                 android:gravity="center"
                 android:padding="6px"
-                android:text="注册"
                 android:textSize="24px" />
 
 
@@ -85,10 +83,9 @@
                 android:layout_width="100px"
                 android:layout_height="50px"
                 android:layout_marginLeft="20px"
-                android:background="@mipmap/yes"
+                android:background="@mipmap/login"
                 android:gravity="center"
                 android:padding="6px"
-                android:text="登录"
                 android:textSize="24px" />
 
         </LinearLayout>
@@ -100,40 +97,30 @@
         android:id="@+id/jine"
         android:layout_width="200px"
         android:layout_height="40px"
-        android:layout_marginLeft="740px"
-        android:layout_marginTop="36px"
-        android:background="@mipmap/yebg1"
+        android:layout_marginLeft="550px"
+        android:layout_marginTop="48px"
         android:gravity="center"
         android:text=""
         android:textColor="@color/colorText"
         android:textSize="28px" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="660px"
-        android:layout_marginTop="2px"
-        android:background="@mipmap/huaq"
-        android:gravity="center"
-        android:text=""
-        android:textColor="@color/colorText"
-        android:textSize="28px" />
+
 
 
     <TextView
         android:id="@+id/dojine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="910px"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_marginLeft="740px"
         android:layout_marginTop="24px"
-        android:background="@mipmap/jia"
         android:gravity="center"
         android:text=""
         android:textColor="@color/colorText"
         android:textSize="28px" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/shuaxin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -145,26 +132,26 @@
         android:textColor="@color/colorText"
         android:textSize="28px" />
 
+
     <TextView
-        android:layout_width="300px"
-        android:layout_height="50px"
-        android:layout_marginLeft="1330px"
-        android:layout_marginTop="36px"
-        android:drawableLeft="@mipmap/xiaowu"
-        android:drawableRight="@mipmap/yx"
+        android:id="@+id/kefu"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="290px"
+        android:layout_marginTop="28px"
         android:gravity="center"
-        android:text="www.kyky.com"
-        android:textColor="@color/colorText"
+        android:text=""
+        android:textColor="@color/colorWhite"
         android:textSize="28px" />
 
     <TextView
         android:id="@+id/xinxi1"
-        android:layout_width="57px"
-        android:layout_height="53px"
+        android:layout_width="80px"
+        android:layout_height="80px"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="130px"
+        android:layout_marginRight="160px"
         android:layout_marginTop="28px"
-        android:background="@mipmap/youjian"
         android:gravity="center"
         android:text=""
         android:textColor="@color/colorWhite"
@@ -176,20 +163,33 @@
         android:layout_width="30px"
         android:layout_height="33px"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="115px"
-        android:layout_marginTop="18px"
+        android:layout_marginRight="155px"
+        android:layout_marginTop="28px"
         android:background="@mipmap/hongse"
         android:gravity="center"
         android:text="0"
         android:textColor="@color/colorWhite"
         android:textSize="28px" />
 
+
+    <TextView
+        android:id="@+id/shezhi"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="28px"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/colorWhite"
+        android:textSize="28px" />
+
     <com.dafa.qipai.dafaqipai.wihget.MarqueeTextView
         android:id="@+id/gonggao"
-        android:layout_width="1170px"
+        android:layout_width="570px"
         android:layout_height="50px"
-        android:layout_marginLeft="680px"
-        android:layout_marginTop="135px"
+        android:layout_marginLeft="910px"
+        android:layout_marginTop="45px"
         android:clickable="true"
         android:ellipsize="marquee"
         android:gravity="center_vertical"
@@ -202,10 +202,10 @@
 
     <RadioGroup
 
-        android:layout_width="550px"
-        android:layout_height="760px"
+        android:layout_width="450px"
+        android:layout_height="700px"
         android:layout_marginLeft="50px"
-        android:layout_marginTop="150px"
+        android:layout_marginTop="180px"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -213,7 +213,7 @@
             android:id="@+id/qipai"
             android:layout_width="350px"
             android:layout_height="100px"
-            android:layout_marginTop="160px"
+            android:layout_marginTop="140px"
             android:background="@drawable/icon_qipai"
             android:button="@null"
             android:checked="true"
@@ -250,66 +250,70 @@
 
     <FrameLayout
         android:id="@+id/framelayout"
-        android:layout_width="1290px"
+        android:layout_width="1380px"
         android:layout_height="700px"
-        android:layout_marginLeft="620px"
-        android:layout_marginTop="200px">
+        android:layout_marginLeft="540px"
+        android:layout_marginTop="180px">
 
 
     </FrameLayout>
 
 
-    <TextView
-        android:id="@+id/huodong"
-        android:layout_width="251px"
-        android:layout_height="125px"
-        android:layout_marginTop="950px" />
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_marginTop="920px"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="180px">
+
+        <TextView
+            android:id="@+id/huodong"
+            android:layout_width="200px"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/tuiguang"
+            android:layout_width="200px"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/baoxian"
+            android:layout_width="200px"
+            android:layout_height="match_parent"/>
 
 
-    <TextView
-        android:id="@+id/tuiguang"
-        android:layout_width="251px"
-        android:layout_height="125px"
-        android:layout_marginLeft="251px"
-        android:layout_marginTop="950px" />
+        <TextView
+            android:id="@+id/mianxi"
+            android:layout_width="220px"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/jiaoyi"
+            android:layout_width="240px"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/tequan"
+            android:layout_width="240px"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/tixian"
+            android:layout_width="300px"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/chongzhi"
+            android:layout_width="300px"
+            android:layout_height="match_parent" />
 
 
-    <TextView
-        android:id="@+id/kefu"
-        android:layout_width="251px"
-        android:layout_height="125px"
-        android:layout_marginLeft="502px"
-        android:layout_marginTop="950px" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
 
 
-    <TextView
-        android:id="@+id/baoxian"
-        android:layout_width="251px"
-        android:layout_height="125px"
-        android:layout_marginLeft="753px"
-        android:layout_marginTop="950px" />
 
 
-    <TextView
-        android:id="@+id/shezhi"
-        android:layout_width="251px"
-        android:layout_height="125px"
-        android:layout_marginLeft="1004px"
-        android:layout_marginTop="950px" />
 
 
-    <TextView
-        android:id="@+id/tixian"
-        android:layout_width="280px"
-        android:layout_height="160px"
-        android:layout_marginLeft="1300px"
-        android:layout_marginTop="920px" />
-
-    <TextView
-        android:id="@+id/chongzhi"
-        android:layout_width="280px"
-        android:layout_height="160px"
-        android:layout_marginLeft="1600px"
-        android:layout_marginTop="920px" />
 
 </RelativeLayout>
