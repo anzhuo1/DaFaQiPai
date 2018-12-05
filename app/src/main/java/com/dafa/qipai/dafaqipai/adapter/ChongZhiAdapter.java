@@ -65,47 +65,39 @@ public class ChongZhiAdapter extends RecyclerView.Adapter<ChongZhiAdapter.MyView
 
 
         switch (type) {
+
             case 1:
-                holder.text2.setText("在线银行");
+                holder.text2.setText("银行转账");
                 break;
             case 2:
-                holder.text2.setText("手机银行");
+                holder.text2.setText("支付宝转账");
                 break;
             case 3:
-                holder.text2.setText("柜台转账");
+                holder.text2.setText("微信转账");
                 break;
             case 4:
-                holder.text2.setText("ATM存款/转账");
+                holder.text2.setText("财付通转账");
                 break;
             case 5:
-                holder.text2.setText("微信转帐");
+                holder.text2.setText("在线支付");
                 break;
             case 6:
-                holder.text2.setText("支付宝转帐");
+                holder.text2.setText("QQ转账");
                 break;
             case 7:
-                holder.text2.setText("财付通转帐");
+                holder.text2.setText("京东转账");
                 break;
             case 8:
-                holder.text2.setText("QQ转帐");
+                holder.text2.setText("百度钱包转账");
                 break;
             case 9:
-                holder.text2.setText("京东钱包转帐");
-                break;
-            case 10:
-                holder.text2.setText("百度钱包转帐");
-                break;
-            case 11:
                 holder.text2.setText("微信转银行卡");
                 break;
-            case 12:
+            case 10:
+                holder.text2.setText("云闪付");
+                break;
+            case 11:
                 holder.text2.setText("支付宝转银行卡");
-                break;
-            case 13:
-                holder.text2.setText("财付通转银行卡");
-                break;
-            case 14:
-                holder.text2.setText("QQ转银行卡");
                 break;
         }
 

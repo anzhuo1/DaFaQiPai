@@ -42,7 +42,6 @@ import static com.kongzue.dialog.v2.DialogSettings.THEME_DARK;
 
 public class MyApp extends Application {
 
-
     public static List<DOgetAppCzInfoResult.CzTypeListBean.CzListBean> czList = new ArrayList<>();
 
     public static String ID;
@@ -59,11 +58,11 @@ public class MyApp extends Application {
 
 
     //-------
-   // public static boolean isBG = false;
+    // public static boolean isBG = false;
 
 
     public static MyApp getInstance() {
-        MyApp inst = sApp;  // <<< 在这里创建临时变量
+        MyApp inst = sApp;          // <<< 在这里创建临时变量
         if (inst == null) {
             synchronized (MyApp.class) {
                 inst = sApp;
@@ -74,7 +73,7 @@ public class MyApp extends Application {
             }
         }
 
-        return inst;  // <<< 注意这里返回的是临时变量
+        return inst;                // <<< 注意这里返回的是临时变量
     }
 
 
@@ -118,9 +117,6 @@ public class MyApp extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
 
 
         new Timer().schedule(new TimerTask() {
@@ -172,7 +168,6 @@ public class MyApp extends Application {
                     BackgroundMusic.getInstance(getApplicationContext()).pauseBackgroundMusic();
 
                 }
-
 
 
             }
