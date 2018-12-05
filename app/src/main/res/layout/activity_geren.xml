@@ -14,7 +14,7 @@
         android:layout_width="1680px"
         android:layout_height="1100px"
         android:layout_marginLeft="100px"
-        android:layout_marginTop="60px"
+        android:layout_marginTop="40px"
         android:background="@mipmap/bg_gerenxxk"
         android:gravity="center"
         android:text="Loading..."
@@ -96,7 +96,7 @@
         android:layout_width="100px"
         android:layout_height="100px"
         android:layout_marginLeft="1680px"
-        android:layout_marginTop="80px"
+        android:layout_marginTop="60px"
         android:background="@null"
         android:gravity="center_vertical"
         android:maxLength="14" />

@@ -8,14 +8,14 @@ public class ApiConstant {
      */
 
 
-//    public static String API_DOMAIN = "http://43.230.171.202:8080/api/";
-//    public static String VERSION = "1";
-//    public static String COMPANY_SHORT_NAME = "a2";
-
-
+    public static String API_DOMAIN = "http://43.230.171.202:8080/api/";
     public static String VERSION = "1";
-    public static String COMPANY_SHORT_NAME = "ky";
-    public static String API_DOMAIN = "http://api.ky.bb.nf/";
+    public static String COMPANY_SHORT_NAME = "a2";
+
+
+//    public static String VERSION = "1";
+//    public static String COMPANY_SHORT_NAME = "ky";
+//    public static String API_DOMAIN = "http://api.ky.bb.nf/";
 
 
 //    public static String VERSION = "1";

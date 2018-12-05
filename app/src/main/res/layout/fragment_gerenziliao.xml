@@ -25,7 +25,6 @@
 
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/edit_password"
                 android:layout_width="150px"
                 android:layout_height="60px"

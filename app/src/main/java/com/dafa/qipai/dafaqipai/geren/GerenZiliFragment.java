@@ -36,7 +36,7 @@ import butterknife.Unbinder;
 public class GerenZiliFragment extends LazyLoadFragment {
 
 
-    Unbinder unbinder;
+   // Unbinder unbinder;
     @BindView(R.id.edit_password)
     TextView editPassword;
     @BindView(R.id.id_nun)
@@ -161,24 +161,26 @@ public class GerenZiliFragment extends LazyLoadFragment {
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        // TODO: inflate a fragment view
+//        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+//        unbinder = ButterKnife.bind(this, rootView);
+//        return rootView;
+//    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        //unbinder.unbind();
     }
 
     @OnClick({R.id.edit_password, R.id.copy_id, R.id.band_phone, R.id.go_vip, R.id.yinhangka})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.edit_password:
+
+                gotoActivity(EditPasswordActivity.class);
 
                 break;
             case R.id.copy_id:

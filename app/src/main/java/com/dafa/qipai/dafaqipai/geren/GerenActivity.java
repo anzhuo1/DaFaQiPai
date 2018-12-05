@@ -116,6 +116,7 @@ public class GerenActivity extends BaseFragmentActivity {
                 r4.setChecked(true);
 
 
+
             }
         } catch (Exception e) {
             e.printStackTrace();

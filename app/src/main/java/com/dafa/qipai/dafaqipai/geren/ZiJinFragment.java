@@ -145,26 +145,32 @@ public class ZiJinFragment extends LazyLoadFragment {
 
                     @Override
                     protected void _onNext(String json) {
-                        System.out.println(json);
-                        ZiJinJiLuDo baseDo = GsonUtil.GsonToBean(json, ZiJinJiLuDo.class);
-                        if (baseDo.getResult() == 1) {
-
-                            List<ZiJinJiLuDo.LogUserCoinListBean> coinList = baseDo.getLogUserCoinList();
-
-                            recyclerview.setLayoutManager(new LinearLayoutManager(context));
-                            ZiJinAdapter adapter = new ZiJinAdapter(entityList, context, coinList, R.layout.item_zijin);
-                            recyclerview.setAdapter(adapter);
 
 
-                            int total = baseDo.getTotal();
-                            //indexPage = baseDo.getPageNum();
+                        try {
+                            ZiJinJiLuDo baseDo = GsonUtil.GsonToBean(json, ZiJinJiLuDo.class);
+                            if (baseDo.getResult() == 1) {
 
-                            totalPageNum = (total + 4 - 1) / 4;
+                                List<ZiJinJiLuDo.LogUserCoinListBean> coinList = baseDo.getLogUserCoinList();
+
+                                recyclerview.setLayoutManager(new LinearLayoutManager(context));
+                                ZiJinAdapter adapter = new ZiJinAdapter(entityList, context, coinList, R.layout.item_zijin);
+                                recyclerview.setAdapter(adapter);
 
 
-                            yema.setText(pageNum + "/" + totalPageNum);
+                                int total = baseDo.getTotal();
+                                //indexPage = baseDo.getPageNum();
 
-                            adapter.notifyDataSetChanged();
+                                totalPageNum = (total + 4 - 1) / 4;
+
+
+                                yema.setText(pageNum + "/" + totalPageNum);
+
+                                adapter.notifyDataSetChanged();
+
+                            }
+                        } catch (Exception e) {
+
 
                         }
 

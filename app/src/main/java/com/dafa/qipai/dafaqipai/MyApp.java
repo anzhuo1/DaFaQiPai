@@ -30,6 +30,7 @@ import com.kongzue.dialog.v2.DialogSettings;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.HttpParams;
 import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.smtt.sdk.WebView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +90,7 @@ public class MyApp extends Application {
 
         initOkGo();
 
+        WebView.setWebContentsDebuggingEnabled(true);
 
     }
 

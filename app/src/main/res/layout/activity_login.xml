@@ -49,7 +49,7 @@
         android:hint="请输入您的账号"
         android:maxLength="14"
         android:paddingLeft="20px"
-        android:text="zz111111"
+        android:text=""
         android:textColor="#bdc1cc"
         android:textColorHint="#494f5a"
         android:textSize="30px" />
@@ -69,7 +69,7 @@
         android:inputType="textPassword"
         android:maxLength="14"
         android:paddingLeft="20px"
-        android:text="zz111111"
+        android:text=""
         android:textColor="#bdc1cc"
         android:textColorHint="@color/text_hint_color"
         android:textSize="30px" />

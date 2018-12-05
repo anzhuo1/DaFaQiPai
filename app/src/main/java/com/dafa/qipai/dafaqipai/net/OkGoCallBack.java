@@ -86,7 +86,11 @@ public abstract class OkGoCallBack extends StringCallback {
     @Override
     public void onSuccess(String s, Call call, Response response) {
 
-        _onNext(s);
+        try {
+            _onNext(s);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

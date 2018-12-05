@@ -107,10 +107,18 @@ public class QipaiFragment extends LazyLoadFragment {
             @Override
             public void onItemClick(View view) {
 
+
+
                 if (!UserUtil.isLoginApp(context)) {
                     gotoActivity(LoginActivity.class);
                     return;
                 }
+
+//                if (!canGoto) {
+//                    return;
+//                }
+//
+//                canGoto = false;
 
 
                 int position = listView.getChildAdapterPosition(view);
@@ -227,6 +235,7 @@ public class QipaiFragment extends LazyLoadFragment {
     @Override
     public boolean getUserVisibleHint() {
         runLayoutAnimation(listView);
+        canGoto = true;
         return super.getUserVisibleHint();
 
     }
@@ -235,6 +244,13 @@ public class QipaiFragment extends LazyLoadFragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         runLayoutAnimation(listView);
+        canGoto = true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        canGoto = true;
     }
 
     private void runLayoutAnimation(RecyclerView recyclerView) {

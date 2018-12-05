@@ -34,16 +34,16 @@
 
 
     <EditText
-        android:imeOptions="actionDone|flagNoExtractUi"
-        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:id="@+id/name"
         android:layout_width="480px"
         android:layout_height="80px"
         android:layout_marginLeft="830px"
         android:layout_marginTop="250px"
         android:background="@null"
+        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:gravity="center_vertical"
-        android:hint="请输入6-14位字母加数字"
+        android:hint="请输入7-14位字母加数字"
+        android:imeOptions="actionDone|flagNoExtractUi"
         android:maxLength="14"
         android:paddingLeft="20px"
         android:text=""
@@ -53,17 +53,17 @@
 
 
     <EditText
-        android:inputType="textPassword"
-        android:imeOptions="actionDone|flagNoExtractUi"
-        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:id="@+id/pass"
         android:layout_width="480px"
         android:layout_height="80px"
         android:layout_marginLeft="830px"
-        android:layout_marginTop="335px"
+        android:layout_marginTop="340px"
         android:background="@null"
+        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:gravity="center_vertical"
-        android:hint="请输入6-14位字母加数字密码"
+        android:hint="请输入7-14位字母加数字密码"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:inputType="textPassword"
         android:maxLength="14"
         android:paddingLeft="20px"
         android:text=""
@@ -73,17 +73,17 @@
 
 
     <EditText
-        android:inputType="textPassword"
-        android:imeOptions="actionDone|flagNoExtractUi"
-        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:id="@+id/again_pass"
         android:layout_width="480px"
         android:layout_height="80px"
         android:layout_marginLeft="830px"
         android:layout_marginTop="425px"
         android:background="@null"
+        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:gravity="center_vertical"
         android:hint="请输入您的密码"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:inputType="textPassword"
         android:maxLength="14"
         android:paddingLeft="20px"
         android:text=""
@@ -91,7 +91,7 @@
         android:textColorHint="#494f5a"
         android:textSize="30px" />
 
-    <EditText android:imeOptions="actionDone|flagNoExtractUi"
+    <EditText
         android:id="@+id/tuijian"
         android:layout_width="480px"
         android:layout_height="80px"
@@ -99,7 +99,8 @@
         android:layout_marginTop="505px"
         android:background="@null"
         android:gravity="center_vertical"
-        android:hint="请输入推荐人账号（若有）"
+        android:hint="请输入推荐人ID（若有）"
+        android:imeOptions="actionDone|flagNoExtractUi"
         android:maxLength="14"
         android:paddingLeft="20px"
         android:text=""
@@ -107,16 +108,17 @@
         android:textColorHint="#494f5a"
         android:textSize="30px" />
 
-    <EditText android:imeOptions="actionDone|flagNoExtractUi"
-        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+    <EditText
         android:id="@+id/yanzhengma"
         android:layout_width="250px"
         android:layout_height="80px"
         android:layout_marginLeft="830px"
         android:layout_marginTop="590px"
         android:background="@null"
+        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
         android:gravity="center_vertical"
         android:hint="请输入验证码"
+        android:imeOptions="actionDone|flagNoExtractUi"
         android:maxLength="14"
         android:paddingLeft="20px"
         android:text=""
@@ -151,5 +153,77 @@
         android:gravity="center_vertical"
         android:maxLength="14" />
 
+
+    <TextView
+        android:layout_width="300px"
+        android:layout_height="80px"
+        android:layout_marginLeft="530px"
+        android:layout_marginTop="250px"
+        android:background="#434456"
+        android:gravity="center_vertical|right"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:maxLength="14"
+        android:paddingRight="20px"
+        android:text="用户名"
+        android:textColor="@color/text_white"
+        android:textSize="40px" />
+
+    <TextView
+        android:layout_width="300px"
+        android:layout_height="84px"
+        android:layout_marginLeft="530px"
+        android:layout_marginTop="340px"
+        android:background="#434456"
+        android:gravity="center_vertical|right"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:maxLength="14"
+        android:paddingRight="20px"
+        android:text="密码"
+        android:textColor="@color/text_white"
+        android:textSize="40px" />
+
+
+    <TextView
+        android:layout_width="300px"
+        android:layout_height="84px"
+        android:layout_marginLeft="530px"
+        android:layout_marginTop="425px"
+        android:background="#434456"
+        android:gravity="center_vertical|right"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:maxLength="14"
+        android:paddingRight="20px"
+        android:text="确认密码"
+        android:textColor="@color/text_white"
+        android:textSize="40px" />
+
+
+    <TextView
+        android:layout_width="300px"
+        android:layout_height="80px"
+        android:layout_marginLeft="530px"
+        android:layout_marginTop="510px"
+        android:background="#434456"
+        android:gravity="center_vertical|right"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:maxLength="14"
+        android:paddingRight="20px"
+        android:text="推荐人ID"
+        android:textColor="@color/text_white"
+        android:textSize="40px" />
+
+    <TextView
+        android:layout_width="300px"
+        android:layout_height="80px"
+        android:layout_marginLeft="530px"
+        android:layout_marginTop="590px"
+        android:background="#434456"
+        android:gravity="center_vertical|right"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:maxLength="14"
+        android:paddingRight="20px"
+        android:text="验证码"
+        android:textColor="@color/text_white"
+        android:textSize="40px" />
 
 </RelativeLayout>

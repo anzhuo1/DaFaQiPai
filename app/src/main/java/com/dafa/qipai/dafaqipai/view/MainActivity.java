@@ -30,6 +30,7 @@ import com.dafa.qipai.dafaqipai.fra.DianZiFragment;
 import com.dafa.qipai.dafaqipai.fra.LeYouFragment;
 import com.dafa.qipai.dafaqipai.fra.QipaiFragment;
 import com.dafa.qipai.dafaqipai.fra.ZhenrenFragment;
+import com.dafa.qipai.dafaqipai.geren.EditPasswordActivity;
 import com.dafa.qipai.dafaqipai.geren.GerenActivity;
 import com.dafa.qipai.dafaqipai.net.OkGoCallBack;
 import com.dafa.qipai.dafaqipai.tixian.TiXianActivity;
@@ -46,6 +47,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.smtt.sdk.WebView;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -144,6 +146,10 @@ public class MainActivity extends BaseFragmentActivity {
 //            startActivity(new Intent(this, SplashActivity.class));
 //            finish();
 //        }
+
+      //  gotoActivity(EditPasswordActivity.class);
+
+
 
         requstQuanXian();
 

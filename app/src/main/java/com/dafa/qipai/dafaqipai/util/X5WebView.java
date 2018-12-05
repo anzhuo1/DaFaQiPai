@@ -24,14 +24,14 @@ public class X5WebView extends WebView {
          * 防止加载网页时调起系统浏览器
          */
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            System.out.println("url   "+url);
+            System.out.println("url   " + url);
             view.loadUrl(url);
             return true;
         }
 
         @Override
         public void onPageFinished(WebView webView, String s) {
-            System.out.println("s    "+s);
+            System.out.println("s    " + s);
             super.onPageFinished(webView, s);
         }
     };
@@ -86,7 +86,6 @@ public class X5WebView extends WebView {
         webSetting.setLoadWithOverviewMode(true);
 
 
-
         //设置浏览器标识
         String ua = webSetting.getUserAgentString();
         webSetting.setUserAgentString(ua + "Browser_Type/Android_APP");
@@ -98,7 +97,10 @@ public class X5WebView extends WebView {
         webSetting.setAllowFileAccess(true);
 
 
-            }
+
+        WebView.setWebContentsDebuggingEnabled(true);
+
+    }
 
 //	@Override
 //	protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
@@ -125,9 +127,9 @@ public class X5WebView extends WebView {
 //		return ret;
 //	}
 
-            public X5WebView(Context arg0) {
-                super(arg0);
-                //setBackgroundColor(85621);
-            }
+    public X5WebView(Context arg0) {
+        super(arg0);
+        //setBackgroundColor(85621);
+    }
 
-        }
+}

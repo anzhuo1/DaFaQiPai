@@ -300,9 +300,9 @@ public class TiXianFragment extends LazyLoadFragment {
                 }
 
                 pageNum += 1;
-
                 loadChongZhi();
                 break;
+
         }
     }
 

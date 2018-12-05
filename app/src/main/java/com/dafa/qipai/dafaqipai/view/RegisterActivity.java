@@ -112,7 +112,7 @@ public class RegisterActivity extends BaseActivity {
             showError(RegisterActivity.this, "请确认密码!");
             return;
         }
-        String regex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{7,114}$";
+        String regex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{7,14}$";
 
         String password = pass.getText().toString();
 

@@ -48,6 +48,9 @@ public class LeYouFragment extends LazyLoadFragment {
         return R.layout.fragment_qipai;
     }
 
+
+    private boolean canGoto = true;
+
     @Override
     public void initViews(View view) {
 
@@ -93,6 +96,12 @@ public class LeYouFragment extends LazyLoadFragment {
                     gotoActivity(LoginActivity.class);
                     return;
                 }
+
+//                if (!canGoto) {
+//                    return;
+//                }
+//
+//                canGoto = false;
 
 
                 OkGo.post(ApiConstant.API_DOMAIN + "/wallet/walletToLy.json")
@@ -257,6 +266,7 @@ public class LeYouFragment extends LazyLoadFragment {
     @Override
     public boolean getUserVisibleHint() {
         runLayoutAnimation(listView);
+        canGoto = true;
         return super.getUserVisibleHint();
 
     }
@@ -265,6 +275,13 @@ public class LeYouFragment extends LazyLoadFragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         runLayoutAnimation(listView);
+        canGoto = true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        canGoto = true;
     }
 
     private void runLayoutAnimation(RecyclerView recyclerView) {
