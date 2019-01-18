@@ -5,7 +5,7 @@
     android:id="@+id/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/test_abg"
+    android:background="@mipmap/dafahome"
     tools:context=".view.MainActivity">
 
     <ImageView
@@ -212,8 +212,8 @@
         <RadioButton
             android:id="@+id/qipai"
             android:layout_width="350px"
-            android:layout_height="100px"
-            android:layout_marginTop="140px"
+            android:layout_height="120px"
+            android:layout_marginTop="120px"
             android:background="@drawable/icon_qipai"
             android:button="@null"
             android:checked="true"
@@ -222,8 +222,8 @@
         <RadioButton
             android:id="@+id/zhenren"
             android:layout_width="350px"
-            android:layout_height="100px"
-            android:layout_marginTop="40px"
+            android:layout_height="120px"
+            android:layout_marginTop="20px"
             android:background="@drawable/icon_zhenren"
             android:button="@null"
             android:textSize="28px" />
@@ -231,8 +231,8 @@
         <RadioButton
             android:id="@+id/tiyu"
             android:layout_width="350px"
-            android:layout_height="100px"
-            android:layout_marginTop="40px"
+            android:layout_height="120px"
+            android:layout_marginTop="20px"
             android:background="@drawable/icon_leyou"
             android:button="@null"
             android:textSize="28px" />
@@ -240,8 +240,8 @@
         <RadioButton
             android:id="@+id/dianzi"
             android:layout_width="350px"
-            android:layout_height="100px"
-            android:layout_marginTop="40px"
+            android:layout_height="120px"
+            android:layout_marginTop="20px"
             android:background="@drawable/icon_dainzi"
             android:button="@null"
             android:textSize="28px" />

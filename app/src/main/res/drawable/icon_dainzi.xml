@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@mipmap/dianzi_press" android:state_pressed="true" />
-    <item android:drawable="@mipmap/dianzi_press" android:state_checked="true" />
-    <item android:drawable="@mipmap/dianzigame" />
+    <item android:drawable="@mipmap/dafa_dianzi_press" android:state_pressed="true" />
+    <item android:drawable="@mipmap/dafa_dianzi_press" android:state_checked="true" />
+    <item android:drawable="@mipmap/dafa_dianzi" />
 </selector>

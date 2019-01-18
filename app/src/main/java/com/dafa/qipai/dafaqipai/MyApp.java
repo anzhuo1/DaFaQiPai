@@ -182,6 +182,9 @@ public class MyApp extends Application {
 //        Process.killProcess(Process.myPid()); //获取PID
 //        System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
 
+
+        AppUtils.showToast(this, description);
+
         ActivityContainer.getInstance().finishAllActivity();
 
         Intent intent = new Intent(MyApp.this, MainActivity.class);

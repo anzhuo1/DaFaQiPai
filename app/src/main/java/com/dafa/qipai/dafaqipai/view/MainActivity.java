@@ -471,6 +471,18 @@ public class MainActivity extends BaseFragmentActivity {
                 startActivity(new Intent(this, GerenActivity.class));
 
                 break;
+            case R.id.mianxi:
+               AppUtils.showToast(context,"暂未开放");
+
+                break;
+            case R.id.jiaoyi:
+                AppUtils.showToast(context,"暂未开放");
+
+                break;
+            case R.id.tequan:
+                AppUtils.showToast(context,"暂未开放");
+
+                break;
         }
     }
 
@@ -558,10 +570,14 @@ public class MainActivity extends BaseFragmentActivity {
             llDz.setVisibility(View.GONE);
             id.setVisibility(View.VISIBLE);
 
+            dengji.setVisibility(View.VISIBLE);
+
         } else {
 
             id.setVisibility(View.GONE);
             llDz.setVisibility(View.VISIBLE);
+
+            dengji.setVisibility(View.GONE);
         }
 
 
