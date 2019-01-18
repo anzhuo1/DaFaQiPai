@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -14,11 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dafa.qipai.dafaqipai.MyApp;
 import com.dafa.qipai.dafaqipai.R;
 import com.dafa.qipai.dafaqipai.baoxianxiaong.BaoxianxActivity;
 import com.dafa.qipai.dafaqipai.baoxianxiaong.BaoxianxActivity2;
+import com.dafa.qipai.dafaqipai.bean.Apkinfo;
 import com.dafa.qipai.dafaqipai.bean.DoBxx;
 import com.dafa.qipai.dafaqipai.bean.DoLayer;
 import com.dafa.qipai.dafaqipai.bean.PublicMsgDo;
@@ -26,6 +29,7 @@ import com.dafa.qipai.dafaqipai.bean.UserBaseSession;
 import com.dafa.qipai.dafaqipai.bean.ZhanNeiXinDo;
 import com.dafa.qipai.dafaqipai.chong.ChongzhiActivity;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
+import com.dafa.qipai.dafaqipai.core.CommonConstant;
 import com.dafa.qipai.dafaqipai.fra.DianZiFragment;
 import com.dafa.qipai.dafaqipai.fra.LeYouFragment;
 import com.dafa.qipai.dafaqipai.fra.QipaiFragment;
@@ -40,8 +44,12 @@ import com.dafa.qipai.dafaqipai.util.AutoUtils;
 import com.dafa.qipai.dafaqipai.util.BackgroundMusic;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.SPUtil;
+import com.dafa.qipai.dafaqipai.util.SocketUtils;
 import com.dafa.qipai.dafaqipai.util.SoundPoolUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
+import com.dafa.qipai.dafaqipai.websocket.WebSocketService;
+import com.dafa.qipai.dafaqipai.websocket.WebSocketSetting;
+import com.dafa.qipai.dafaqipai.websocket.core.AppResponseDispatcher;
 import com.dafa.qipai.dafaqipai.wihget.MarqueeTextView;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
@@ -49,6 +57,7 @@ import com.tbruyelle.rxpermissions.RxPermissions;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.WebView;
 
+import java.net.Socket;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -147,8 +156,9 @@ public class MainActivity extends BaseFragmentActivity {
 //            finish();
 //        }
 
-      //  gotoActivity(EditPasswordActivity.class);
+        //gotoActivity(GengXinActivity.class);
 
+        SocketUtils.connectServerWithTCPSocket();
 
 
         requstQuanXian();
@@ -159,6 +169,9 @@ public class MainActivity extends BaseFragmentActivity {
 
         loadGongao();
 
+
+        checkUpdata();
+
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -167,7 +180,7 @@ public class MainActivity extends BaseFragmentActivity {
         AutoUtils.auto(this);
 
 
-        AppUtils.playBgMuisc(this);
+        // AppUtils.playBgMuisc(this);
 
         soundPoolUtil = SoundPoolUtil.getInstance(this);
 
@@ -209,6 +222,39 @@ public class MainActivity extends BaseFragmentActivity {
 
     }
 
+    private void checkUpdata() {
+
+        OkGo.post(ApiConstant.API_DOMAIN + "app/getAppGenxin.json")
+                .tag(this)
+                .params("version", ApiConstant.VERSION)
+                .execute(new OkGoCallBack(this, false) {
+                    @Override
+                    protected void _onNext(String json) {
+
+
+                        Apkinfo apkinfo = GsonUtil.GsonToBean(json, Apkinfo.class);
+                        if (apkinfo.getResult() == CommonConstant.SUCCESS_CODE) {
+                            String version = apkinfo.getVersion();
+                            String remarks = apkinfo.getRemarks();
+                            String url = apkinfo.getUrl();
+                            boolean force = apkinfo.isForce();
+
+                            if (force) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("url", url);
+                                bundle.putString("remarks", remarks);
+                                gotoActivity(GengXinActivity.class, false, bundle);
+                            }
+
+                        } else {
+
+                        }
+                    }
+
+                });
+
+    }
+
     private void loadQuanXian() {
 
         OkGo.post(ApiConstant.API_DOMAIN + "/member/getLayer.json")
@@ -243,32 +289,40 @@ public class MainActivity extends BaseFragmentActivity {
                     @Override
                     public void onCacheSuccess(String s, Call call) {
                         super.onCacheSuccess(s, call);
-                        PublicMsgDo baseDo = GsonUtil.GsonToBean(s, PublicMsgDo.class);
-                        List<PublicMsgDo.WebNoticeListBean> noticeList = baseDo.getWebNoticeList();
-                        if (noticeList != null && noticeList.size() > 0) {
-                            String notice = noticeList.get(0).getContent();
-                            gonggao.setText(notice);
-                            gonggao.setFocusable(true);
-                            gonggao.setFocusableInTouchMode(true);
-                            gonggao.requestFocus();
-                        } else {
-                            gonggao.setVisibility(View.GONE);
+                        try {
+                            PublicMsgDo baseDo = GsonUtil.GsonToBean(s, PublicMsgDo.class);
+                            List<PublicMsgDo.WebNoticeListBean> noticeList = baseDo.getWebNoticeList();
+                            if (noticeList != null && noticeList.size() > 0) {
+                                String notice = noticeList.get(0).getContent();
+                                gonggao.setText(notice);
+                                gonggao.setFocusable(true);
+                                gonggao.setFocusableInTouchMode(true);
+                                gonggao.requestFocus();
+                            } else {
+                                gonggao.setVisibility(View.GONE);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
 
                     @Override
                     protected void _onNext(String json) {
-                        PublicMsgDo baseDo = GsonUtil.GsonToBean(json, PublicMsgDo.class);
-                        List<PublicMsgDo.WebNoticeListBean> noticeList = baseDo.getWebNoticeList();
-                        if (noticeList != null && noticeList.size() > 0) {
-                            String notice = noticeList.get(0).getContent();
-                            gonggao.setText(notice);
-                            gonggao.setFocusable(true);
-                            gonggao.setFocusableInTouchMode(true);
-                            gonggao.requestFocus();
+                        try {
+                            PublicMsgDo baseDo = GsonUtil.GsonToBean(json, PublicMsgDo.class);
+                            List<PublicMsgDo.WebNoticeListBean> noticeList = baseDo.getWebNoticeList();
+                            if (noticeList != null && noticeList.size() > 0) {
+                                String notice = noticeList.get(0).getContent();
+                                gonggao.setText(notice);
+                                gonggao.setFocusable(true);
+                                gonggao.setFocusableInTouchMode(true);
+                                gonggao.requestFocus();
 
-                        } else {
-                            gonggao.setVisibility(View.GONE);
+                            } else {
+                                gonggao.setVisibility(View.GONE);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
                 });
@@ -401,7 +455,7 @@ public class MainActivity extends BaseFragmentActivity {
 
     }
 
-    @OnClick({R.id.xinxi1, R.id.xinxi2, R.id.dojine, R.id.head,R.id.id,R.id.name, R.id.huodong, R.id.tuiguang, R.id.kefu, R.id.baoxian, R.id.shezhi, R.id.tixian, R.id.chongzhi})
+    @OnClick({R.id.xinxi1, R.id.xinxi2, R.id.dojine, R.id.head, R.id.id, R.id.name, R.id.huodong, R.id.tuiguang, R.id.kefu, R.id.baoxian, R.id.shezhi, R.id.tixian, R.id.chongzhi})
     public void onViewClicked2(View view) {
         float y2 = (float) SPUtil.get(this, "y2", 0.5f);
         soundPoolUtil.play(0, this, y2);
@@ -506,6 +560,9 @@ public class MainActivity extends BaseFragmentActivity {
     protected void onResume() {
         super.onResume();
 
+
+        AppUtils.playBgMuisc(context);
+
         if (MyApp.type == 0) {
 
             int[] ints = AppUtils.randomArray(1, 10, 1);
@@ -526,21 +583,6 @@ public class MainActivity extends BaseFragmentActivity {
 
         }
 
-//        if (MyApp.isBG) {
-//
-////            ActivityContainer.getInstance().finishAllActivity();
-////
-////            Intent intent = new Intent(this, MainActivity.class);
-////            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-////            startActivity(intent);
-////
-////            System.out.println("cur");
-////
-////            MyApp.isBG = false;
-//
-//
-//        }
-
 
         loadData4THIS();
 
@@ -558,10 +600,14 @@ public class MainActivity extends BaseFragmentActivity {
             llDz.setVisibility(View.GONE);
             id.setVisibility(View.VISIBLE);
 
+            dengji.setVisibility(View.VISIBLE);
+
         } else {
 
             id.setVisibility(View.GONE);
             llDz.setVisibility(View.VISIBLE);
+
+            dengji.setVisibility(View.GONE);
         }
 
 
@@ -569,7 +615,7 @@ public class MainActivity extends BaseFragmentActivity {
             @Override
             public void run() {
 
-                OkGo.post(ApiConstant.API_DOMAIN + "/wallet/oneKeyToWallet.json")
+                OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
                         .params("token", UserUtil.getToken(context))
                         .params("uid", UserUtil.getUserID(context))
                         .execute(new OkGoCallBack(MainActivity.this, false) {
@@ -584,6 +630,25 @@ public class MainActivity extends BaseFragmentActivity {
 
             }
         }, 2000);
+
+
+        if (UserUtil.isLoginApp(this)) {
+
+            //配置 WebSocket，必须在 WebSocket 服务启动前设置
+            String connectUrl = ApiConstant.WS_DOMAIN + "ws?uid="
+                    + UserUtil.getUserID(this) + "&token="
+                    + UserUtil.getToken(this) +
+                    "&clientType=Android&companyShortName=" + ApiConstant.COMPANY_SHORT_NAME + "&appVersion=1";
+
+            WebSocketSetting.setConnectUrl(connectUrl);//必选
+
+            WebSocketSetting.setResponseProcessDelivery(new AppResponseDispatcher());
+            WebSocketSetting.setReconnectWithNetworkChanged(true);
+
+            //启动 WebSocket 服务
+            startService(new Intent(this, WebSocketService.class));
+
+        }
 
 
     }
@@ -626,7 +691,19 @@ public class MainActivity extends BaseFragmentActivity {
 
     private void huishou() {
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/wallet/oneKeyToWallet.json")
+//        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
+//                .params("token", UserUtil.getToken(this))
+//                .params("uid", UserUtil.getUserID(this))
+//                .execute(new OkGoCallBack(this, false) {
+//                    @Override
+//                    protected void _onNext(String json) {
+//
+//
+//                    }
+//                });
+
+
+        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
                 .params("token", UserUtil.getToken(this))
                 .params("uid", UserUtil.getUserID(this))
                 .execute(new OkGoCallBack(this, false) {
@@ -728,14 +805,29 @@ public class MainActivity extends BaseFragmentActivity {
             return;
         }
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/wallet/oneKeyToWallet.json")
-                .params("token", UserUtil.getToken(context))
-                .params("uid", UserUtil.getUserID(context))
-                .execute(new OkGoCallBack(MainActivity.this, true) {
+//        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
+//                .params("token", UserUtil.getToken(context))
+//                .params("uid", UserUtil.getUserID(context))
+//                .execute(new OkGoCallBack(MainActivity.this, true) {
+//                    @Override
+//                    protected void _onNext(String json) {
+//
+//                        loadData4THIS();
+//
+//                    }
+//                });
+
+
+        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
+                .params("token", UserUtil.getToken(this))
+                .params("uid", UserUtil.getUserID(this))
+                .execute(new OkGoCallBack(this, true) {
                     @Override
                     protected void _onNext(String json) {
 
+
                         loadData4THIS();
+
 
                     }
                 });

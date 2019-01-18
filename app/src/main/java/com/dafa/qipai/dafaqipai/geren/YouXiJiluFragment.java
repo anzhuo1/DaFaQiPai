@@ -227,17 +227,17 @@ public class YouXiJiluFragment extends LazyLoadFragment {
                 .params("gameName", "")
                 .params("number", "")
                 .params("gameType", gameType)
-                .execute(new OkGoCallBack(getActivity(), false) {
+                .execute(new OkGoCallBack(getActivity(), true) {
                     @Override
                     protected void _onNext(String json) {
-                        try {
+//                        try {
                             DoYuxoi baseDo = GsonUtil.GsonToBean(json, DoYuxoi.class);
 
                             if (baseDo.getResult() == 1) {
                                 List<DoYuxoi.ListBean> beans = baseDo.getList();
-                                if (beans == null) {
-                                    return;
-                                }
+//                                if (beans == null) {
+//                                    return;
+//                                }
 
                                 recyclerview.setLayoutManager(new LinearLayoutManager(context));
                                 YouxiAdapter adapter = new YouxiAdapter(context, beans, R.layout.item_youxi);
@@ -251,10 +251,10 @@ public class YouXiJiluFragment extends LazyLoadFragment {
                                 adapter.notifyDataSetChanged();
 
                             }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-
-                        }
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//
+//                        }
                     }
                 });
 

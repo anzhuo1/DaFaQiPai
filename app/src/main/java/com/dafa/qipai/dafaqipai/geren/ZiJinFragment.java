@@ -141,7 +141,7 @@ public class ZiJinFragment extends LazyLoadFragment {
                 .params("pageSize", 4)
                 .params("pageIndex", pageNum)
                 .params("type", mType)
-                .execute(new OkGoCallBack(getActivity(), false) {
+                .execute(new OkGoCallBack(getActivity(), true) {
 
                     @Override
                     protected void _onNext(String json) {

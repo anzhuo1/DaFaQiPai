@@ -100,7 +100,7 @@ public class GerenZiliFragment extends LazyLoadFragment {
         OkGo.post(ApiConstant.API_DOMAIN + "member/getUserBaseInfo.json")
                 .params("uid", UserUtil.getUserID(getActivity()))
                 .params("token", UserUtil.getToken(getActivity()))
-                .execute(new OkGoCallBack(getActivity(), false) {
+                .execute(new OkGoCallBack(getActivity(), true) {
                     @Override
                     protected void _onNext(String json) {
 

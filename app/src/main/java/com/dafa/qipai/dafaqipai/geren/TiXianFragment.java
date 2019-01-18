@@ -125,7 +125,7 @@ public class TiXianFragment extends LazyLoadFragment {
                 .params("pageSize", 4)
                 .params("pageIndex", pageNum)
                 .params("status", "" + (null == status ? "" : status.intValue()))
-                .execute(new OkGoCallBack(getActivity(), false) {
+                .execute(new OkGoCallBack(getActivity(), true) {
                     @Override
                     protected void _onNext(String json) {
                         try {

@@ -43,6 +43,7 @@ public class ChongZhiAdapter extends RecyclerView.Adapter<ChongZhiAdapter.MyView
 //            public void onClick(View v) {
 //                onItemClickListener.onItemClick(v);
 //            }
+
 //        });
 
         return holder;
@@ -57,7 +58,6 @@ public class ChongZhiAdapter extends RecyclerView.Adapter<ChongZhiAdapter.MyView
         int type = dtos.get(position).getType();
 
         String orderNo = dtos.get(position).getOrderNo();
-
 
         holder.text4.setText(DateUtil.getString2Y2MD(time) + "\n" + DateUtil.getString2HMS(time));
         holder.text3.setText(money.toPlainString());

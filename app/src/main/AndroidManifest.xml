@@ -14,8 +14,24 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-   <!-- //int totalPageNum = (totalRecord  +  pageSize  - 1) / pageSize;
-    &lt;!&ndash;android:roundIcon="@mipmap/ic_launcher_round"&ndash;&gt;-->
+    <!--允许应用程序改变网络状态-->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+
+    <!--允许应用程序改变WIFI连接状态-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+
+    <!--允许应用程序访问有关的网络信息-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <!--允许应用程序访问WIFI网卡的网络信息-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <!--允许应用程序完全使用网络-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- //int totalPageNum = (totalRecord  +  pageSize  - 1) / pageSize;v
+
+     &lt;!&ndash;android:roundIcon="@mipmap/ic_launcher_round"&ndash;&gt;-->
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -28,6 +44,12 @@
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5c03cfebb465f5332b000d45" />
+
+
+
+        <service android:name=".websocket.WebSocketService"/>
+        <receiver android:name=".websocket.NetworkChangedReceiver"/>
+
 
         <activity
 
@@ -54,6 +76,7 @@
             android:theme="@style/dialog">
 
         </activity>
+
 
 
         <activity
@@ -175,6 +198,15 @@
 
         <activity
             android:name=".view.DaiLiActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialog">
+
+        </activity>
+
+
+        <activity
+            android:name=".view.GengXinActivity"
             android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/dialog">

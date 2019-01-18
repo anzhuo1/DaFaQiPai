@@ -29,7 +29,7 @@ public class BaseYouxiActivity extends BaseActivity {
 
         AppUtils.stopBgMuisc(this);
 
-        MyApp.type = 0;
+
 
         BackgroundMusic.getInstance(getApplicationContext()).pauseBackgroundMusic();
 
@@ -39,36 +39,19 @@ public class BaseYouxiActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
 
-//        try {
-//            AppUtils.playBgMuisc(this);
-//            forumContext.destroy();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
-
-//        5.游戏退出返回到我们app界面的时候调用该接口 需要登录
-///chess/autotWithdrawIndex.json
-//        参数 clientType:客户端类型 （1: PC,2: Mobile,3: Android,4: IOS）
-//        参数 type  1.开元棋牌 2.BBIN  3.AG  4.体育
-
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         try {
-            AppUtils.playBgMuisc(this);
+
             forumContext.destroy();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    //        参数 type  1.开元棋牌 2.BBIN  3.AG  4.体育
 
     @Override
     protected void onResume() {

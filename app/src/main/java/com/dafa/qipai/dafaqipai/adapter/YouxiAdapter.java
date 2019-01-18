@@ -53,14 +53,15 @@ public class YouxiAdapter extends RecyclerView.Adapter<YouxiAdapter.MyViewHolder
 
 
         holder.text.setText(dtos.get(position).getOrderNumber());
-        holder.text2.setText("无");
-        holder.text3.setText("无");
+        //holder.text2.setText("无");
+        holder.text3.setText(dtos.get(position).getNumber());
 
-        long createTime = dtos.get(position).getCreateTime();
+        long createTime = dtos.get(position).getUpdateTime();
         String format = DateUtil.format(new Date(createTime));
         holder.text4.setText(format);
 
-        holder.text5.setText("无");
+        holder.text5.setText(DateUtil.format(new Date(dtos.get(position).getCreateTime())));
+
         holder.text6.setText(dtos.get(position).getZjMoney() + "");
 
 
@@ -80,7 +81,7 @@ public class YouxiAdapter extends RecyclerView.Adapter<YouxiAdapter.MyViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView text;
-        TextView text2;
+        //TextView text2;
         TextView text3;
         TextView text4;
         TextView text5;
@@ -90,7 +91,7 @@ public class YouxiAdapter extends RecyclerView.Adapter<YouxiAdapter.MyViewHolder
         public MyViewHolder(View view) {
             super(view);
             text = (TextView) view.findViewById(R.id.text);
-            text2 = (TextView) view.findViewById(R.id.text2);
+           // text2 = (TextView) view.findViewById(R.id.text2);
             text3 = (TextView) view.findViewById(R.id.text3);
             text4 = (TextView) view.findViewById(R.id.text4);
             text5 = (TextView) view.findViewById(R.id.text5);

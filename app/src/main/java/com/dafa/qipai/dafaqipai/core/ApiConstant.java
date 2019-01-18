@@ -3,24 +3,30 @@ package com.dafa.qipai.dafaqipai.core;
 public class ApiConstant {
 
 
-    /**
+    /**充
      * 统一接口地址
      */
 
-
-    public static String API_DOMAIN = "http://43.230.171.202:8080/api/";
+    public static String API_DOMAIN = "http://cs.77.nf/";
     public static String VERSION = "1";
     public static String COMPANY_SHORT_NAME = "a2";
+    public static String WS_DOMAIN = "ws://cs.77.nf/";
 
+
+//    public static String API_DOMAIN = "http://43.230.171.202:8080/api/";
+//    public static String VERSION = "1";
+//    public static String COMPANY_SHORT_NAME = "a2";
+//    public static String WS_DOMAIN = "ws://43.230.171.202:8080/api/";
 
 //    public static String VERSION = "1";
 //    public static String COMPANY_SHORT_NAME = "ky";
 //    public static String API_DOMAIN = "http://api.ky.bb.nf/";
-
+//    public static String WS_DOMAIN = "ws://api.ky.bb.nf/";
 
 //    public static String VERSION = "1";
 //    public static String COMPANY_SHORT_NAME = "ky";
 //    public static String API_DOMAIN = "http://api.cs.bb.nf/";
+//    public static String WS_DOMAIN = "ws://api.cs.bb.nf/";
 
 
     public static String CLIENT_TYPE = "Android";
@@ -123,5 +129,6 @@ public class ApiConstant {
     public static String API_WEB_SETTING_GET_FENGGE = API_DOMAIN + "webSetting/getFengge.json";  // 获取风格
     public static String API_SSC_GET_SSC_PLAY_PL_GFWF = API_DOMAIN + "ssc/getSscPlayPl_gfwf.json"; // 官方玩法赔率
     public static String API_SSC_GET_LATEST_OPEN_TIME_LIST = API_DOMAIN + "ssc/getLatestOpenTimeList.json"; // 最近最新开奖时间
+
 
 }

@@ -28,14 +28,14 @@ import butterknife.Unbinder;
 public class ChongZhiKuaiSuFragment extends LazyLoadFragment {
 
 
-    //    @BindView(R.id.listView)
-//    RecyclerView listView;
+    //   @BindView(R.id.listView)
+    //    RecyclerView listView;
     Unbinder unbinder;
     @BindView(R.id.ok)
     Button ok;
     private String qkszkcqd;
     //    @BindView(R.id.tousu)
-//    View tousu;
+    //    View tousu;
 
     @Override
     public int getLayout() {
@@ -68,7 +68,6 @@ public class ChongZhiKuaiSuFragment extends LazyLoadFragment {
                         DoKuaiChong doKuaiChong = GsonUtil.GsonToBean(json, DoKuaiChong.class);
                         if (doKuaiChong.getResult() == 1) {
                             qkszkcqd = doKuaiChong.getQkszkcqd();
-
 
                         }
 

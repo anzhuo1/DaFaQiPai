@@ -8,9 +8,9 @@ public class DoYuxoi {
     /**
      * result : 1
      * description :
-     * list : [{"pk":"cad9c92a4aa54f92a92b0ed78eeedc24","gamename":"乐游Fg-棋牌","createTime":1543483200000,"totalMoney":3,"effectiveMoney":3,"zjMoney":5.7,"status":1,"account":"cheng001","content":"poker","number":"6301392","orderNumber":"6301392","updateTime":1543483000,"sorting":1068072071283671040,"fandian":3,"companyShortName":"a2","agentId":1109,"type":"4","appid":null},{"pk":"f31dcc26d263418389e5329cdf64d951","gamename":"乐游Fg-棋牌","createTime":1543422720000,"totalMoney":2,"effectiveMoney":10187.45,"zjMoney":0,"status":1,"account":"cheng001","content":"poker","number":"60141088","orderNumber":"60141088","updateTime":1543422000,"sorting":1067818399781945344,"fandian":2,"companyShortName":"a2","agentId":1109,"type":"4","appid":null},{"pk":"52369b6a44fc4c52abf8651e21aa47fe","gamename":"乐游Fg-棋牌","createTime":1543422720000,"totalMoney":2,"effectiveMoney":10189.45,"zjMoney":0,"status":1,"account":"cheng001","content":"poker","number":"60141087","orderNumber":"60141087","updateTime":1543422000,"sorting":1067818399710642176,"fandian":2,"companyShortName":"a2","agentId":1109,"type":"4","appid":null},{"pk":"a2bcccaea05c4d0596c042990ceb9c17","gamename":"乐游Fg-棋牌","createTime":1543422720000,"totalMoney":2,"effectiveMoney":10191.45,"zjMoney":11.5,"status":1,"account":"cheng001","content":"poker","number":"60141084","orderNumber":"60141084","updateTime":1543422000,"sorting":1067818399526092800,"fandian":2,"companyShortName":"a2","agentId":1109,"type":"4","appid":null}]
+     * list : [{"pk":"4680319b72cb481b86355c65f7695fd5","gamename":"德州扑克","createTime":1544093760000,"totalMoney":1,"effectiveMoney":1,"zjMoney":-1,"status":1,"account":"zz111111","content":"德州扑克","number":"720000003","orderNumber":"50-1544093460-577059658-2","updateTime":1544093460000,"sorting":1070633036202639360,"fandian":0,"companyShortName":"ky","agentId":50044,"type":"1","appid":null},{"pk":"f5511a2132144ad2af26f5b27deef662","gamename":"二八杠","createTime":1544093520000,"totalMoney":117,"effectiveMoney":117,"zjMoney":-115,"status":1,"account":"zz111111","content":"二八杠","number":"1440200047","orderNumber":"50-1544093123-577047940-4","updateTime":1544093123000,"sorting":1070632077355384832,"fandian":0,"companyShortName":"ky","agentId":50044,"type":"1","appid":null},{"pk":"4a54b39985b844dfbe4b36a19612a723","gamename":"二八杠","createTime":1544093520000,"totalMoney":49,"effectiveMoney":49,"zjMoney":46.55,"status":1,"account":"zz111111","content":"二八杠","number":"1440200047","orderNumber":"50-1544093087-577047940-4","updateTime":1544093087000,"sorting":1070632074398400512,"fandian":2.45,"companyShortName":"ky","agentId":50044,"type":"1","appid":null},{"pk":"6796321225654610aa69b590968cc015","gamename":"德州扑克","createTime":1544093520000,"totalMoney":1,"effectiveMoney":1,"zjMoney":-1,"status":1,"account":"zz111111","content":"德州扑克","number":"720000015","orderNumber":"50-1544093220-577052738-9","updateTime":1544093220000,"sorting":1070632013069287424,"fandian":0,"companyShortName":"ky","agentId":50044,"type":"1","appid":null}]
      * cPage : 4
-     * cNumber : 14
+     * cNumber : 16
      */
 
     private int result;
@@ -61,23 +61,23 @@ public class DoYuxoi {
 
     public static class ListBean {
         /**
-         * pk : cad9c92a4aa54f92a92b0ed78eeedc24
-         * gamename : 乐游Fg-棋牌
-         * createTime : 1543483200000
-         * totalMoney : 3.0
-         * effectiveMoney : 3.0
-         * zjMoney : 5.7
+         * pk : 4680319b72cb481b86355c65f7695fd5
+         * gamename : 德州扑克
+         * createTime : 1544093760000
+         * totalMoney : 1.0
+         * effectiveMoney : 1.0
+         * zjMoney : -1.0
          * status : 1
-         * account : cheng001
-         * content : poker
-         * number : 6301392
-         * orderNumber : 6301392
-         * updateTime : 1543483000
-         * sorting : 1068072071283671040
-         * fandian : 3.0
-         * companyShortName : a2
-         * agentId : 1109
-         * type : 4
+         * account : zz111111
+         * content : 德州扑克
+         * number : 720000003
+         * orderNumber : 50-1544093460-577059658-2
+         * updateTime : 1544093460000
+         * sorting : 1070633036202639360
+         * fandian : 0.0
+         * companyShortName : ky
+         * agentId : 50044
+         * type : 1
          * appid : null
          */
 
@@ -92,7 +92,7 @@ public class DoYuxoi {
         private String content;
         private String number;
         private String orderNumber;
-        private int updateTime;
+        private long updateTime;
         private long sorting;
         private double fandian;
         private String companyShortName;
@@ -188,11 +188,11 @@ public class DoYuxoi {
             this.orderNumber = orderNumber;
         }
 
-        public int getUpdateTime() {
+        public long getUpdateTime() {
             return updateTime;
         }
 
-        public void setUpdateTime(int updateTime) {
+        public void setUpdateTime(long updateTime) {
             this.updateTime = updateTime;
         }
 

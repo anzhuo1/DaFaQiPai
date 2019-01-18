@@ -129,29 +129,33 @@ public class AGWebAppActivity extends BaseYouxiActivity {
     private void tuiChu() {
 
 
-        OkGo.post(ApiConstant.API_DOMAIN + "/wallet/oneKeyToWallet.json")
-                .params("token", UserUtil.getToken(context))
-                .params("uid", UserUtil.getUserID(context))
-                .execute(new OkGoCallBack(this, true) {
-                    @Override
-                    protected void _onNext(String json) {
-
+//        OkGo.post(ApiConstant.API_DOMAIN + "/chess/autotWithdrawIndex.json")
+//                .params("token", UserUtil.getToken(context))
+//                .params("uid", UserUtil.getUserID(context))
+//                .execute(new OkGoCallBack(this, true) {
+//                    @Override
+//                    protected void _onNext(String json) {
+//
 //                        DoTuiChu doTuiChu = GsonUtil.GsonToBean(json, DoTuiChu.class);
-//                        int result = doTuiChu.getResult();
+//                      int result = doTuiChu.getResult();
+//
+//
+//                    }
+//
+//                    @Override
+//                    public void onAfter(@Nullable String s, @Nullable Exception e) {
+//                        super.onAfter(s, e);
+//
+//                        forumContext.destroy();
+//                        finish();
+//
+//                    }
+//                });
 
 
-                    }
 
-                    @Override
-                    public void onAfter(@Nullable String s, @Nullable Exception e) {
-                        super.onAfter(s, e);
-
-                        forumContext.destroy();
-                        finish();
-
-                    }
-                });
-
+        forumContext.destroy();
+        finish();
 
     }
 

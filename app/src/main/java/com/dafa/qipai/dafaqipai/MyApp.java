@@ -24,8 +24,12 @@ import com.dafa.qipai.dafaqipai.util.CountTimeUtils;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
 import com.dafa.qipai.dafaqipai.core.ApiConstant;
+import com.dafa.qipai.dafaqipai.view.LoginActivity;
 import com.dafa.qipai.dafaqipai.view.MainActivity;
 import com.dafa.qipai.dafaqipai.view.SheZhiActivity;
+import com.dafa.qipai.dafaqipai.websocket.WebSocketService;
+import com.dafa.qipai.dafaqipai.websocket.WebSocketSetting;
+import com.dafa.qipai.dafaqipai.websocket.core.AppResponseDispatcher;
 import com.kongzue.dialog.v2.DialogSettings;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.HttpParams;
@@ -89,6 +93,12 @@ public class MyApp extends Application {
         DialogSettings.dialog_cancelable_default = false;
 
         initOkGo();
+
+//        //配置 WebSocket，必须在 WebSocket 服务启动前设置
+//        WebSocketSetting.setConnectUrl("ws://43.230.171.202:8080/api/ws?uid=401329&token=6594e281d7ae467b97d11a90fac6a511&clientType=Android&companyShortName=a2&appVersion=1");//必选
+//        WebSocketSetting.setResponseProcessDelivery(new AppResponseDispatcher());
+//        WebSocketSetting.setReconnectWithNetworkChanged(true);
+
 
 
     }
@@ -181,6 +191,8 @@ public class MyApp extends Application {
 
 //        Process.killProcess(Process.myPid()); //获取PID
 //        System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
+
+        AppUtils.showToast(this, description);
 
         ActivityContainer.getInstance().finishAllActivity();
 

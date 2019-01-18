@@ -42,6 +42,7 @@ public class DianZiFragment extends LazyLoadFragment {
 
     @Override
     public int getLayout() {
+
         return R.layout.fragment_qipai;
     }
 
@@ -51,13 +52,10 @@ public class DianZiFragment extends LazyLoadFragment {
         ButterKnife.bind(this, view);
         AutoUtils.auto(view);
 
-
 //        qipai.setBackgroundResource(R.mipmap.qipaigame_press);
-
 
         listView.setLayoutManager(new StaggeredGridLayoutManager(1,
                 StaggeredGridLayoutManager.HORIZONTAL));
-
 
         List<HomeItemDto> dtos = new ArrayList<>();
 

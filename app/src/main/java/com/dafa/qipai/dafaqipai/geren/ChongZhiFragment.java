@@ -85,7 +85,6 @@ public class ChongZhiFragment extends LazyLoadFragment {
         ButterKnife.bind(this, view);
         AutoUtils.auto(view);
 
-
     }
 
     @Override
@@ -167,10 +166,9 @@ public class ChongZhiFragment extends LazyLoadFragment {
                 4,
                 status,
                 mType,
-                new OkGoCallBack(getActivity(), false) {
+                new OkGoCallBack(getActivity(), true) {
                     @Override
                     protected void _onNext(String json) {
-                        System.out.println(json);
 
                         ChongZHiJiLuDo baseDo = GsonUtil.GsonToBean(json, ChongZHiJiLuDo.class);
                         if (baseDo.getResult() == 1) {

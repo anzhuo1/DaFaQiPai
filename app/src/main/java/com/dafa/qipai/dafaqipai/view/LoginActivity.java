@@ -1,6 +1,7 @@
 package com.dafa.qipai.dafaqipai.view;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,10 @@ import com.dafa.qipai.dafaqipai.util.AutoUtils;
 import com.dafa.qipai.dafaqipai.util.GsonUtil;
 import com.dafa.qipai.dafaqipai.util.MD5Utils;
 import com.dafa.qipai.dafaqipai.util.UserUtil;
+import com.dafa.qipai.dafaqipai.websocket.WebSocketService;
+import com.dafa.qipai.dafaqipai.websocket.WebSocketServiceConnectManager;
+import com.dafa.qipai.dafaqipai.websocket.WebSocketSetting;
+import com.dafa.qipai.dafaqipai.websocket.core.AppResponseDispatcher;
 import com.kongzue.dialog.v2.MessageDialog;
 import com.lzy.okgo.OkGo;
 
@@ -41,6 +46,8 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.login)
     TextView login;
 
+    private WebSocketServiceConnectManager mConnectManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +56,9 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         AutoUtils.auto(this);
+
+
+
 
 
 
@@ -91,6 +101,10 @@ public class LoginActivity extends BaseActivity {
                             ACache.get(context).put("passwd", MD5Utils.small32md5(pass.getText().toString()));
                             ACache.get(context).put("userId", doLogin.getUserId() + "");
 
+
+
+
+
                             showInfo(context, "登录成功");
                             finish();
                             //gotoActivity(MainActivity.class);
@@ -100,7 +114,6 @@ public class LoginActivity extends BaseActivity {
                     }
                 });
     }
-
 
 
 }

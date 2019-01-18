@@ -20,11 +20,8 @@ import java.util.List;
 
 public class ChongzhiDailiAdapter extends RecyclerView.Adapter<ChongzhiDailiAdapter.MyViewHolder> {
 
-
     private Context context;
-
     private List<DoDaili.ListBean> dtos;
-
     private int layout;
     private String imgUrl;
 
